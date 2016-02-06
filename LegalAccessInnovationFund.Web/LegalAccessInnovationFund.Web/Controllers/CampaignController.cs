@@ -17,26 +17,39 @@ namespace LegalAccessInnovationFund.Web.Controllers
         [HttpGet]
         public ActionResult Campaigns()
         {
-            var model = db.Campaigns.ToList().Select(campaign => new CampaignViewModel()
+            var model = db.Campaigns.Select(campaign => new CampaignViewModel()
             {
                 Title = campaign.Title,
                 Story = campaign.Story,
                 Goal = campaign.Goal,
                 Picture = campaign.Picture,
                 Location = campaign.Location,
-                DonationLevels = campaign.DonationLevels.Select(donationlevel=> new DonationLevelViewModel()
+                DonationLevels = campaign.DonationLevels.Select(donationlevel => new DonationLevelViewModel()
                 {
-                    
+
                 }).ToList(),
                 Status = campaign.Status.ToString(),
                 CategoryName = campaign.Category.CategoryName,
                 Contributions = campaign.Contributions.Select(contribution => new ContributionViewModel()
                 {
-                    
+
                 }).ToList(),
                 CampaignStarter = campaign.CampaignStarter.Name
             });
             return View(model);
+        }
+
+        public JsonResult SearchCampaigns(string campaignSearch)
+        {
+            var model = db.Campaigns.Where(x =>x.Title.StartsWith(campaignSearch))
+                                    .Where(x=>x.CampaignStarter.Name.Contains(campaignSearch))
+                                    .Where(x=>x.Category.CategoryName.Contains(campaignSearch))
+                                    .Select(campaign => new CampaignViewModel()
+                                    {
+
+                                    }).ToList();
+            
+            return Json(model);
         }
 
         [HttpPost]
@@ -81,7 +94,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
         {
             var contribution = new Contribution()
             {
-                
+
             };
 
             var campaign = db.Campaigns.Find(campaignId);

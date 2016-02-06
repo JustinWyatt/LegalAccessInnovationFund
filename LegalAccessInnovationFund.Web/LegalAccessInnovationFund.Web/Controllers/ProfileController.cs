@@ -59,9 +59,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
 
             return RedirectToAction("");
         }
-
         
-
         [Authorize]
         [HttpGet]
         public ActionResult ProfileView()

@@ -12,5 +12,10 @@ namespace LegalAccessInnovationFund.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult MainPage()
+        {
+            return View();
+        }
     }
 }
