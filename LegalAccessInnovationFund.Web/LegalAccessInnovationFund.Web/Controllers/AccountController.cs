@@ -10,6 +10,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using LegalAccessInnovationFund.Web.Models;
 using LegalAccessInnovationFund.Web.Models.ViewModels;
+using System.Net.Http;
+using SendGrid;
+using System.Net.Mail;
+
 
 namespace LegalAccessInnovationFund.Web.Controllers
 {
@@ -26,7 +30,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -38,9 +42,9 @@ namespace LegalAccessInnovationFund.Web.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -56,23 +60,66 @@ namespace LegalAccessInnovationFund.Web.Controllers
             }
         }
 
+        public ActionResult ApplicationForm()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult SubmitApplication(PendingApplication pendingApplication)
+        {
+            var application = new PendingApplication()
+            {
+                FirstName = pendingApplication.FirstName,
+                LastName = pendingApplication.LastName,
+                City = pendingApplication.City,
+                State = pendingApplication.State,
+                Country = pendingApplication.Country,
+                PostalCode = pendingApplication.PostalCode,
+                Email = pendingApplication.Email,
+                MailingAccount = new MailingAccount(pendingApplication.Email)
+            };
+
+            db.PendingApplications.Add(application);
+            db.SaveChanges();
+
+            var messageToApplicant = new SendGrid.SendGridMessage();
+            messageToApplicant.AddTo(pendingApplication.Email);
+            messageToApplicant.From = new MailAddress("");
+            messageToApplicant.Subject = $"";
+            messageToApplicant.Text = "";
+
+            var messageToAdministrator = new SendGrid.SendGridMessage();
+            messageToAdministrator.AddTo("");
+            messageToAdministrator.From = new MailAddress("");
+            messageToAdministrator.Subject = "";
+            messageToAdministrator.Text = "";
+
+            var transportWeb = new SendGrid.Web("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");
+            transportWeb.DeliverAsync(messageToApplicant).Wait();
+            transportWeb.DeliverAsync(messageToAdministrator).Wait();
+
+            return RedirectToAction("");
+        }
+
         [Authorize]
         [HttpGet]
         public ActionResult ProfileView()
         {
             var userId = User.Identity.GetUserId();
-            var model = db.Users.Where(x=>x.Id == userId).Select(user=> new ProfileViewModel()
+            var model = db.Users.Where(x => x.Id == userId).Select(user => new ProfileViewModel()
             {
                 Name = user.Name,
                 Email = user.Email,
-                Contributions = user.Contributions.Select(contribution=> new ContributionViewModel
+                Contributions = user.Contributions.Select(contribution => new ContributionViewModel
                 {
                     Amount = contribution.Amount,
                     Note = contribution.Note,
                     DonationLevel = contribution.DonationLevel.Title,
                     Contributor = contribution.Contributor.Name
                 }).ToList(),
-                Campaigns = user.Campaigns.Select(campaign=> new CampaignViewModel()
+                Campaigns = user.Campaigns.Select(campaign => new CampaignViewModel()
                 {
                     Title = campaign.Title,
                     Story = campaign.Story,
@@ -96,7 +143,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
                         Note = contribution.Note,
                         DonationLevel = contribution.DonationLevel.Title,
                         Contributor = contribution.Contributor.Name
-                        
+
                     }).ToList(),
                     CampaignStarter = campaign.CampaignStarter.Name
                 }).ToList()
@@ -172,7 +219,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -207,8 +254,8 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
