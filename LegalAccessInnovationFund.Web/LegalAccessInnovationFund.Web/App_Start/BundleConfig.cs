@@ -37,7 +37,8 @@ namespace LegalAccessInnovationFund.Web
                       "~/Content/bootstrap.css",
                       "~/Content/main.css",
                       "~/Content/responsive.css",
-                      "~/Content/bootstrap.css"
+                      "~/Content/bootstrap.css",
+                      "~/Content/preset1.css"
                       ));
         }
     }

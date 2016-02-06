@@ -3,16 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href='http://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    @*<link href="~/Content/owl.carousel.css" rel="stylesheet" />
-        <link href="~/Content/preloader.css" rel="stylesheet" />
-        <link href="~/Content/owl.theme.default.css" rel="stylesheet"/>
-        <link href="~/Content/animate.css" rel="stylesheet"/>*@
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-    @*<link href="~/Content/style.css" rel="stylesheet"/>*@
+    <title>@ViewBag.Title - User Accounts</title>
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -21,12 +12,9 @@
 <body>
 
         @RenderBody()
-        <script src="~/Scripts/jquery.nicescroll.js"></script>
-    <script src="~/Scripts/wow.js"></script>
+        
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/owl.carousel.js"></script>
-    <script src="~/Scripts/script.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
