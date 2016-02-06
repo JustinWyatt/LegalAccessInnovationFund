@@ -69,6 +69,39 @@ namespace LegalAccessInnovationFund.Web.Controllers
             return View();
         }
 
+
+        [Authorize]
+        [HttpPost]
+        public void ConfirmApplication(int pendingApplicationId)
+        {
+            var app = db.PendingApplications.Find(pendingApplicationId);
+            var applicant = new Applicant()
+            {
+                Name = app.FirstName + app.LastName,
+                DateRegistered = DateTime.Now,
+                Campaigns = new List<Campaign>(),
+                Contributions = new List<Contribution>(),
+                City = app.City,
+                State = app.State,
+                PostalCode = app.PostalCode,
+                Links = new List<UserLink>(),
+                BirthDate = DateTime.Parse(app.DateOfBirth),
+                Email = app.Email,
+                UserName = app.FirstName + "123"
+            };
+            var password = System.Web.Security.Membership.GeneratePassword(10, 10);
+            UserManager.Create(applicant, password);
+
+            var messageToApplicant = new SendGrid.SendGridMessage();
+            messageToApplicant.AddTo(applicant.Email);
+            messageToApplicant.From = new MailAddress("");
+            messageToApplicant.Subject = $"";
+            messageToApplicant.Text = "";
+
+            var transportWeb = new SendGrid.Web("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");
+            transportWeb.DeliverAsync(messageToApplicant).Wait();
+        }
+
         //
         // POST: /Account/Login
         [HttpPost]
