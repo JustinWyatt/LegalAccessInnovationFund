@@ -14,6 +14,8 @@ namespace LegalAccessInnovationFund.Web.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
+        
+
         [AllowAnonymous]
         [HttpGet]
         public ActionResult ApplicationForm()
@@ -69,6 +71,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
             {
                 Name = user.Name,
                 Email = user.Email,
+                Avatar = user.AvatarImagePath,
                 Contributions = user.Contributions.ToList().Select(contribution => new ContributionViewModel
                 {
                     Amount = contribution.Amount,
@@ -78,6 +81,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 }).ToList(),
                 Campaigns = user.Campaigns.ToList().Select(campaign => new CampaignViewModel()
                 {
+                    CampaignId = campaign.Id,
                     Title = campaign.Title,
                     Story = campaign.Story,
                     Goal = campaign.Goal,

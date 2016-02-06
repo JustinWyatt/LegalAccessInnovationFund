@@ -7,6 +7,7 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
 {
     public class CampaignViewModel
     {
+        public int CampaignId { get; set; }
         public string Title { get; set; }
         public string Story { get; set; }
         public double Goal { get; set; }

@@ -26,8 +26,15 @@
             <!-- Logo
             ================================================== -->
             <div class="span5 logo">
-                <a href="index.htm"><img src="img/piccolo-logo.png" alt="" /></a>
-                <h5>Big Things... Small Packages</h5>
+                <a href="index.htm"><img src="img/piccolo-logo.png" alt=""/></a>
+                @if (Request.IsAuthenticated)
+                {
+                    <h5> You The Real MVP, @Html.ActionLink($"{User.Identity.Name}", "ProfileView", "Profile", null, null)</h5>
+                }
+                else
+                {
+                    <h5>Big Things... Small Packages</h5>
+                }
             </div>
 
             <!-- Main Navigation

@@ -381,10 +381,11 @@
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\Home\MainPage.cshtml" />
     <Content Include="Views\Campaign\Campaigns.cshtml" />
+    <Content Include="Views\Profile\ProfileView.cshtml" />
+    <Content Include="Views\Campaign\CampaignBegin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

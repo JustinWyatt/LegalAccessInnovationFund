@@ -92,6 +92,12 @@ namespace LegalAccessInnovationFund.Web.Controllers
             return Json(model);
         }
 
+        [HttpGet]
+        public ActionResult CampaignBegin()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult StartCampaign(CampaignViewModel newCampaign)
         {
