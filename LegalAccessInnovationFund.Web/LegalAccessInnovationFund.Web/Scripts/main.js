@@ -1,163 +1,248 @@
-jQuery(function($) {
+// loader 
+$(window).load(function () { // makes sure the whole site is loaded
+    $('#status').fadeOut(); // will first fade out the loading animation
+    $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
+    $('body').delay(350).css({ 'overflow': 'visible' });
+})
 
-	//Preloader
-	var preloader = $('.preloader');
-	$(window).load(function(){
-		preloader.remove();
-	});
+// Sticky Header
+$(window).scroll(function () {
 
-	//#main-slider
-	var slideHeight = $(window).height();
-	$('#home-slider .item').css('height',slideHeight);
-
-	$(window).resize(function(){'use strict',
-		$('#home-slider .item').css('height',slideHeight);
-	});
-	
-	//Scroll Menu
-	$(window).on('scroll', function(){
-		if( $(window).scrollTop()>slideHeight ){
-			$('.main-nav').addClass('navbar-fixed-top');
-		} else {
-			$('.main-nav').removeClass('navbar-fixed-top');
-		}
-	});
-	
-	// Navigation Scroll
-	$(window).scroll(function(event) {
-		Scroll();
-	});
-
-	$('.navbar-collapse ul li a').on('click', function() {  
-		$('html, body').animate({scrollTop: $(this.hash).offset().top - 5}, 1000);
-		return false;
-	});
-
-	// User define function
-	function Scroll() {
-		var contentTop      =   [];
-		var contentBottom   =   [];
-		var winTop      =   $(window).scrollTop();
-		var rangeTop    =   200;
-		var rangeBottom =   500;
-		$('.navbar-collapse').find('.scroll a').each(function(){
-			contentTop.push( $( $(this).attr('href') ).offset().top);
-			contentBottom.push( $( $(this).attr('href') ).offset().top + $( $(this).attr('href') ).height() );
-		})
-		$.each( contentTop, function(i){
-			if ( winTop > contentTop[i] - rangeTop ){
-				$('.navbar-collapse li.scroll')
-				.removeClass('active')
-				.eq(i).addClass('active');			
-			}
-		})
-	};
-
-	$('#tohash').on('click', function(){
-		$('html, body').animate({scrollTop: $(this.hash).offset().top - 5}, 1000);
-		return false;
-	});
-	
-	//Initiat WOW JS
-	new WOW().init();
-	//smoothScroll
-	smoothScroll.init();
-	
-	// Progress Bar
-	$('#about-us').bind('inview', function(event, visible, visiblePartX, visiblePartY) {
-		if (visible) {
-			$.each($('div.progress-bar'),function(){
-				$(this).css('width', $(this).attr('aria-valuetransitiongoal')+'%');
-			});
-			$(this).unbind('inview');
-		}
-	});
-
-	//Countdown
-	$('#features').bind('inview', function(event, visible, visiblePartX, visiblePartY) {
-		if (visible) {
-			$(this).find('.timer').each(function () {
-				var $this = $(this);
-				$({ Counter: 0 }).animate({ Counter: $this.text() }, {
-					duration: 2000,
-					easing: 'swing',
-					step: function () {
-						$this.text(Math.ceil(this.Counter));
-					}
-				});
-			});
-			$(this).unbind('inview');
-		}
-	});
-
-	// Portfolio Single View
-	$('#portfolio').on('click','.folio-read-more',function(event){
-		event.preventDefault();
-		var link = $(this).data('single_url');
-		var full_url = '#portfolio-single-wrap',
-		parts = full_url.split("#"),
-		trgt = parts[1],
-		target_top = $("#"+trgt).offset().top;
-
-		$('html, body').animate({scrollTop:target_top}, 600);
-		$('#portfolio-single').slideUp(500, function(){
-			$(this).load(link,function(){
-				$(this).slideDown(500);
-			});
-		});
-	});
-
-	// Close Portfolio Single View
-	$('#portfolio-single-wrap').on('click', '.close-folio-item',function(event) {
-		event.preventDefault();
-		var full_url = '#portfolio',
-		parts = full_url.split("#"),
-		trgt = parts[1],
-		target_offset = $("#"+trgt).offset(),
-		target_top = target_offset.top;
-		$('html, body').animate({scrollTop:target_top}, 600);
-		$("#portfolio-single").slideUp(500);
-	});
-
-	// Contact form
-	var form = $('#main-contact-form');
-	form.submit(function(event){
-		event.preventDefault();
-		var form_status = $('<div class="form_status"></div>');
-		$.ajax({
-			url: $(this).attr('action'),
-			beforeSend: function(){
-				form.prepend( form_status.html('<p><i class="fa fa-spinner fa-spin"></i> Email is sending...</p>').fadeIn() );
-			}
-		}).done(function(data){
-			form_status.html('<p class="text-success">Thank you for contact us. As early as possible  we will contact you</p>').delay(3000).fadeOut();
-		});
-	});
-
-	//Google Map
-	var latitude = $('#google-map').data('latitude')
-	var longitude = $('#google-map').data('longitude')
-	function initialize_map() {
-		var myLatlng = new google.maps.LatLng(latitude,longitude);
-		var mapOptions = {
-			zoom: 14,
-			scrollwheel: false,
-			center: myLatlng
-		};
-		var map = new google.maps.Map(document.getElementById('google-map'), mapOptions);
-		var contentString = '';
-		var infowindow = new google.maps.InfoWindow({
-			content: '<div class="map-content"><ul class="address">' + $('.address').html() + '</ul></div>'
-		});
-		var marker = new google.maps.Marker({
-			position: myLatlng,
-			map: map
-		});
-		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.open(map,marker);
-		});
-	}
-	google.maps.event.addDomListener(window, 'load', initialize_map);
-	
+    if ($(window).scrollTop() > 100) {
+        $('.main_header').addClass('sticky');
+    } else {
+        $('.main_header').removeClass('sticky');
+    }
 });
 
+// Mobile Navigation
+$('.mobile-toggle').click(function () {
+    if ($('.main_header').hasClass('open-nav')) {
+        $('.main_header').removeClass('open-nav');
+    } else {
+        $('.main_header').addClass('open-nav');
+    }
+});
+
+$('.main_header li a').click(function () {
+    if ($('.main_header').hasClass('open-nav')) {
+        $('.navigation').removeClass('open-nav');
+        $('.main_header').removeClass('open-nav');
+    }
+});
+
+// navigation scroll lijepo radi materem
+$('nav a').click(function (event) {
+    var id = $(this).attr("href");
+    var offset = 70;
+    var target = $(id).offset().top - offset;
+    $('html, body').animate({
+        scrollTop: target
+    }, 500);
+    event.preventDefault();
+});
+
+
+
+// wow js
+
+new WOW().init();
+
+// nice scroll
+
+$(document).ready(
+
+  function () {
+
+      $("html").niceScroll({ cursorwidth: "8", cursorborderradius: "none", cursorborder: "none", cursorcolor: "#3498db", mousescrollstep: "60" });
+
+  }
+
+);
+
+// portfolio filter
+
+$(function () {
+
+    var filterList = {
+
+        init: function () {
+
+            // MixItUp plugin
+            // http://mixitup.io
+            $('#portfoliolist').mixitup({
+                targetSelector: '.portfolio',
+                filterSelector: '.filter',
+                effects: ['fade'],
+                easing: 'snap',
+                // call the hover effect
+                onMixEnd: filterList.hoverEffect()
+            });
+
+        },
+
+        hoverEffect: function () {
+
+            // Simple parallax effect
+            $('#portfoliolist .portfolio').hover(
+              function () {
+                  $(this).find('.label').stop().animate({ bottom: 0 }, 200, 'easeOutQuad');
+                  $(this).find('img').stop().animate({ top: -30 }, 500, 'easeOutQuad');
+              },
+              function () {
+                  $(this).find('.label').stop().animate({ bottom: -40 }, 200, 'easeInQuad');
+                  $(this).find('img').stop().animate({ top: 0 }, 300, 'easeOutQuad');
+              }
+            );
+
+        }
+
+    };
+
+    // Run the show!
+    filterList.init();
+
+
+});
+
+
+// Skillset js 
+
+var object = [
+
+  {
+
+      'headline': 'HTML & CSS',
+      'value': 8,
+      'length': 9,
+      'description': 'Significant experience and knowlage of HTML(5) and CSS functionality and use.'
+
+  },
+  {
+
+      'headline': 'JavaScript & jQuery',
+      'value': 6,
+      'length': 5,
+      'description': 'Experience with object-oriented JavaScript. </br> Extended knowlage of DOM manipulation in aiding and extending the UI.'
+
+  },
+  {
+
+      'headline': 'Ruby & Python',
+      'value': 3,
+      'length': 5,
+      'description': 'Experience with object-oriented JavaScript. </br> Extended knowlage of DOM manipulation in aiding and extending the UI.'
+
+  }
+
+];
+
+$(document).ready(function () {
+
+    $("#skillset").skillset({
+
+        object: object,
+        duration: 40
+
+    });
+
+});
+
+
+// Owl carousel
+
+$(document).ready(function () {
+
+    $("#testimonial_carosule").owlCarousel({
+
+        slideSpeed: 300,
+        paginationSpeed: 400,
+        singleItem: true,
+        autoPlay: true,
+        transitionStyle: "backSlide",
+        // "singleItem:true" is a shortcut for:
+        // items : 1, 
+        // itemsDesktop : false,
+        // itemsDesktopSmall : false,
+        // itemsTablet: false,
+        // itemsMobile : false
+
+    });
+
+});
+
+// Up to top js
+
+$(document).ready(function () {
+
+    $().UItoTop({ easingType: 'easeOutQuart' });
+
+});
+
+
+
+/* ==========================================================================
+   CONTACT FORM JS
+   ========================================================================== */
+
+$(document).ready(function () {
+    $("#submit_btn").click(function () {
+        //get input field values
+        var user_name = $('input[name=name]').val();
+        var user_email = $('input[name=email]').val();
+        var user_phone = $('input[name=phone]').val();
+        var user_message = $('textarea[name=message]').val();
+
+        //simple validation at client's end
+        //we simply change border color to red if empty field using .css()
+        var proceed = true;
+        if (user_name == "") {
+            $('input[name=name]').css('border-color', 'red');
+            proceed = false;
+        }
+        if (user_email == "") {
+            $('input[name=email]').css('border-color', 'red');
+            proceed = false;
+        }
+        if (user_phone == "") {
+            $('input[name=phone]').css('border-color', 'red');
+            proceed = false;
+        }
+        if (user_message == "") {
+            $('textarea[name=message]').css('border-color', 'red');
+            proceed = false;
+        }
+
+        //everything looks good! proceed...
+        if (proceed) {
+            //data to be sent to server
+            post_data = { 'userName': user_name, 'userEmail': user_email, 'userPhone': user_phone, 'userMessage': user_message };
+
+            //Ajax post data to server
+            $.post('contact_me.php', post_data, function (response) {
+
+                //load json data from server and output message     
+                if (response.type == 'error') {
+                    output = '<div class="error">' + response.text + '</div>';
+                } else {
+
+                    output = '<div class="success">' + response.text + '</div>';
+
+                    //reset values in all input fields
+                    $('#contact_form input').val('');
+                    $('#contact_form textarea').val('');
+                }
+
+                $("#result").hide().html(output).slideDown();
+            }, 'json');
+
+        }
+    });
+
+    //reset previously set border colors and hide all message on .keyup()
+    $("#contact_form input, #contact_form textarea").keyup(function () {
+        $("#contact_form input, #contact_form textarea").css('border-color', '');
+        $("#result").slideUp();
+    });
+
+});

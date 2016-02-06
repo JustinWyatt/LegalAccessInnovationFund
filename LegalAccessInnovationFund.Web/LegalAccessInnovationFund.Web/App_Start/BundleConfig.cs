@@ -22,23 +22,30 @@ namespace LegalAccessInnovationFund.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/html5shiv.js",
-                      "~/Scripts/jquery.inview.min.js",
-                      "~/Scripts/countTo.js",
-                      "~/Scripts/lightbox.min.js",
+                      "~/Scripts/jquery.slitslider.js",
+                      "~/Scripts/jquery.easing.min.js",
+                      "~/Scripts/jquery.isotope.min.js",
                       "~/Scripts/main.js",
-                      "~/Scripts/mousescroll.js",
-                      "~/Scripts/smoothscroll.js",
-                      "~/Scripts/wow.min.js"));
+                      "~/Scripts/imagesloaded.pkgd.min.js",
+                      "~/Scripts/jquery.ba-cond.min.js",
+                      "~/Scripts/wow.min.js",
+                      "~/Scripts/modernizr.custom.79639.js",
+                      "~/Scripts/owl.carousel.js",
+                      "~/Scripts/scrollupto.js",
+                      "~/Scripts/skillset.js",
+                      "~/Scripts/jquery.nicescroll.js",
+                      "~/Scripts/jquery.mixitup.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/animate.min.css",
-                      "~/Content/font-awesome.min.css",
-                      "~/Content/lightbox.css",
-                      "~/Content/bootstrap.css",
-                      "~/Content/main.css",
+                      "~/Content/skillset.css",
+                      "~/Content/owl.theme.css",
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/owl.transition.css",
                       "~/Content/responsive.css",
                       "~/Content/bootstrap.css",
-                      "~/Content/preset1.css"
+                      "~/Content/owl.carousel.css",
+                      "~/Content/style.css"
                       ));
         }
     }

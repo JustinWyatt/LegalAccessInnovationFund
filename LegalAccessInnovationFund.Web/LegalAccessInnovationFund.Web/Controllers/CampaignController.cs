@@ -24,7 +24,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Goal = campaign.Goal,
                 Picture = campaign.Picture,
                 Location = campaign.Location,
-                DonationLevels = campaign.DonationLevels.Select(x=> new DonationLevelViewModel()
+                DonationLevels = campaign.DonationLevels.Select(donationlevel=> new DonationLevelViewModel()
                 {
                     
                 }).ToList(),
@@ -54,7 +54,8 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Location = newCampaign.Location,
                 Status = Status.Pending,
                 Category = db.Categories.Find(newCampaign.CategoryName),
-                CampaignStarter = user
+                CampaignStarter = user,
+                DateEnd = DateTime.Now.AddDays(60)
             };
 
             foreach (var donation in newCampaign.DonationLevels)

@@ -18,5 +18,8 @@ namespace LegalAccessInnovationFund.Web.Models
         public Category Category { get; set; }
         public List<Contribution> Contributions { get; set; }
         public Applicant CampaignStarter { get; set; }
+        public DateTime Duration { get; set; }
+        public DateTime DateEnd { get; set; }
+        public double AmountFunded { get; set; }
     }
 }

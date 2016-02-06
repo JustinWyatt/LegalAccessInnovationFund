@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201602060647030_ChangesToName.Designer.cs">
       <DependentUpon>201602060647030_ChangesToName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602060907000_SavingChanes.cs" />
+    <Compile Include="Migrations\201602060907000_SavingChanes.Designer.cs">
+      <DependentUpon>201602060907000_SavingChanes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationCategory.cs" />
@@ -235,42 +239,54 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\lightbox.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\ow.transitions.css" />
+    <Content Include="Content\owl.carousel.css" />
+    <Content Include="Content\owl.theme.css" />
     <Content Include="Content\preset1.css" />
     <Content Include="Content\responsive.css" />
+    <Content Include="Content\skillset.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\Blog\1.jpg" />
-    <Content Include="Images\Blog\2.jpg" />
-    <Content Include="Images\Blog\3.jpg" />
-    <Content Include="Images\Lightbox\close.png" />
-    <Content Include="Images\Lightbox\loading.gif" />
-    <Content Include="Images\Lightbox\next.png" />
-    <Content Include="Images\Lightbox\prev.png" />
-    <Content Include="Images\Portfolio\1.jpg" />
-    <Content Include="Images\Portfolio\2.jpg" />
-    <Content Include="Images\Portfolio\3.jpg" />
-    <Content Include="Images\Portfolio\4.jpg" />
-    <Content Include="Images\Portfolio\5.jpg" />
-    <Content Include="Images\Portfolio\6.jpg" />
-    <Content Include="Images\Portfolio\7.jpg" />
-    <Content Include="Images\Portfolio\8.jpg" />
-    <Content Include="Images\Portfolio\portfolio-details.jpg" />
-    <Content Include="Images\Slider\1.jpg" />
-    <Content Include="Images\Slider\2.jpg" />
-    <Content Include="Images\Slider\3.jpg" />
-    <Content Include="Images\Team\1.jpg" />
-    <Content Include="Images\Team\2.jpg" />
-    <Content Include="Images\Team\3.jpg" />
-    <Content Include="Images\Team\4.jpg" />
-    <Content Include="Images\about-bg.jpg" />
-    <Content Include="Images\contact-bg.jpg" />
-    <Content Include="Images\favicon.ico" />
-    <Content Include="Images\features-bg.jpg" />
-    <Content Include="Images\logo.png" />
-    <Content Include="Images\twitter-bg.jpg" />
+    <Content Include="img\1.jpg" />
+    <Content Include="img\2.jpg" />
+    <Content Include="img\3.jpg" />
+    <Content Include="img\geometry2.png" />
+    <Content Include="img\header_bg.jpg" />
+    <Content Include="img\photo-01.jpg" />
+    <Content Include="img\photo-02.jpg" />
+    <Content Include="img\photo-03.jpg" />
+    <Content Include="img\photography.png" />
+    <Content Include="img\portfolios\app\1.jpg" />
+    <Content Include="img\portfolios\app\2.jpg" />
+    <Content Include="img\portfolios\app\3.jpg" />
+    <Content Include="img\portfolios\card\1.jpg" />
+    <Content Include="img\portfolios\card\2.jpg" />
+    <Content Include="img\portfolios\card\3.jpg" />
+    <Content Include="img\portfolios\card\4.jpg" />
+    <Content Include="img\portfolios\card\5.jpg" />
+    <Content Include="img\portfolios\icon\1.jpg" />
+    <Content Include="img\portfolios\icon\2.jpg" />
+    <Content Include="img\portfolios\icon\3.jpg" />
+    <Content Include="img\portfolios\icon\4.jpg" />
+    <Content Include="img\portfolios\icon\5.jpg" />
+    <Content Include="img\portfolios\logo\1.jpg" />
+    <Content Include="img\portfolios\logo\2.jpg" />
+    <Content Include="img\portfolios\logo\3.jpg" />
+    <Content Include="img\portfolios\logo\4.jpg" />
+    <Content Include="img\portfolios\logo\5.jpg" />
+    <Content Include="img\portfolios\logo\6.jpg" />
+    <Content Include="img\portfolios\logo\7.jpg" />
+    <Content Include="img\portfolios\web\1.jpg" />
+    <Content Include="img\portfolios\web\2.jpg" />
+    <Content Include="img\portfolios\web\3.jpg" />
+    <Content Include="img\portfolios\web\4.jpg" />
+    <Content Include="img\preloader.gif" />
+    <Content Include="img\tm1.png" />
+    <Content Include="img\ui.totop.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -284,11 +300,18 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\html5shiv.js" />
+    <Content Include="Scripts\imagesloaded.pkgd.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.ba-cond.min.js" />
     <Content Include="Scripts\jquery.countTo.js" />
+    <Content Include="Scripts\jquery.easing.min.js" />
     <Content Include="Scripts\jquery.inview.min.js" />
+    <Content Include="Scripts\jquery.isotope.js" />
+    <Content Include="Scripts\jquery.mixitup.min.js" />
+    <Content Include="Scripts\jquery.nicescroll.js" />
+    <Content Include="Scripts\jquery.slitslider.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -296,9 +319,13 @@
     <Content Include="Scripts\lightbox.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr.custom.79639.js" />
     <Content Include="Scripts\mousescroll.js" />
+    <Content Include="Scripts\owl.carousel.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\scrollupto.js" />
+    <Content Include="Scripts\skillset.js" />
     <Content Include="Scripts\smoothscroll.js" />
     <Content Include="Scripts\wow.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -352,6 +379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602060647030_ChangesToName.resx">
       <DependentUpon>201602060647030_ChangesToName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602060907000_SavingChanes.resx">
+      <DependentUpon>201602060907000_SavingChanes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
