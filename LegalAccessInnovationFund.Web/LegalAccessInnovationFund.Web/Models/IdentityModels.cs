@@ -22,8 +22,7 @@ namespace LegalAccessInnovationFund.Web.Models
         public DateTime DateRegistered { get; set; }
         public List<Campaign> Campaigns { get; set; }
         public List<Contribution> Contributions { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string Name { get; set; }
         public string AboutMeTitle { get; set; }
         public string AboutMeDescription { get; set; }
         public string City { get; set; }

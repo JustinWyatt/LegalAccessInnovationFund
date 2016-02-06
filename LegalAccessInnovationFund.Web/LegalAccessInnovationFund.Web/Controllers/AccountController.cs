@@ -9,14 +9,18 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using LegalAccessInnovationFund.Web.Models;
+using LegalAccessInnovationFund.Web.Models.ViewModels;
 
 namespace LegalAccessInnovationFund.Web.Controllers
 {
+
+
     [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -50,6 +54,54 @@ namespace LegalAccessInnovationFund.Web.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult ProfileView()
+        {
+            var userId = User.Identity.GetUserId();
+            var model = db.Users.Where(x=>x.Id == userId).Select(user=> new ProfileViewModel()
+            {
+                Name = user.Name,
+                Email = user.Email,
+                Contributions = user.Contributions.Select(contribution=> new ContributionViewModel
+                {
+                    Amount = contribution.Amount,
+                    Note = contribution.Note,
+                    DonationLevel = contribution.DonationLevel.Title,
+                    Contributor = contribution.Contributor.Name
+                }).ToList(),
+                Campaigns = user.Campaigns.Select(campaign=> new CampaignViewModel()
+                {
+                    Title = campaign.Title,
+                    Story = campaign.Story,
+                    Goal = campaign.Goal,
+                    Picture = campaign.Picture,
+                    Location = campaign.Location,
+                    DonationLevels = campaign.DonationLevels.Select(donationlevel => new DonationLevelViewModel()
+                    {
+                        Amount = donationlevel.Amount,
+                        Title = donationlevel.Title,
+                        Description = donationlevel.Description,
+                        Quantity = donationlevel.Quantity,
+                        DeliveryDate = donationlevel.DeliveryDate.ToShortDateString()
+
+                    }).ToList(),
+                    Status = campaign.Status.ToString(),
+                    CategoryName = campaign.Category.CategoryName,
+                    Contributions = campaign.Contributions.Select(contribution => new ContributionViewModel()
+                    {
+                        Amount = contribution.Amount,
+                        Note = contribution.Note,
+                        DonationLevel = contribution.DonationLevel.Title,
+                        Contributor = contribution.Contributor.Name
+                        
+                    }).ToList(),
+                    CampaignStarter = campaign.CampaignStarter.Name
+                }).ToList()
+            });
+            return View(model);
         }
 
         //

@@ -178,6 +178,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CampaignController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -186,6 +187,10 @@
     <Compile Include="Migrations\201602060302262_InitialCreate.cs" />
     <Compile Include="Migrations\201602060302262_InitialCreate.Designer.cs">
       <DependentUpon>201602060302262_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602060647030_ChangesToName.cs" />
+    <Compile Include="Migrations\201602060647030_ChangesToName.Designer.cs">
+      <DependentUpon>201602060647030_ChangesToName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -200,6 +205,10 @@
     <Compile Include="Models\ProfilePhoto.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\UserLink.cs" />
+    <Compile Include="Models\ViewModels\CampaignViewModel.cs" />
+    <Compile Include="Models\ViewModels\ContributionViewModel.cs" />
+    <Compile Include="Models\ViewModels\DonationLevelViewModel.cs" />
+    <Compile Include="Models\ViewModels\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -288,8 +297,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -315,6 +322,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Campaign\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -324,6 +332,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602060302262_InitialCreate.resx">
       <DependentUpon>201602060302262_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602060647030_ChangesToName.resx">
+      <DependentUpon>201602060647030_ChangesToName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
