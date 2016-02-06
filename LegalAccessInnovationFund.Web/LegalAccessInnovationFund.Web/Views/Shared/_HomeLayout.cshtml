@@ -4,7 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>It's Your Campaign</title>
+    <link href="~/Content/custom-styles.css" rel="stylesheet" />
+    <link href="~/Content/flexslider.css" rel="stylesheet" />
 
+    <link href="~/Content/layoutresponsive.css" rel="stylesheet" />
+    <link href="~/Content/prettyphoto.css" rel="stylesheet" />
+    <link href="~/Content/layoutbootstrap.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -186,7 +191,10 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
-
+    <script src="~/Scripts/layoutbootstrap.js"></script>
+    <script src="~/Scripts/jquery.custom.js"></script>
+    <script src="~/Scripts/jquery.prettyphoto.js"></script>
+    <script src="~/Scripts/jquery.flexslider.js"></script>
+    <script src="~/Scripts/jquery.easing.min.js"></script>
 </body>
 </html>

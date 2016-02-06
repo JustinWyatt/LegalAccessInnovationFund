@@ -17,6 +17,12 @@ namespace LegalAccessInnovationFund.Web.Controllers
         [HttpGet]
         public ActionResult Campaigns()
         {
+            
+            return View();
+        }
+
+        public JsonResult CampaignsJs()
+        {
             var model = db.Campaigns.Select(campaign => new CampaignViewModel()
             {
                 Title = campaign.Title,
@@ -36,7 +42,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 }).ToList(),
                 CampaignStarter = campaign.CampaignStarter.Name
             });
-            return View(model);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult SearchCampaigns(string campaignSearch)

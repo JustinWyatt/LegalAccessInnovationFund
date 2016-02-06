@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Campaigns";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<div ng-app="app">
+    <div ng-controller="campaignController">
+
+        <!-- Page Content
+        ================================================== -->
+        <div class="row">
+            <!--Container row-->
+            <!-- Page Sidebar
+            ================================================== -->
+            <div class="span4 sidebar page-sidebar">
+                <!-- Begin sidebar column -->
+                <!--Latest News-->
+                <h5 class="title-bg">Latest Campaigns</h5>
+                <ul class="popular-posts" ng-repeat="c in latestCampaigns">
+                    <li>
+                        <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                        <h6><a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></h6>
+                        <em>Posted on {{c.DatePosted}}</em>
+                    </li>
+                    <li>
+                        <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                        <h6><a href="#">Nulla iaculis mattis lorem, quis gravida nunc iaculis</a></h6>
+                        <em>Posted on 09/01/15</em>
+                    <li>
+                        <a href="#"><img src="img/gallery/gallery-img-2-thumb.jpg" alt="Popular Post"></a>
+                        <h6><a href="#">Vivamus tincidunt sem eu magna varius elementum maecenas felis</a></h6>
+                        <em>Posted on 09/01/15</em>
+                    </li>
+                </ul>
+                <!--Progress Bars-->
+                <h5 class="title-bg">Progress Bars</h5>
+                <div class="progress progress-info progress-striped">
+                    <div class="bar" style="width: 20%"></div>
+                </div>
+                <div class="progress progress-success progress-striped">
+                    <div class="bar" style="width: 40%"></div>
+                </div>
+                <div class="progress progress-warning progress-striped">
+                    <div class="bar" style="width: 60%"></div>
+                </div>
+                <div class="progress progress-danger progress-striped">
+                    <div class="bar" style="width: 80%"></div>
+                </div>
+                <!--Testimonials-->
+                <h5 class="title-bg">Testimonials</h5>
+
+                <p class="quote-text side">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum."<cite>- Client Name, Big Company</cite></p>
+
+                <p class="quote-text side">"Adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices."<cite>- Another Client Name, Big Company</cite></p>
+
+            </div><!-- End sidebar column -->
+            <!-- Page Content
+            ================================================== -->
+            <div class="span8">
+
+                <div class="row">
+                    <div class="span4">
+                        <h5>2 Column Layout</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna. Nulla faucibus ligula eget ante varius ac euismod odio placerat. Nam sit amet felis non lorem faucibus rhoncus vitae id dui.</p>
+                        <button class="btn btn-mini btn-inverse" type="button">Read more</button>
+                    </div>
+                    <div class="span4">
+                        <h5>2 Column Layout</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna. Nulla faucibus ligula eget ante varius ac euismod odio placerat. Nam sit amet felis non lorem faucibus rhoncus vitae id dui.</p>
+                        <button class="btn btn-mini btn-inverse" type="button">Read more</button>
+                    </div>
+                </div>
+            </div> <!--End page content column-->
+        </div><!-- End container row -->
+
+    </div> <!-- End Container -->
+</div>
+
+@section scripts{
+    <script>
+        var app = angular.module([]);
+
+        app.controller = function ($http, $scope) {
+
+
+            var onRefresh = function() {
+                $http.get('/campaign/campaignsjs').then(function(result) {
+                    $scope.campaignresults = result.data;
+                });
+            }
+
+            onRefresh();
+
+            $scope.search = function () {
+
+                $http.get('/campaign/searchcampaigns').then(function (result) {
+                    $scope.campaignresults = result.data;
+                    $scope.results = result.data.length();
+                });
+            }
+
+
+            $http.get('/campaign/latestcampaigns').then(function (result) {
+                $scope.latestCampaigns = result.data;
+            });
+
+        }
+    </script>
+}
