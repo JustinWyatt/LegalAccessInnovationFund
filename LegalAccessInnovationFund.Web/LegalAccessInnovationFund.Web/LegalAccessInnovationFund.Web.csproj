@@ -212,7 +212,7 @@
     <Content Include="Content\main.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\et-line.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -247,12 +247,15 @@
     <Content Include="Images\twitter-bg.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="fonts\et-line.eot" />
-    <Content Include="fonts\et-line.ttf" />
-    <Content Include="fonts\et-line.woff" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -21,11 +21,24 @@ namespace LegalAccessInnovationFund.Web
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/html5shiv.js",
+                      "~/Scripts/jquery.inview.min.js",
+                      "~/Scripts/countTo.js",
+                      "~/Scripts/lightbox.min.js",
+                      "~/Scripts/main.js",
+                      "~/Scripts/mousescroll.js",
+                      "~/Scripts/smoothscroll.js",
+                      "~/Scripts/wow.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/animate.min.css",
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/lightbox.css",
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/main.css",
+                      "~/Content/responsive.css",
+                      "~/Content/bootstrap.css"
+                      ));
         }
     }
 }
