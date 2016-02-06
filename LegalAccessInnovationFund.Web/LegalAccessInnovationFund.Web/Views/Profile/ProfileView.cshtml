@@ -19,7 +19,7 @@
             {
                 <!-- Blog Post 1 -->
                 <article class="clearfix">
-                    <a href="blog-single.htm"><img src="@campaign.Picture" alt="Post Thumb" class="align-left"></a>
+                    <a href="/campaigns/campaignview/@campaign.CampaignId"><img src="@campaign.Picture" alt="Post Thumb" class="align-left"></a>
                     <h4 class="title-bg">@campaign.Title</h4>
                     <p>@campaign.Story </p>
                     @Html.ActionLink("Read more", "CampaignView", "Campaign", new { id = campaign.CampaignId }, new { @class= "btn btn-mini btn-inverse", type="button" })
@@ -57,5 +57,9 @@
         </div><!-- End sidebar column -->
 
     </div><!-- End container row -->
-    
-    <!-- Footer Area
+
+@section scripts{
+    <script>
+        
+    </script>
+}

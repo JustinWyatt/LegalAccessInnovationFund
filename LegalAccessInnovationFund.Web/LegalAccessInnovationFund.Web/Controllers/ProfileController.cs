@@ -61,6 +61,55 @@ namespace LegalAccessInnovationFund.Web.Controllers
 
             return RedirectToAction("");
         }
+
+        [HttpGet]
+        public JsonResult ProfileViewJs()
+        {
+            var userId = User.Identity.GetUserId();
+            var model = db.Users.Where(x => x.Id == userId).ToList().Select(user => new ProfileViewModel()
+            {
+                Name = user.Name,
+                Email = user.Email,
+                Avatar = user.AvatarImagePath,
+                Contributions = user.Contributions.ToList().Select(contribution => new ContributionViewModel
+                {
+                    Amount = contribution.Amount,
+                    Note = contribution.Note,
+                    DonationLevel = contribution.DonationLevel.Title,
+                    Contributor = contribution.Contributor.Name
+                }).ToList(),
+                Campaigns = user.Campaigns.ToList().Select(campaign => new CampaignViewModel()
+                {
+                    CampaignId = campaign.Id,
+                    Title = campaign.Title,
+                    Story = campaign.Story,
+                    Goal = campaign.Goal,
+                    Picture = campaign.Picture,
+                    Location = campaign.Location,
+                    DonationLevels = campaign.DonationLevels.ToList().Select(donationlevel => new DonationLevelViewModel()
+                    {
+                        Amount = donationlevel.Amount,
+                        Title = donationlevel.Title,
+                        Description = donationlevel.Description,
+                        Quantity = donationlevel.Quantity,
+                        DeliveryDate = donationlevel.DeliveryDate.ToShortDateString()
+
+                    }).ToList(),
+                    Status = campaign.Status.ToString(),
+                    CategoryName = campaign.Category.CategoryName,
+                    Contributions = campaign.Contributions.ToList().Select(contribution => new ContributionViewModel()
+                    {
+                        Amount = contribution.Amount,
+                        Note = contribution.Note,
+                        DonationLevel = contribution.DonationLevel.Title,
+                        Contributor = contribution.Contributor.Name
+
+                    }).ToList(),
+                    CampaignStarter = campaign.CampaignStarter.Name
+                }).ToList()
+            });
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
         
         [Authorize]
         [HttpGet]

@@ -55,6 +55,14 @@
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Pagination, Version=0.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pagination.0.12.0\lib\net40\Pagination.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Pagination.Mvc, Version=0.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pagination.Mvc.0.12.0\lib\net40\Pagination.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PayPal, Version=1.7.2.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
       <HintPath>..\packages\PayPal.1.7.2\lib\net451\PayPal.dll</HintPath>
       <Private>True</Private>

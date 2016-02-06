@@ -88,7 +88,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
                                     {
                                         Picture = campaign.Picture
                                     }).ToList();
-            
+
             return Json(model);
         }
 
