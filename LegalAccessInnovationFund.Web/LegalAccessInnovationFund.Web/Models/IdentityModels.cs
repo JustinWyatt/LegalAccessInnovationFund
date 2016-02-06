@@ -27,10 +27,10 @@ namespace LegalAccessInnovationFund.Web.Models
         public string AboutMeDescription { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        public string State { get; set; }
         public int PostalCode { get; set; }
         public string AvatarImagePath { get; set; }
         public List<UserLink> Links { get; set; }   
-        public bool IsApproved { get; set; }
         public DateTime BirthDate { get; set; }
         public int Age => DateTime.Now.Year - BirthDate.Year;
         public MailingAccount MailingAccount { get; set; }

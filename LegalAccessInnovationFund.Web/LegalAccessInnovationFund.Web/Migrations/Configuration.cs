@@ -1,3 +1,5 @@
+using LegalAccessInnovationFund.Web.Models;
+
 namespace LegalAccessInnovationFund.Web.Migrations
 {
     using System;
@@ -26,6 +28,7 @@ namespace LegalAccessInnovationFund.Web.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            
         }
     }
 }

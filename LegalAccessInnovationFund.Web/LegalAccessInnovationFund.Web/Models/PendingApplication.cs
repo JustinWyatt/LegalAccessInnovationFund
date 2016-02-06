@@ -8,7 +8,7 @@ namespace LegalAccessInnovationFund.Web.Models
     public class PendingApplication
     {
         public int Id { get; set; }
-        public DateTime DateRegistered { get; set; }
+        public DateTime DateApplied { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string City { get; set; }
@@ -18,5 +18,6 @@ namespace LegalAccessInnovationFund.Web.Models
         public string Email { get; set; }
         public ApplicationCategory Category { get; set; }
         public MailingAccount MailingAccount { get; set; }
+        public string DateOfBirth { get; set; }
     }
 }

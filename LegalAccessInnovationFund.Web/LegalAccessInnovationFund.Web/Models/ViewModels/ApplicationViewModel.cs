@@ -13,5 +13,6 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
         public string Country { get; set; }
         public int PostalCode { get; set; }
         public string Email { get; set; }
-    }
+        public string DateOfBirth { get; set; }
+    }   
 }

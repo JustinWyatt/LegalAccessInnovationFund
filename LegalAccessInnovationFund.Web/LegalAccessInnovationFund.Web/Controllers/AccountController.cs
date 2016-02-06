@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -78,7 +79,8 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Country = pendingApplication.Country,
                 PostalCode = pendingApplication.PostalCode,
                 Email = pendingApplication.Email,
-                MailingAccount = new MailingAccount(pendingApplication.Email)
+                MailingAccount = new MailingAccount(pendingApplication.Email),
+                DateApplied = DateTime.Now
             };
 
             db.PendingApplications.Add(application);
@@ -101,6 +103,26 @@ namespace LegalAccessInnovationFund.Web.Controllers
             transportWeb.DeliverAsync(messageToAdministrator).Wait();
 
             return RedirectToAction("");
+        }
+
+        public void Confirm(int pendingApplicationId)
+        {
+            var app = db.PendingApplications.Find(pendingApplicationId);
+            var applicant = new Applicant()
+            {
+                Name = app.FirstName + app.LastName,
+                DateRegistered = DateTime.Now,
+                Campaigns = new List<Campaign>(),
+                Contributions = new List<Contribution>(),
+                City = app.City,
+                State = app.State,
+                PostalCode = app.PostalCode,
+                Links = new List<UserLink>(),
+                BirthDate = DateTime.Parse(app.DateOfBirth)
+            };
+            var password = System.Web.Security.Membership.GeneratePassword(10, 10);
+            UserManager.Create(applicant, password);
+            db.SaveChanges();
         }
 
         [Authorize]
