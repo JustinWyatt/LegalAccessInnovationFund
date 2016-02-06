@@ -9,9 +9,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace LegalAccessInnovationFund.Web.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser
+    public class Applicant : IdentityUser
     {
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Applicant> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
@@ -20,25 +20,24 @@ namespace LegalAccessInnovationFund.Web.Models
         }
 
         public DateTime DateRegistered { get; set; }
-        public List<Sponsorship> Sponsorships { get; set; }
-        public string Name { get; set; }
+        public List<Campaign> Campaigns { get; set; }
+        public List<Contribution> Contributions { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string AboutMeTitle { get; set; }
         public string AboutMeDescription { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
         public int PostalCode { get; set; }
-        public List<string> Photos { get; set; }
-        public string Avatar { get; set; }
-        public List<string> Links { get; set; }
+        public string AvatarImagePath { get; set; }
+        public List<UserLink> Links { get; set; }   
         public bool IsApproved { get; set; }
         public DateTime BirthDate { get; set; }
-        public int Age
-        {
-            get { return DateTime.Now.Year - BirthDate.Year; }
-        }
+        public int Age => DateTime.Now.Year - BirthDate.Year;
+        public MailingAccount MailingAccount { get; set; }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<Applicant>
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -49,11 +48,13 @@ namespace LegalAccessInnovationFund.Web.Models
         {
             return new ApplicationDbContext();
         }
-
-        public DbSet<ApplicationUser> Sponsors { get; set; }
-        public DbSet<Sponsorship> Sponsorships { get; set; }
+        
+        public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<DonationLevel> DonationLevels { get; set; }
         public DbSet<Contribution> Contributions { get; set; }
+        public DbSet<ProfilePhoto> ProfilePhotos { get; set; }
+        public DbSet<PendingApplication> PendingApplications { get; set; }
+        public DbSet<MailingAccount> MailingList { get; set; }
     }
 }

@@ -11,8 +11,9 @@ namespace LegalAccessInnovationFund.Web.Models
         public double Amount { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Available { get; set; }
+        public int Quantity { get; set; }
         public DateTime DeliveryDate { get; set; }
-        public Sponsorship Sponsorship { get; set; }
+        public Campaign Campaign { get; set; }
+        
     }
 }
