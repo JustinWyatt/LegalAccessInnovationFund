@@ -20,8 +20,8 @@ namespace LegalAccessInnovationFund.Web.Models
         }
 
         public DateTime DateRegistered { get; set; }
-        public List<Campaign> Campaigns { get; set; }
-        public List<Contribution> Contributions { get; set; }
+        public virtual List<Campaign> Campaigns { get; set; }
+        public virtual List<Contribution> Contributions { get; set; }
         public string Name { get; set; }
         public string AboutMeTitle { get; set; }
         public string AboutMeDescription { get; set; }
@@ -30,10 +30,10 @@ namespace LegalAccessInnovationFund.Web.Models
         public string State { get; set; }
         public int PostalCode { get; set; }
         public string AvatarImagePath { get; set; }
-        public List<UserLink> Links { get; set; }   
+        public virtual List<UserLink> Links { get; set; }   
         public DateTime BirthDate { get; set; }
         public int Age => DateTime.Now.Year - BirthDate.Year;
-        public MailingAccount MailingAccount { get; set; }
+        public virtual MailingAccount MailingAccount { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<Applicant>
