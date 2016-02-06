@@ -17,10 +17,43 @@ namespace LegalAccessInnovationFund.Web.Controllers
         [HttpGet]
         public ActionResult Campaigns()
         {
-            
             return View();
         }
 
+        [HttpGet]
+        public ActionResult MyCampaigns()
+        {
+            var userId = User.Identity.GetUserId();
+            var model = db.Users.Where(x => x.Id == userId).Select(x => new CampaignViewModel()
+            {
+
+            }).ToList();
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult CampaignView(int id)
+        {
+            var model = db.Campaigns.Where(x => x.Id == id).Select(x => new CampaignViewModel()
+            {
+
+            }).ToList();
+            return View(model);
+        }
+
+        [HttpGet]
+        public JsonResult LatestCampaigns()
+        {
+           var model = db.Campaigns.OrderByDescending(x => x.DatePosted).Take(5).Select(x => new CampaignViewModel()
+            {
+               Avatar = x.CampaignStarter.AvatarImagePath,
+               Title = x.Title,
+               DatePosted = x.DatePosted.ToShortDateString()
+            }).ToList();
+            return Json(model);
+        }
+
+        [HttpGet]
         public JsonResult CampaignsJs()
         {
             var model = db.Campaigns.Select(campaign => new CampaignViewModel()
@@ -45,14 +78,15 @@ namespace LegalAccessInnovationFund.Web.Controllers
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SearchCampaigns(string campaignSearch)
+        [HttpGet]
+        public JsonResult SearchCampaigns(string search)
         {
-            var model = db.Campaigns.Where(x =>x.Title.StartsWith(campaignSearch))
-                                    .Where(x=>x.CampaignStarter.Name.Contains(campaignSearch))
-                                    .Where(x=>x.Category.CategoryName.Contains(campaignSearch))
+            var model = db.Campaigns.Where(x =>x.Title.StartsWith(search))
+                                    .Where(x=>x.CampaignStarter.Name.Contains(search))
+                                    .Where(x=>x.Category.CategoryName.Contains(search))
                                     .Select(campaign => new CampaignViewModel()
                                     {
-
+                                        Picture = campaign.Picture
                                     }).ToList();
             
             return Json(model);

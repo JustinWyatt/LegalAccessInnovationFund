@@ -21,5 +21,6 @@ namespace LegalAccessInnovationFund.Web.Models
         public DateTime Duration { get; set; }
         public DateTime DateEnd { get; set; }
         public double AmountFunded { get; set; }
+        public DateTime DatePosted { get; set; }
     }
 }
