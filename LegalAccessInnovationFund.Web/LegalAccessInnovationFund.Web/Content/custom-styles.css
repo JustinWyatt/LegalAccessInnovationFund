@@ -571,7 +571,7 @@ p.side {margin-bottom: 20px;}
 **************************************/
 .footer-container {
 	width:100%;
-	background:#333;
+	background:#BDBDBD;
 	clear: both;
  	position: relative;
  	z-index: 10;
@@ -637,7 +637,7 @@ a.forrst{background-position: -208px 0px;}
 a.forrst:hover {background-position: -208px -47px;}
 
 /**** Sub Footer ****/
-.footer-sub {background: #1f1f1f; padding: 10px 0px;}
+.footer-sub {background: #BDBDBD; padding: 10px 0px;}
 .footer-sub div div span {padding: 0px 20px;}
 
 

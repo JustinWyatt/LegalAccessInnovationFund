@@ -28,12 +28,12 @@ namespace LegalAccessInnovationFund.Web.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult ApplicationConfirmation()
         {
             return View();
         }
-
 
         [AllowAnonymous]
         [HttpPost]
@@ -46,10 +46,11 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 State = pendingApplication.State,
                 City = pendingApplication.City,
                 Country = pendingApplication.Country,
-                PostalCode = pendingApplication.PostalCode,
+                PostalCode = Int32.Parse(pendingApplication.PostalCode),
                 Email = pendingApplication.Email,
                 MailingAccount = new MailingAccount(pendingApplication.Email),
-                DateApplied = DateTime.Now
+                DateApplied = DateTime.Now,
+                PhoneNumber = pendingApplication.PhoneNumber
             };
 
             db.PendingApplications.Add(application);
@@ -70,6 +71,13 @@ namespace LegalAccessInnovationFund.Web.Controllers
             //messageToAdministrator.From = new MailAddress("donotreply@legalaccessinnovationfund.com");
             //messageToAdministrator.Subject = "Another applicant has applied!";
             var emailMessage = new EmailMessage();
+
+            emailMessage.Message.Replace("uniqueName", $"{application.FirstName + "" + application.LastName}");
+            emailMessage.Message.Replace("uniqueLocation", $"{application.City + ", " + application.State + "" + application.PostalCode.ToString()}");
+            emailMessage.Message.Replace("uniquePhone", $"{application.PhoneNumber}");
+            emailMessage.Message.Replace("uniqueDate", $"{application.DateApplied.ToShortDateString()}");
+            emailMessage.Message.Replace("uniqueEmail", $"{application.Email}");
+
 
             //messageToAdministrator.Text = emailMessage.Message;
 
