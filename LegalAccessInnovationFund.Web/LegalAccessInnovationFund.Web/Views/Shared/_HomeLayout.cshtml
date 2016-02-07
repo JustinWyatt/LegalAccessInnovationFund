@@ -8,16 +8,12 @@
     <link href="~/Content/flexslider.css" rel="stylesheet" />
     <link href="~/Content/layoutresponsive.css" rel="stylesheet" />
     <link href="~/Content/prettyphoto.css" rel="stylesheet" />
-    <link href="~/Content/layoutbootstrap.css" rel="stylesheet"/>
+    <link href="~/Content/layoutbootstrap.css" rel="stylesheet" />
 
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
     <script src="https://code.angularjs.org/1.5.0/angular.js"></script>
 </head>
 <body>
 
-    <div class="color-bar-1"></div>
-    <div class="color-bar-2 color-bg"></div>
 
     <div class="container main-container">
 
@@ -26,14 +22,13 @@
             <!-- Logo
             ================================================== -->
             <div class="span5 logo">
-                <a href="index.htm"><img src="img/piccolo-logo.png" alt=""/></a>
+                <h4>Legal Access Innovation Fund</h4>
                 @if (Request.IsAuthenticated)
                 {
-                    <h5> You The Real MVP, @Html.ActionLink($"{User.Identity.Name}", "ProfileView", "Profile", null, null)</h5>
+                    <h6> You The Real MVP, @Html.ActionLink($"{User.Identity.Name}", "ProfileView", "Profile", null, null)</h6>
                 }
                 else
                 {
-                    <h5>Big Things... Small Packages</h5>
                 }
             </div>
 
@@ -43,45 +38,15 @@
                 <div class="navbar hidden-phone">
 
                     <ul class="nav">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="index.htm">Home <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="index.htm">Full Page</a></li>
-                                <li><a href="index-gallery.htm">Gallery Only</a></li>
-                                <li><a href="index-slider.htm">Slider Only</a></li>
-                            </ul>
+                        <li>
+                            @Html.ActionLink("Home", "MainPage", "Home")
                         </li>
-                        <li><a href="features.htm">Features</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="page-full-width.htm">Pages <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="page-full-width.htm">Full Width</a></li>
-                                <li><a href="page-right-sidebar.htm">Right Sidebar</a></li>
-                                <li><a href="page-left-sidebar.htm">Left Sidebar</a></li>
-                                <li><a href="page-double-sidebar.htm">Double Sidebar</a></li>
-                            </ul>
+                        <li>
+                            @Html.ActionLink("Campaigns", "Campaigns", "Campaign")
                         </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="gallery-4col.htm">Gallery <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="gallery-3col.htm">Gallery 3 Column</a></li>
-                                <li><a href="gallery-4col.htm">Gallery 4 Column</a></li>
-                                <li><a href="gallery-6col.htm">Gallery 6 Column</a></li>
-                                <li><a href="gallery-4col-circle.htm">Gallery 4 Round</a></li>
-                                <li><a href="gallery-single.htm">Gallery Single</a></li>
-                            </ul>
+                        <li>
+                            @Html.ActionLink("Profile", "ProfileView", "Profile")
                         </li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="blog-style1.htm">Blog <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="blog-style1.htm">Blog Style 1</a></li>
-                                <li><a href="blog-style2.htm">Blog Style 2</a></li>
-                                <li><a href="blog-style3.htm">Blog Style 3</a></li>
-                                <li><a href="blog-style4.htm">Blog Style 4</a></li>
-                                <li><a href="blog-single.htm">Blog Single</a></li>
-                            </ul>
-                        </li>
-                        <li @*class="active"*@><a href="page-contact.htm">Contact</a></li>
                     </ul>
 
                 </div>
@@ -130,7 +95,6 @@
             <div class="row footer-row">
                 <div class="span3 footer-col">
                     <h5>About Us</h5>
-                    <img src="img/piccolo-footer-logo.png" alt="Piccolo" /><br /><br />
                     <address>
                         <strong>Design Team</strong><br />
                         123 Main St, Suite 500<br />
@@ -139,9 +103,6 @@
                     <ul class="social-icons">
                         <li><a href="#" class="social-icon facebook"></a></li>
                         <li><a href="#" class="social-icon twitter"></a></li>
-                        <li><a href="#" class="social-icon dribble"></a></li>
-                        <li><a href="#" class="social-icon rss"></a></li>
-                        <li><a href="#" class="social-icon forrst"></a></li>
                     </ul>
                 </div>
                 <div class="span3 footer-col">
@@ -165,18 +126,18 @@
                 <div class="span3 footer-col">
                     <h5>Flickr Photos</h5>
                     <ul class="img-feed">
-                        <li><a href="#"><img src="img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
+                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
                     </ul>
                 </div>
             </div>

@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201602060907000_SavingChanes.Designer.cs">
       <DependentUpon>201602060907000_SavingChanes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602061603384_final.cs" />
+    <Compile Include="Migrations\201602061603384_final.Designer.cs">
+      <DependentUpon>201602061603384_final.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationCategory.cs" />
@@ -242,6 +246,7 @@
     <Compile Include="Models\ViewModels\CampaignViewModel.cs" />
     <Compile Include="Models\ViewModels\ContributionViewModel.cs" />
     <Compile Include="Models\ViewModels\DonationLevelViewModel.cs" />
+    <Compile Include="Models\ViewModels\EmailMessage.cs" />
     <Compile Include="Models\ViewModels\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -274,12 +279,47 @@
     <Content Include="img\1.jpg" />
     <Content Include="img\2.jpg" />
     <Content Include="img\3.jpg" />
+    <Content Include="img\apple-touch-icon-114x114.png" />
+    <Content Include="img\apple-touch-icon-72x72.png" />
+    <Content Include="img\apple-touch-icon.png" />
+    <Content Include="img\author-avatar.jpg" />
+    <Content Include="img\back-top-btn.png" />
+    <Content Include="img\bg_direction_nav.png" />
+    <Content Include="img\container-bg.png" />
+    <Content Include="img\favicon.ico" />
+    <Content Include="img\gallery-item-hover.png" />
+    <Content Include="img\gallery-item-icons.png" />
+    <Content Include="img\gallery\blog-med-img-1.jpg" />
+    <Content Include="img\gallery\client-img-1.png" />
+    <Content Include="img\gallery\client-img-2.png" />
+    <Content Include="img\gallery\client-img-3.png" />
+    <Content Include="img\gallery\client-img-4.png" />
+    <Content Include="img\gallery\client-img-5.png" />
+    <Content Include="img\gallery\flickr-img-1.jpg" />
+    <Content Include="img\gallery\gallery-img-1-3col.jpg" />
+    <Content Include="img\gallery\gallery-img-1-4col-cir.jpg" />
+    <Content Include="img\gallery\gallery-img-1-4col.jpg" />
+    <Content Include="img\gallery\gallery-img-1-6col.jpg" />
+    <Content Include="img\gallery\gallery-img-1-full.jpg" />
+    <Content Include="img\gallery\gallery-img-13-6col.jpg" />
+    <Content Include="img\gallery\gallery-img-14-6col.jpg" />
+    <Content Include="img\gallery\gallery-img-2-thumb.jpg" />
+    <Content Include="img\gallery\post-img-1.jpg" />
+    <Content Include="img\gallery\slider-img-1.jpg" />
+    <Content Include="img\gallery\thumbnail-270x130.jpg" />
+    <Content Include="img\gallery\thumbnail-270x300.jpg" />
     <Content Include="img\geometry2.png" />
+    <Content Include="img\glyphicons-halflings-white.png" />
+    <Content Include="img\glyphicons-halflings.png" />
     <Content Include="img\header_bg.jpg" />
+    <Content Include="img\location-map.jpg" />
+    <Content Include="img\page-bg-1.jpg" />
     <Content Include="img\photo-01.jpg" />
     <Content Include="img\photo-02.jpg" />
     <Content Include="img\photo-03.jpg" />
     <Content Include="img\photography.png" />
+    <Content Include="img\piccolo-footer-logo.png" />
+    <Content Include="img\piccolo-logo.png" />
     <Content Include="img\portfolios\app\1.jpg" />
     <Content Include="img\portfolios\app\2.jpg" />
     <Content Include="img\portfolios\app\3.jpg" />
@@ -304,9 +344,21 @@
     <Content Include="img\portfolios\web\2.jpg" />
     <Content Include="img\portfolios\web\3.jpg" />
     <Content Include="img\portfolios\web\4.jpg" />
+    <Content Include="img\post-item-hover.png" />
     <Content Include="img\preloader.gif" />
+    <Content Include="img\prettyPhoto\default\default_thumb.png" />
+    <Content Include="img\prettyPhoto\default\loader.gif" />
+    <Content Include="img\prettyPhoto\default\sprite.png" />
+    <Content Include="img\prettyPhoto\default\sprite_next.png" />
+    <Content Include="img\prettyPhoto\default\sprite_prev.png" />
+    <Content Include="img\prettyPhoto\default\sprite_x.png" />
+    <Content Include="img\prettyPhoto\default\sprite_y.png" />
+    <Content Include="img\rnd-client-mask.png" />
+    <Content Include="img\slider-caption-bg.png" />
+    <Content Include="img\social-icons.png" />
     <Content Include="img\tm1.png" />
     <Content Include="img\ui.totop.png" />
+    <Content Include="img\user-avatar.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -391,6 +443,9 @@
     <Content Include="Views\Campaign\Campaigns.cshtml" />
     <Content Include="Views\Profile\ProfileView.cshtml" />
     <Content Include="Views\Campaign\CampaignBegin.cshtml" />
+    <Content Include="Views\Profile\ApplicationConfirmation.cshtml" />
+    <Content Include="Views\Profile\ApplicationForm.cshtml" />
+    <Content Include="Views\Campaign\CampaignView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -409,6 +464,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602060907000_SavingChanes.resx">
       <DependentUpon>201602060907000_SavingChanes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602061603384_final.resx">
+      <DependentUpon>201602061603384_final.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

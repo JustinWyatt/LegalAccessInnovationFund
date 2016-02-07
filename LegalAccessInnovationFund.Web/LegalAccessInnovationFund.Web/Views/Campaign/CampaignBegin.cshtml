@@ -4,3 +4,52 @@
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
+@model LegalAccessInnovationFund.Web.Models.ViewModels.CampaignViewModel
+
+<!-- Page Content
+    ================================================== -->
+
+<h1 class="title-bg">Begin Your Campaign</h1>
+<div class="row">
+    <!--Container row-->
+    <!-- Title Header -->
+    <div class="span12">
+        @using (Html.BeginForm("SubmitApplication", "Profile", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Story, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.TextAreaFor(model => model.Story)
+                @Html.ValidationMessageFor(model => model.Story, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Goal, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Goal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Goal, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        }
+    </div><!-- End container row -->
+</div> <!-- End Container -->
+
+
+@section scripts{
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
+    <script>tinymce.init({ selector: 'textarea' });</script>
+}

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using LegalAccessInnovationFund.Web.Models;
 using LegalAccessInnovationFund.Web.Models.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity.Core.Objects;
 
 namespace LegalAccessInnovationFund.Web.Controllers
 {
@@ -48,7 +49,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
             {
                Avatar = x.CampaignStarter.AvatarImagePath,
                Title = x.Title,
-               DatePosted = x.DatePosted.ToShortDateString()
+               DatePosted = x.DatePosted.ToString()
             }).ToList();
             return Json(model);
         }
@@ -132,7 +133,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
 
             user.Campaigns.Add(campaign);
             db.SaveChanges();
-            return RedirectToAction("");
+            return RedirectToAction("CampaignView", "Campaign", new { id = campaign.Id });
         }
 
         [HttpPost]

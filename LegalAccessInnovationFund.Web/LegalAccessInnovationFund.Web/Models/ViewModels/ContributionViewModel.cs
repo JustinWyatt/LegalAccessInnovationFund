@@ -10,6 +10,7 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
         public double Amount { get; set; }
         public string Note { get; set; }
         public string DonationLevel { get; set; }
-        public string Contributor { get; set; }
+        public ProfileViewModel Contributor { get; set; }
+        public string DateContributed { get; set; }
     }
 }

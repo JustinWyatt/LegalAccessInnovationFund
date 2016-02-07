@@ -42,7 +42,7 @@ a:hover{
   position:absolute;
   left:50%; /* centers the loading animation horizontally one the screen */
   top:50%; /* centers the loading animation vertically one the screen */
-  background-image:url(img/preloader.gif); /* path to your loading animation */
+  background-image:url(/img/preloader.gif); /* path to your loading animation */
   background-repeat:no-repeat;
   background-position:center;
   margin:-100px 0 0 -100px; /* is width and height divided by two */
@@ -62,11 +62,11 @@ a:hover{
   height:51px;
   border:none;
   text-indent:100%;
-  background:url(img/ui.totop.png) no-repeat left top;
+  background:url(/img/ui.totop.png) no-repeat left top;
 }
 
 #toTopHover {
-  background:url(img/ui.totop.png) no-repeat left -51px;
+  background:url(/img/ui.totop.png) no-repeat left -51px;
   width:51px;
   height:51px;
   display:block;
@@ -229,7 +229,7 @@ Image credits: unsplash.com
   background-repeat: no-repeat;
 }
 .fade-carousel .slides .slide-1 {
-  background-image: url(img/photo-01.jpg); 
+  background-image: url(https://trello-attachments.s3.amazonaws.com/56b61689bcb3d95f47aff884/600x338/5d337a9f5816940ed16d17988d2a0e11/Legal-Innovation.jpg); 
 }
 .fade-carousel .slides .slide-2 {
   background-image: url(img/photo-02.jpg);
@@ -1041,7 +1041,7 @@ line-height: 45px !important;}
 
 
 .contact_area{
-  background: url(img/photography.png);
+  background: url(/img/photography.png);
 }
 
 .contact_section{

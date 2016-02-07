@@ -3,7 +3,7 @@
 	line-height:18px;
 	height: 100%;
  }
-body {background: #f9f9f9 url(../img/page-bg-1.jpg);}
+body {background: #f9f9f9 url(/img/page-bg-1.jpg);}
 
 .main-container {
 	height:auto; 
@@ -341,8 +341,8 @@ a.item-details-link {
 	left: 47px;
 	display: block;
 }
-a.item-zoom-link:hover {background: #d8450b url(../img/gallery-item-icons.png) no-repeat;}
-a.item-details-link:hover {background: #d8450b url(../img/gallery-item-icons.png) no-repeat; background-position: -42px 0px;}
+a.item-zoom-link:hover {background: #d8450b url(/img/gallery-item-icons.png) no-repeat;}
+a.item-details-link:hover {background: #d8450b url(/img/gallery-item-icons.png) no-repeat; background-position: -42px 0px;}
 
 .gallery-post-grid {margin:0px;}
 .gallery-post-grid li {list-style: none; float: left; margin-bottom: 30px;}
@@ -437,7 +437,7 @@ ul.post-data li:last-child {padding-right: 0px;}
 .blog-post-hover { 
 	display:none; 
 	width:270px; height:220px;
-	background:url(../img/post-item-hover.png);
+	background:url(/img/post-item-hover.png);
 	position:absolute; 
 	z-index: 10;
 }
