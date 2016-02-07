@@ -128,16 +128,16 @@
 </div>
 
 @section scripts{
-    @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>*@
     <script>
 
         var app = angular.module("app", []);
 
-        app.controller("applicationController", function ($http, $scope) {
+        app.controller("applicationController", function ($http, $scope, $location) {
 
             $scope.submit = function (input) {
                 $http.post("/profile/submitapplication", input).success(function () {
                     console.log("success");
+                    $location.path('/profile/applicationconfirmation');
                 });
             }
         });

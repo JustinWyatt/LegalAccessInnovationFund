@@ -10,11 +10,15 @@ using Microsoft.AspNet.Identity;
 using System.Text;
 using System.Web.UI;
 using System.IO;
+using RestSharp;
+using RestSharp.Authenticators;
+using System.Net;
 
 namespace LegalAccessInnovationFund.Web.Controllers
 {
     public class ProfileController : Controller
     {
+
         ApplicationDbContext db = new ApplicationDbContext();
 
         [AllowAnonymous]
@@ -29,6 +33,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
         {
             return View();
         }
+
 
         [AllowAnonymous]
         [HttpPost]
@@ -50,27 +55,45 @@ namespace LegalAccessInnovationFund.Web.Controllers
             db.PendingApplications.Add(application);
             db.SaveChanges();
 
-            System.IO.StreamReader file =  new System.IO.StreamReader("C:\\Users\\Asus\\Desktop\\LegalAccessInnovationFund\\secretfile.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\Asus\\Desktop\\LegalAccessInnovationFund\\secretfile.txt");
 
-            var apiKey = file.ReadToEnd();
+            var secret = file.ReadToEnd();
 
-            var messageToApplicant = new SendGrid.SendGridMessage();
-            messageToApplicant.AddTo(pendingApplication.Email);
-            messageToApplicant.From = new MailAddress("donotreply@leglaccessinnovationfund.com");
-            messageToApplicant.Subject = $"Thank you for your application {pendingApplication.FirstName} !";
-            messageToApplicant.Text = "Thank you for your application. Your application is pending. Once we confirm your application, we will send you an email and passowrd confirmation. Thank you!";
+            //var messageToApplicant = new SendGrid.SendGridMessage();
+            //messageToApplicant.AddTo(pendingApplication.Email);
+            //messageToApplicant.From = new MailAddress("donotreply@leglaccessinnovationfund.com");
+            //messageToApplicant.Subject = $"Thank you for your application {pendingApplication.FirstName} !";
+            //messageToApplicant.Text = "Thank you for your application. Your application is pending. Once we confirm your application, we will send you an email and passowrd confirmation. Thank you!";
 
-            var messageToAdministrator = new SendGrid.SendGridMessage();
-            messageToAdministrator.AddTo("justinjwyatt@hotmail.com");
-            messageToAdministrator.From = new MailAddress("donotreply@legalaccessinnovationfund.com");
-            messageToAdministrator.Subject = "Another applicant has applied!";
+            //var messageToAdministrator = new SendGrid.SendGridMessage();
+            //messageToAdministrator.AddTo("justinjwyatt@hotmail.com");
+            //messageToAdministrator.From = new MailAddress("donotreply@legalaccessinnovationfund.com");
+            //messageToAdministrator.Subject = "Another applicant has applied!";
             var emailMessage = new EmailMessage();
 
-            messageToAdministrator.Text = emailMessage.Message;
+            //messageToAdministrator.Text = emailMessage.Message;
 
-            var transportWeb = new SendGrid.Web(apiKey);
-            transportWeb.DeliverAsync(messageToApplicant).Wait();
-            transportWeb.DeliverAsync(messageToAdministrator).Wait();
+            //var transportWeb = new SendGrid.Web(apiKey);
+            //transportWeb.DeliverAsync(messageToApplicant).Wait();
+            //transportWeb.DeliverAsync(messageToAdministrator).Wait();
+
+            string password = secret;
+            using (MailMessage mail = new MailMessage())
+            {
+                mail.From = new MailAddress("justinjwyatt@hotmail.com");
+                mail.To.Add(application.Email);
+                mail.Subject = $"Thank You! Your Application Is Pending { application.FirstName }"; 
+                mail.Body = emailMessage.Message;
+                mail.IsBodyHtml = true;
+                // Can set to false, if you are sending pure text.
+
+                using (SmtpClient smtp = new SmtpClient("smtp.live.com", 587))
+                {
+                    smtp.Credentials = new NetworkCredential("justinjwyatt@hotmail.com", password);
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+                }
+            }
 
             return RedirectToAction("ApplicationConfirmation", "Profile");
         }
