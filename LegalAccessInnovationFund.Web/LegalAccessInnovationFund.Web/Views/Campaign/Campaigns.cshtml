@@ -1,30 +1,26 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Campaigns";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
-
-<div ng-app="app" ng-controller="campaignController">
+<div class="container main-container">
+    <div ng-app="app" ng-controller="campaignController" ng-cloak>
         <!-- Page Content
         ================================================== -->
         <div class="row">
             <!--Container row-->
             <!-- Page Sidebar
             ================================================== -->
-            <div class="span4 sidebar page-sidebar">
+            <div class="span3 sidebar page-sidebar">
                 <!-- Begin sidebar column -->
                 <!--Latest News-->
-                
                 <!--Testimonials-->
-                <h5 class="title-bg">Testimonials</h5>
-
-                <p class="quote-text side">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum."<cite>- Client Name, Big Company</cite>
-                </p>
-
-                <p class="quote-text side">"Adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices."<cite>- Another Client Name, Big Company</cite>
-                </p>
-
-
+                <div class="title-bg">
+                    <form class="form-search">
+                        <div class="input-append">
+                            <input type="text" class="span2 search-query" ng-model="query" /><button class="btn" type="button" ng-click="search(query)">Search</button>
+                        </div>
+                    </form>
+                </div>
                 <h5 class="title-bg">Latest Campaigns</h5>
                 <ul class="popular-posts" ng-repeat="c in latestCampaigns">
                     <li>
@@ -37,55 +33,71 @@
             </div><!-- End sidebar column -->
             <!-- Page Content
             ================================================== -->
-            <div class="span8">
-
+            <div class="span9">
                 <div class="row">
-                    <div class="span4">
-                        <h5>2 Column Layout</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna. Nulla faucibus ligula eget ante varius ac euismod odio placerat. Nam sit amet felis non lorem faucibus rhoncus vitae id dui.</p>
-                        <button class="btn btn-mini btn-inverse" type="button">Read more</button>
+                    <div class="alert alert-danger" ng-show="void">
+                        There are no queries matching <span>{{searchData}}</span>.
                     </div>
-                    <div class="span4">
-                        <h5>2 Column Layout</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna. Nulla faucibus ligula eget ante varius ac euismod odio placerat. Nam sit amet felis non lorem faucibus rhoncus vitae id dui.</p>
-                        <button class="btn btn-mini btn-inverse" type="button">Read more</button>
-                    </div>
+                    <ul class="gallery-post-grid holder" ng-show="!void" ng-repeat="c in campaignresults">
+                        <!-- Gallery Item 1 -->
+                        <li class="span4 gallery-item" data-id="id-1" data-type="illustration">
+                            <a href="gallery-single.htm"><img ng-src="{{c.Picture}}" alt="Gallery"></a>
+                            <span class="project-details"><a href="gallery-single.htm">{{c.Title}}</a>{{c.CampaignStarter.Name}}</span>
+                        </li>
+                    </ul>
                 </div>
-            </div> <!--End page content column-->
-        </div><!-- End container row -->
-
-    </div> <!-- End Container -->
+            </div>
+        </div>
+    </div> <!--End page content column-->
+</div><!-- End container row -->
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 @section scripts{
+    <script src="https://code.angularjs.org/1.5.0/angular.js"></script>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
+    <script src="https://code.angularjs.org/1.5.0/angular-animate.js"></script>
     <script>
-        var app = angular.module('app', []);
+        var app = angular.module('app', ['angular-loading-bar', 'ngAnimate']);
 
-        app.controller('campaignController', function($http, $scope) {
+        app.config((['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
 
-            var onRefresh = function() {
-                $http.get('/campaign/campaignsjs').then(function(result) {
-                    $scope.campaignresults = result.data;
+            cfpLoadingBarProvider.includeBar = false;
+
+            cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Loading...</div>';
+
+            cfpLoadingBarProvider.latencyThreshold = 500;
+
+        }]));
+
+        app.controller('campaignController', function ($http, $scope) {
+
+            var onRefresh = function () {
+
+                $http.get('/campaign/latestcampaigns').then(function (result) {
+                    $scope.latestCampaigns = result.data;
                 });
             }
 
             onRefresh();
 
-            $scope.search = function(search) {
+            $scope.search = function (search) {
 
-                $http.get('/campaign/searchcampaigns?search=' + search).then(function(result) {
-                    $scope.campaignresults = result.data;
+                $http.get('/campaign/searchcampaigns?search=' + search).then(function (result) {
                     if (result.data.length === 0) {
-                        $scope.results = 0;
-                        $scope.campaignresults = "There are no queries matching " + search;
+                        $scope.void = true;
+                        $scope.searchData = search;
+
                     };
+
+                    $scope.campaignresults = result.data;
                     $scope.results = result.data.length();
                 });
             }
-
-            $http.get('/campaign/latestcampaigns').then(function(result) {
-                $scope.latestCampaigns = result.data;
-            });
-
         });
     </script>
 }

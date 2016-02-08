@@ -17,8 +17,8 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
         public string Status { get; set; }
         public string CategoryName { get; set; }
         public List<ContributionViewModel> Contributions { get; set; }
-        public string CampaignStarter { get; set; }
-        public string Avatar { get; set; }
+        public ProfileViewModel CampaignStarter { get; set; }
         public string DatePosted { get; set; }
+        public List<CampaignViewModel> RelatedCampaigns { get; set; }
     }
 }

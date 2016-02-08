@@ -5,24 +5,30 @@
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
+<div class="row headline">
+    <!-- Begin Headline -->
 
-<h1 class="title-bg">Apply to become a 2016 Legal Access Technology & Innovation Fellow</h1>
-<div class="row">
+    <h1 class="title-bg">Apply to become a 2016 Legal Access Technology & Innovation Fellow</h1>
+    <div class="row">
 
-    <div class="span5">
-        <h6 class="title-bg"><small>The Legal Access Innovation Fund is looking for current law students excited about legal innovation and access to justice to apply to be a Legal Access Technology & Innovation Fellow</small></h6>
-        <p class="lead">As a Legal Access Technology & Innovation Fellow, you will be on the cutting edge of legal innovation by creating innovative technologies to help improve legal access and the delivery of legal services.</p>
-        <p>
-            LAIF fellows will:
-            <br />
-            <ul>
-                <li>Participate in a accelerator style program where you'll create technology based solutions and applications that address access to justice issues.</li>
-                <li> Learn about legal innovation and community building through collaboration among partners.</li>
-                <li> Work on a team with legal technologist, software developers, and legal aid organizations.</li>
-                <li> Join weekly check-ins with the LAIF mentors and have opportunities to collaborate with LAIF fellow at law schools across the country.</li>
-                <li> Present you finalized legal access innovation to stakeholders across the country.</li>
-                <li> Paid a stipend during the 10 week summer fellowship.</li>
-            </ul>
+        <div class="span5">
+            <h6 class="title-bg"><small>The Legal Access Innovation Fund is looking for current law students excited about legal innovation and access to justice to apply to be a Legal Access Technology & Innovation Fellow</small></h6>
+            <p class="lead">As a Legal Access Technology & Innovation Fellow, you will be on the cutting edge of legal innovation by creating innovative technologies to help improve legal access and the delivery of legal services.</p>
+            <blockquote>
+                <p>
+                    LAIF fellows will:
+                    <br />
+                    <br />
+
+                    <ul>
+                        <li>Participate in a accelerator style program where you'll create technology based solutions and applications that address access to justice issues.</li>
+                        <li> Learn about legal innovation and community building through collaboration among partners.</li>
+                        <li> Work on a team with legal technologist, software developers, and legal aid organizations.</li>
+                        <li> Join weekly check-ins with the LAIF mentors and have opportunities to collaborate with LAIF fellow at law schools across the country.</li>
+                        <li> Present you finalized legal access innovation to stakeholders across the country.</li>
+                        <li> Paid a stipend during the 10 week summer fellowship.</li>
+                    </ul>
+            </blockquote>
 
             We expect that you will gain meaningful experience, cultivate leadership skills, build relationships with legal innovators around the country, set yourself apart as a legal access disrupter, contribute to a public resource, and gain firsthand experience as you create legal access applications.
             <br />
@@ -38,117 +44,127 @@
             At least 80 percent of the legal needs of the poor and two-thirds of the legal needs of middle income Americans are not met. While lawyers are too restricted by the profession to enable change, we believe creating a fertile environment for law students to become legal innovators will eventually disrupt the legal profession and spur innovative solutions that address our most pressing issues that prevent legal access to low-income clients.
             <br />
             <br />
-
-            As the future of legal profession presents increasingly complex challenges that restrict access to low-income communities, it is essential that law students are at the foundation to become change agents.
-        </p>
-
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-    </div>
-
-
-<div class="span2">
-
-</div>
-
-    <div class="span5">
-
-        @*@using (Html.BeginForm("SubmitApplication", "Profile", FormMethod.Post))
-            {
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
-                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
-                </div>
-
-                <div class="form-group">
-                    <input type="submit" value="Submit" class="btn btn-default" />
-                </div>
-            }*@
-        <div ng-app="app" ng-controller="applicationController">
-            <label>First Name</label>
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-globe"></i></span>
-                <input class="span4" id="prependedInput" size="16" style="width:100%"  type="text"  ng-model="application.FirstName">
-            </div>
-            <br />
-            <label>Last Name</label>
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-globe"></i></span>
-                <input class="span4" id="prependedInput" size="16" style="width:100%"  type="text"  ng-model="application.LastName">
-            </div>
-            <br />
-            <label>City</label>
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-globe"></i></span>
-                <input class="span4" id="prependedInput" size="16" style="width:100%"  type="text" placeholder="" ng-model="application.City">
-            </div>
-            <br />
-            <label>State</label>
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-globe"></i></span>
-                <input class="span4" id="prependedInput" size="16" style="width:100%"  type="text" placeholder="" ng-model="application.State">
-            </div>
+            <p>
+                As the future of legal profession presents increasingly complex challenges that restrict access to low-income communities, it is essential that law students are at the foundation to become change agents.
+            </p>
 
             <br />
-            <label>Email</label>
-            <div class="input-prepend">
-                <span class="add-on"><i class="icon-globe"></i></span>
-                <input class="span4" id="prependedInput" size="16" style="width:100%"  type="text" placeholder="" ng-model="application.Email">
-            </div>
             <br />
-            <label>Date Of Birth</label>
-            <div class="input-prepend">
-
-                <span class="add-on"><i class="icon-globe"></i></span>
-                <input class="span4" id="prependedInput" style="width:100%"  size="16" type="date" placeholder="" ng-model="application.DateOfBirth">
-            </div>
             <br />
+            <br />
+            <br />
+        </div>
 
-            <div>
-                <input type="submit" class="btn btn-large" style="width:100%" ng-click="submit(application)" />
+
+        <div class="span2">
+
+        </div>
+
+        <div class="span5">
+
+            @*@using (Html.BeginForm("SubmitApplication", "Profile", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                    </div>
+                }*@
+            <div ng-app="app" ng-controller="applicationController" ng-cloak>
+                <form>
+                    <label>First Name <span ng-show="!application.FirstName" style="color:red">*</span></label>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-globe"></i></span>
+                        <input class="span4" id="prependedInput" size="16" style="width:100%" type="text" ng-model="application.FirstName">
+                    </div>
+                    <br />
+                    <label>Last Name <span ng-show="!application.LastName" style="color:red">*</span></label>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-globe"></i></span>
+                        <input class="span4" id="prependedInput" size="16" style="width:100%" type="text" ng-model="application.LastName">
+                    </div>
+                    <br />
+                    <label>City <span ng-show="!application.City" style="color:red">*</span></label>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-globe"></i></span>
+                        <input class="span4" id="prependedInput" size="16" style="width:100%" type="text" placeholder="" ng-model="application.City">
+                    </div>
+                    <br />
+                    <label>State <span ng-show="!application.State" style="color:red">*</span></label>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-globe"></i></span>
+                        <input class="span4" id="prependedInput" size="16" style="width:100%" type="text" placeholder="" ng-model="application.State">
+                    </div>
+
+                    <br />
+                    <label>Email <span ng-show="!application.Email" style="color:red">*</span></label>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-globe"></i></span>
+                        <input class="span4" id="prependedInput" size="16" style="width:100%" type="text" placeholder="" ng-model="application.Email">
+                    </div>
+                    <br />
+                    <label>Birth Date <span ng-show="!application.DateOfBirth" style="color:red">*</span></label>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-globe"></i></span>
+                        <input class="span4" id="prependedInput" style="width:100%" size="16" type="date" placeholder="" ng-model="application.DateOfBirth">
+                    </div>
+                    <br />
+
+                    <label>Phone Number <span ng-show="!application.PhoneNumber" style="color:red">*</span></label>
+                    <div class="input-prepend">
+                        <span class="add-on"><i class="icon-globe"></i></span>
+                        <input class="span4" id="prependedInput" style="width:100%" size="16" type="text" placeholder="" ng-model="application.PhoneNumber">
+                    </div>
+                    <br />
+
+                    <div ng-hide="submitted">
+                        <input type="submit" class="btn btn-large span4" ng-click="submit(application)" />
+                    </div>
+                    <div ng-show="submitted" class="alert alert-success">
+                        <strong>Success!</strong> Your application has been submitted. We will send you a confirmation letter.
+                    </div>
+                </form>
             </div>
-
-
         </div>
     </div>
 </div>
@@ -160,11 +176,10 @@
         var app = angular.module("app", []);
 
         app.controller("applicationController", function ($http, $scope) {
-
             $scope.submit = function (input) {
                 $http.post("/profile/submitapplication", input).success(function () {
                     $scope.application = {};
-
+                    $scope.submitted = true;
                 });
             }
         });

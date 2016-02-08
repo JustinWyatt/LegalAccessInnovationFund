@@ -13,5 +13,6 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
         public List<CampaignViewModel> Campaigns { get; set; }
         public string Email { get; set; }
         public string Avatar { get; set; }
+        public string UserId { get; set; }
     }
 }

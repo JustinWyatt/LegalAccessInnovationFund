@@ -16,11 +16,14 @@ namespace LegalAccessInnovationFund.Web.Controllers
             return View();
         }
 
-        public ActionResult MainPage()
+        public ActionResult CampaignAccess()
         {
             var model = db.Campaigns.Take(12).Select(x => new CampaignViewModel()
             {
-                CampaignStarter = x.CampaignStarter.Name,
+                CampaignStarter = new ProfileViewModel()
+                {
+                    Name = x.CampaignStarter.Name,
+                },
                 Title = x.Title,
                 Picture = x.Picture
             }).ToList();

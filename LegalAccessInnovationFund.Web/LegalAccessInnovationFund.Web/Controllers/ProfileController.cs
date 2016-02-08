@@ -45,8 +45,6 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 LastName = pendingApplication.LastName,
                 State = pendingApplication.State,
                 City = pendingApplication.City,
-                Country = pendingApplication.Country,
-                PostalCode = Int32.Parse(pendingApplication.PostalCode),
                 Email = pendingApplication.Email,
                 MailingAccount = new MailingAccount(pendingApplication.Email),
                 DateApplied = DateTime.Now,
@@ -160,7 +158,6 @@ namespace LegalAccessInnovationFund.Web.Controllers
                         }
 
                     }).ToList(),
-                    CampaignStarter = campaign.CampaignStarter.Name
                 }).ToList()
             });
             return Json(model, JsonRequestBehavior.AllowGet);
@@ -220,7 +217,6 @@ namespace LegalAccessInnovationFund.Web.Controllers
                         }
 
                     }).ToList(),
-                    CampaignStarter = campaign.CampaignStarter.Name
                 }).ToList()
             });
             return View(model);
@@ -276,7 +272,6 @@ namespace LegalAccessInnovationFund.Web.Controllers
                         }
 
                     }).ToList(),
-                    CampaignStarter = campaign.CampaignStarter.Name
                 }).ToList()
             });
             return View();

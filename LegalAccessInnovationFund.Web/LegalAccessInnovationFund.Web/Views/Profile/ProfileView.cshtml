@@ -6,56 +6,61 @@
 }
 
 <!-- Page Content
-    ================================================== --> 
-    <div class="row"><!--Container row-->
+    ================================================== -->
+<div class="row">
+    <!--Container row-->
+    <div class="span8 blog">
+        <!--Begin page content column-->
+        <h2>@Model.Name</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna.</p>
+    </div> <!--End page content column-->
 
-        <div class="span8 blog"><!--Begin page content column-->
-
-            <h2>@Model.Name</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem, quis gravida nunc iaculis ac. Proin tristique tellus in est vulputate luctus fermentum ipsum molestie. Vivamus tincidunt sem eu magna varius elementum. Maecenas felis tellus, fermentum vitae laoreet vitae, volutpat et urna.</p>
-        </div> <!--End page content column-->
-        
-        <div ng-app="app" ng-controller="profileController" ng-repeat="c in profileData | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
-            <!-- stuff -->
-            <article class="clearfix">
-                <a href="/campaigns/campaignview/{{c.CampaignId}}"><img src="{{c.Picture}}" alt="Post Thumb" class="align-left"></a>
-                <h4 class="title-bg">{{c.Title}}</h4>
-                <p>{{c.Story}}</p>
-                <div class="post-summary-footer">
-                    <ul class="post-data-3">
-                        <li><i class="icon-calendar"></i> {{c.DatePosted}}</li>
-                        <li><i class="icon-user"></i> <a href="#">{{c.CampaignStarter}}</a></li>
-                        <li><i class="icon-comment"></i> {{c.Contributions.length()}} Contributors</li>
-                        @*<li><i class="icon-tags"></i> <a href="#">photoshop</a>, <a href="#">tutorials</a></li>*@
-                    </ul>
-                </div>
-            </article>
-            <button ng-click="pagination.prevPage()">Previous</button>
-            <button ng-click="pagination.nextPage()">Next</button>
-        </div>
-        <!-- Sidebar
-        ================================================== --> 
-        <div class="span4 sidebar page-sidebar"><!-- Begin sidebar column -->
-            <h5 class="title-bg">YOUR PROFILE</h5>
-            <address>
+    <div ng-app="app" ng-controller="profileController" ng-repeat="c in profileData | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+        <!-- stuff -->
+        <article class="clearfix">
+            <a href="/campaigns/campaignview/{{c.CampaignId}}"><img src="{{c.Picture}}" alt="Post Thumb" class="align-left"></a>
+            <h4 class="title-bg">{{c.Title}}</h4>
+            <p>{{c.Story}}</p>
+            <div class="post-summary-footer">
+                <ul class="post-data-3">
+                    <li><i class="icon-calendar"></i> {{c.DatePosted}}</li>
+                    <li><i class="icon-user"></i> <a href="#">{{c.CampaignStarter}}</a></li>
+                    <li><i class="icon-comment"></i> {{c.Contributions.length()}} Contributors</li>
+                    @*<li><i class="icon-tags"></i> <a href="#">photoshop</a>, <a href="#">tutorials</a></li>*@
+                </ul>
+            </div>
+        </article>
+        <button ng-click="pagination.prevPage()">Previous</button>
+        <button ng-click="pagination.nextPage()">Next</button>
+    </div>
+    <!-- Sidebar
+    ================================================== -->
+    <div class="span4 sidebar page-sidebar">
+        <!-- Begin sidebar column -->
+        <h5 class="title-bg">YOUR PROFILE</h5>
+        <address>
             <strong>Piccolo</strong><br>
             123 Main St, Suite 600<br>
             San Francisco, CA 94107<br>
             <abbr title="Phone">P:</abbr> (123) 456-7890
-            </address>
-             
-            <address>
+        </address>
+
+        <address>
             <strong>Jimmy Doe</strong><br>
             <a href="mailto:#">first.last@gmail.com</a>
-            </address>
+        </address>
+        <h5 class="title-bg"></h5>
+        <img src="@Model.Avatar" alt="map">
+    </div><!-- End sidebar column -->
+</div><!-- End container row -->
+<div>
+    <div class="row">
+        @foreach (var item in Model.Campaigns)
+        {
 
-            <h5 class="title-bg"></h5>
-            <img src="@Model.Avatar" alt="map">
-
-        </div><!-- End sidebar column -->
-
-    </div><!-- End container row -->
-
+        }
+    </div>
+</div>
 @section scripts{
     <script>
 
@@ -122,7 +127,7 @@
         app.controller('profileController', function ($http, $scope, Pagination) {
 
 
-            var profileData = function() {
+            var profileData = function () {
                 $http.get('/profile/profileviewjs').then(function (result) {
                     $scope.pagination = Pagination.getNew(5);
                     $scope.profileData = result.data;

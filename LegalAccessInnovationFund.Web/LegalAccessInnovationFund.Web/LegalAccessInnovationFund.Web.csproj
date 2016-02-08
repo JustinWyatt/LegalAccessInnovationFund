@@ -451,13 +451,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
-    <Content Include="Views\Home\MainPage.cshtml" />
     <Content Include="Views\Campaign\Campaigns.cshtml" />
     <Content Include="Views\Profile\ProfileView.cshtml" />
     <Content Include="Views\Campaign\CampaignBegin.cshtml" />
     <Content Include="Views\Profile\ApplicationConfirmation.cshtml" />
     <Content Include="Views\Profile\ApplicationForm.cshtml" />
     <Content Include="Views\Campaign\CampaignView.cshtml" />
+    <Content Include="Views\Home\CampaignAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

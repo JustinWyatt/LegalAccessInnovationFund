@@ -14,6 +14,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
+
         // GET: Campaign
         [HttpGet]
         public ActionResult Campaigns()
@@ -37,6 +38,9 @@ namespace LegalAccessInnovationFund.Web.Controllers
         {
             var model = db.Campaigns.Where(x => x.Id == id).Select(x => new CampaignViewModel()
             {
+                RelatedCampaigns = db.Campaigns.Where(that=>that.Category == x.Category).Take(5).Select(n=> new CampaignViewModel()
+                {
+                }).ToList()
 
             }).ToList();
             return View(model);
@@ -47,11 +51,10 @@ namespace LegalAccessInnovationFund.Web.Controllers
         {
            var model = db.Campaigns.OrderByDescending(x => x.DatePosted).Take(5).Select(x => new CampaignViewModel()
             {
-               Avatar = x.CampaignStarter.AvatarImagePath,
                Title = x.Title,
                DatePosted = x.DatePosted.ToString()
             }).ToList();
-            return Json(model);
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -74,7 +77,10 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 {
 
                 }).ToList(),
-                CampaignStarter = campaign.CampaignStarter.Name
+                CampaignStarter = new ProfileViewModel()
+                {
+                    Name = campaign.CampaignStarter.Name,
+                }
             });
             return Json(model, JsonRequestBehavior.AllowGet);
         }
@@ -82,6 +88,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
         [HttpGet]
         public JsonResult SearchCampaigns(string search)
         {
+            
             var model = db.Campaigns.Where(x =>x.Title.StartsWith(search))
                                     .Where(x=>x.CampaignStarter.Name.Contains(search))
                                     .Where(x=>x.Category.CategoryName.Contains(search))
@@ -115,22 +122,20 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Status = Status.Pending,
                 Category = db.Categories.Find(newCampaign.CategoryName),
                 CampaignStarter = user,
+                DonationLevels = newCampaign.DonationLevels.Select(x=> new DonationLevel()
+                {
+                    Amount = x.Amount,
+                    Title = x.Title,
+                    Description = x.Description,
+                    Quantity = x.Quantity,
+                    DeliveryDate = DateTime.Parse(x.DeliveryDate)
+                }).ToList(),
                 DateEnd = DateTime.Now.AddDays(60)
             };
-
-            foreach (var donation in newCampaign.DonationLevels)
+            foreach (var donationLevel in campaign.DonationLevels)
             {
-                campaign.DonationLevels.Add(new DonationLevel()
-                {
-                    Amount = donation.Amount,
-                    Title = donation.Title,
-                    Description = donation.Description,
-                    Quantity = donation.Quantity,
-                    DeliveryDate = DateTime.Parse(donation.DeliveryDate),
-                    Campaign = campaign
-                });
+                donationLevel.Campaign = campaign;
             }
-
             user.Campaigns.Add(campaign);
             db.SaveChanges();
             return RedirectToAction("CampaignView", "Campaign", new { id = campaign.Id });

@@ -577,10 +577,10 @@ p.side {margin-bottom: 20px;}
  	z-index: 10;
 }
 .footer-row { margin-top: 30px;}
-.footer-col {color:#ababab; font-size: 11px;}
-.footer-col a {color:#dcdcdc; font-weight: bold;}
-.footer-col a:hover {color:#d8450b; text-decoration: none;}
-.footer-col h5, .footer-col strong {color:#f9f9f9; text-shadow:none;}
+.footer-col {color:#FFFFFF; font-size: 11px;}
+.footer-col a {color:#FFFFFF; font-weight: bold;}
+.footer-col a:hover {color:#FFFFFF; text-decoration: none;}
+.footer-col h5, .footer-col strong {color:#FFFFFF; text-shadow:none;}
 .footer-col h5 {margin-bottom: 25px;}
 .footer-col ul {margin: 0px;}
 .footer-col ul li {list-style: none; padding-bottom: 20px;}
@@ -620,7 +620,7 @@ ul.img-feed li {
 	.social-icons li:last-child {display:none;}
 }
 a.social-icon { 
-	background: url(../img/social-icons.png);
+	background: url(/img/social-icons.png);
 	display: block; 
 	width: 46px; 
 	height: 46px;
@@ -637,7 +637,7 @@ a.forrst{background-position: -208px 0px;}
 a.forrst:hover {background-position: -208px -47px;}
 
 /**** Sub Footer ****/
-.footer-sub {background: #BDBDBD; padding: 10px 0px;}
+.footer-sub {background: #64B5F6; padding: 10px 0px;}
 .footer-sub div div span {padding: 0px 20px;}
 
 

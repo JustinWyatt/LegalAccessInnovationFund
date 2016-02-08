@@ -9,14 +9,10 @@
     <link href="~/Content/layoutresponsive.css" rel="stylesheet" />
     <link href="~/Content/prettyphoto.css" rel="stylesheet" />
     <link href="~/Content/layoutbootstrap.css" rel="stylesheet" />
-
-    <script src="https://code.angularjs.org/1.5.0/angular.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs /angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
 </head>
-<body>
-
-
+<body class="home">
     <div class="container main-container">
-
         <div class="row header">
             <!-- Begin Header -->
             <!-- Logo
@@ -39,7 +35,7 @@
 
                     <ul class="nav">
                         <li>
-                            @Html.ActionLink("Home", "MainPage", "Home")
+                            @Html.ActionLink("Home", "CampaignAccess", "Home")
                         </li>
                         <li>
                             @Html.ActionLink("Campaigns", "Campaigns", "Campaign")
@@ -57,34 +53,13 @@
                         <select onchange="window.open(this.options[this.selectedIndex].value, '_top')">
                             <option value="">Navigate...</option>
                             <option value="index.htm">Home</option>
-                            <option value="index.htm">- Full Page</option>
-                            <option value="index-gallery.htm">- Gallery Only</option>
-                            <option value="index-slider.htm">- Slider Only</option>
-                            <option value="features.htm">Features</option>
-                            <option value="page-full-width.htm">Pages</option>
-                            <option value="page-full-width.htm">- Full Width</option>
-                            <option value="page-right-sidebar.htm">- Right Sidebar</option>
-                            <option value="page-left-sidebar.htm">- Left Sidebar</option>
-                            <option value="page-double-sidebar.htm">- Double Sidebar</option>
-                            <option value="gallery-4col.htm">Gallery</option>
-                            <option value="gallery-3col.htm">- 3 Column</option>
-                            <option value="gallery-4col.htm">- 4 Column</option>
-                            <option value="gallery-6col.htm">- 6 Column</option>
-                            <option value="gallery-4col-circle.htm">- Gallery 4 Col Round</option>
-                            <option value="gallery-single.htm">- Gallery Single</option>
-                            <option value="blog-style1.htm">Blog</option>
-                            <option value="blog-style1.htm">- Blog Style 1</option>
-                            <option value="blog-style2.htm">- Blog Style 2</option>
-                            <option value="blog-style3.htm">- Blog Style 3</option>
-                            <option value="blog-style4.htm">- Blog Style 4</option>
-                            <option value="blog-single.htm">- Blog Single</option>
-                            <option value="page-contact.htm">Contact</option>
                         </select>
                     </div>
                 </form>
             </div>
 
         </div><!-- End Header -->
+    
         @RenderBody()
     </div><!-- End Container -->
     <!-- Footer Area
@@ -93,7 +68,7 @@
         <!-- Begin Footer -->
         <div class="container">
             <div class="row footer-row">
-                <div class="span3 footer-col">
+                <div class="span4 footer-col">
                     <h5>About Us</h5>
                     <address>
                         <strong>Design Team</strong><br />
@@ -105,7 +80,7 @@
                         <li><a href="#" class="social-icon twitter"></a></li>
                     </ul>
                 </div>
-                <div class="span3 footer-col">
+                <div class="span4 footer-col">
                     <h5>Latest Tweets</h5>
                     <ul>
                         <li><a href="#">@@room122</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
@@ -113,7 +88,7 @@
                         <li><a href="#">@@room122</a> Vivamus nec lectus sed orci molestie molestie. Etiam mattis neque eu orci rutrum aliquam.</li>
                     </ul>
                 </div>
-                <div class="span3 footer-col">
+                <div class="span4 footer-col">
                     <h5>Latest Campaigns</h5>
                     <ul class="post-list">
                         <li><a href="#">Lorem ipsum dolor sit amet</a></li>
@@ -121,23 +96,6 @@
                         <li><a href="#">Lectus sed orci molestie molestie etiam</a></li>
                         <li><a href="#">Mattis consectetur adipiscing elit est lacus</a></li>
                         <li><a href="#">Cras rutrum, massa non blandit convallis est</a></li>
-                    </ul>
-                </div>
-                <div class="span3 footer-col">
-                    <h5>Flickr Photos</h5>
-                    <ul class="img-feed">
-                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
-                        <li><a href="#"><img src="/img/gallery/flickr-img-1.jpg" alt="Image Feed"></a></li>
                     </ul>
                 </div>
             </div>
@@ -157,7 +115,6 @@
         </div>
     </div><!-- End Footer -->
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/layoutbootstrap.js"></script>
     <script src="~/Scripts/jquery.custom.js"></script>
