@@ -107,7 +107,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult StartCampaign(CampaignViewModel newCampaign)
+        public JsonResult StartCampaign(CampaignViewModel newCampaign)
         {
             var userId = User.Identity.GetUserId();
             var user = db.Users.Find(userId);
@@ -122,6 +122,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Status = Status.Pending,
                 Category = db.Categories.Find(newCampaign.CategoryName),
                 CampaignStarter = user,
+                DateEnd = DateTime.Now.AddDays(60),
                 DonationLevels = newCampaign.DonationLevels.Select(x=> new DonationLevel()
                 {
                     Amount = x.Amount,
@@ -129,8 +130,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
                     Description = x.Description,
                     Quantity = x.Quantity,
                     DeliveryDate = DateTime.Parse(x.DeliveryDate)
-                }).ToList(),
-                DateEnd = DateTime.Now.AddDays(60)
+                }).ToList()
             };
             foreach (var donationLevel in campaign.DonationLevels)
             {
@@ -138,7 +138,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
             }
             user.Campaigns.Add(campaign);
             db.SaveChanges();
-            return RedirectToAction("CampaignView", "Campaign", new { id = campaign.Id });
+            return Json(campaign.Id);
         }
 
         [HttpPost]

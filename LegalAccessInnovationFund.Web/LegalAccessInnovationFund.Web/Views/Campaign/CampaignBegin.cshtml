@@ -8,29 +8,21 @@
 
 <!-- Page Content
     ================================================== -->
-<div class="row" data-spy="scroll" data-target=".navigation" data-offset="50">
-    <div class="span6">
-        <nav class="col-sm-3" id="myScrollspy">
+@*<div class="row" data-spy="scroll" data-target=".navigation" data-offset="50">
+    <div class="span6" >
+        <nav id="myScrollspy">
             <ul class="nav nav-pills nav-stacked">
-                <li class="active">
-                    <a href="#section1">
-                        <div style="height: 25%"></div>
-                    </a>
+                <li class="active" >
+                    <a href="#section1"><h3 style="color:white">Write Your Story</h3></a>
                 </li>
-                <li>
-                    <a href="#section1">
-                        <div style="height: 25%"></div>
-                    </a>
+                <li >
+                    <a href="#section1"><h3 style="color:white">Give Us A Picture</h3></a>
                 </li>
-                <li>
-                    <a href="#section1">
-                        <div style="height: 25%"></div>
-                    </a>
+                <li >
+                    <a href="#section1"><h3 style="color:white">Add Donation Levels</h3></a>
                 </li>
-                <li>
-                    <a href="#section1">
-                        <div style="height: 25%"></div>
-                    </a>
+                <li >
+                    <a href="#section1"><h3 style="color:white">Confirmation</h3></a>
                 </li>
             </ul>
         </nav>
@@ -38,10 +30,8 @@
     <div class="span6" style="background-color: white" ng-app="app" ng-controller="applicationController" ng-cloak>
         <form>
             <div id="section1">
-                <div>
-
-                    <h3>Write Your Story</h3>
-
+                    <h4>Write Your Story</h4>
+                    <br />
                     <p>Give us a title of your story. We want it to be a summation of the topic of your story. Please keep it brief.</p>
                     <fieldset>
                         <input type="text" placeholder="Write the title of your story here." ng-model="campaign.Title" />
@@ -50,65 +40,164 @@
                     <fieldset>
                         <textarea type="text" placeholder="Write your story here." ng-model="campaign.Story" />
                     </fieldset>
-                </div>
             </div>
 
             <div id="section2">
-                <div>
                     <h3>Give Us A Picture</h3>
-
+                    <br />
                     <p>Copy and paste a picture representing your story. The picture must be high definition and has quality. The picture can be of yourself or your organization</p>
                     <fieldset>
                         <input type="text" placeholder="https://www.suntrust.com/Static/RC/Images/Featured/Create_a_Strategy_for_Charitable_Donations_Featured.jpg" ng-model="campaign.Picture" />
                     </fieldset>
 
                     <img ng-src="{{campaign.Picture}}" />
-                </div>
             </div>
             <div id="section3">
-                    <p>Detail some donation levels for your cause. Whatever your cause, you can add perks for people at $25, $50, or $100 intervals. List your perks, the amount of contribution they represent and the quantity that are available. </p>
-                    <div id="newform">
-                        <fieldset>
 
-                            <label></label>
-                            <input type="text" ng-model="campaign.DonationLevels.Title" />
+                <h4>Add Donation Levels</h4>
+                <br />
+                <p>Detail some donation levels for your cause. Whatever your cause, you can add perks for people at $25, $50, or $100 intervals. List your perks, the amount of contribution they represent and the quantity that are available. </p>
+                <div id="newform">
+                    <fieldset>
 
-                            <label>Description</label>
-                            <textarea type="text" ng-model="campaign.DonationLevels.Description" placeholder="Write your description of this contribution level" />
+                        <label>Title</label>
+                        <input type="text" ng-model="campaign.DonationLevels.Title" />
 
-                            <label>Donation Amount</label>
-                            <input type="text" ng-model="campaign.DonationLevels.Amount" />
+                        <label>Description</label>
+                        <textarea type="text" ng-model="campaign.DonationLevels.Description" placeholder="Write your description of this contribution level" />
 
-                            <label>Quantity</label>
-                            <input type="number" ng-model="campaign.DonationLevels.Quantity" />
+                        <label>Donation Amount</label>
+                        <input type="text" ng-model="campaign.DonationLevels.Amount" />
 
-                            <label>Add A Delivery Date</label>
-                            <input type="date" ng-model="campaign.DonationLevels.DeliveryDate" />
+                        <label>Quantity</label>
+                        <input type="number" ng-model="campaign.DonationLevels.Quantity" />
 
-                            <button class="btn btn-default" ng-click="newDonationLevel()" value="Add New Donation Level" />
+                        <label>Add A Delivery Date</label>
+                        <input type="date" ng-model="campaign.DonationLevels.DeliveryDate" />
 
-                            <button class="btn btn-danger" ng-click="removeDonationLevel()" value="Remove This Donation Level" />
-                        </fieldset>
-                    </div>
+                        <button class="btn btn-default" ng-click="newDonationLevel()" value="Add New Donation Level" />
+
+                        <button class="btn btn-danger" ng-click="removeDonationLevel()" value="Remove This Donation Level" />
+                    </fieldset>
+                </div>
             </div>
 
             <div id="section4">
                 <div>
-                    <fieldset>
-                        <input class="btn btn-primary btn-block" type="submit" ng-click="submitForm(campaign)" value="Submit This Campaign"/>
-                    </fieldset>
+                    <h6 class="title-bg">Campaign Confirmation</h6>
+                    <div ng-show="!confirmed">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#step-1" data-toggle="tab">Your Story</a></li>
+                            <li><a href="#step-2" data-toggle="tab">Picture</a></li>
+                            <li><a href="#step-3" data-toggle="tab">Donation Levels</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="step-1">
+                                <p>Title: {{campaign.Title}}</p>
+                                <br />
+                                <p>Story: {{campaign.Story}}</p>
+                            </div>
+                            <div class="tab-pane" id="step-2">
+                                <p>{{campaign.Picture}}</p>
+                            </div>
+                            <div class="tab-pane" id="step-3">
+                                <ul ng-repeat="d in campaign.DonationLevels">
+                                    <li>
+                                        <p>Donation Title: {{d.Title}}</p>
+                                        <p>Donation Description: {{d.Description}}</p>
+                                        <p>Donations Available: {{d.Quantity}}</p>
+                                        <p>Delivery Date: {{d.DeliveryDate}}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <fieldset>
+                            <input class="btn btn-primary btn-block" type="submit" ng-click="submitForm(campaign)" value="Submit This Campaign" />
+                        </fieldset>
+                    </div>
+                    <div ng-show="confirmed">
+                        <div class="alert alert-success">Your campaign has been uploaded. Click "Go To Your Campaign" to view your uploaded campaign. You may edit or delete a campaign.</div>
+                        <a href="/campaign/campaignview/{{id}}" class="btn btn-success">Go To Your Campaign</a>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
-</div>
+</div>*@
 
-@section scripts{
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<style>
+  body {
+      position: relative;
+  }
+  ul.nav-pills {
+      top: 20px;
+      position: fixed;
+  }
+  div.col-sm-9 div {
+      height: 250px;
+      font-size: 28px;
+  }
+  #section1 {color: #fff; background-color: #1E88E5;}
+  #section2 {color: #fff; background-color: #673ab7;}
+  #section3 {color: #fff; background-color: #ff9800;}
+  #section41 {color: #fff; background-color: #00bcd4;}
+  #section42 {color: #fff; background-color: #009688;}
 
-    <script>tinymce.init({ selector: 'textarea' });</script>
+  @@media screen and (max-width: 810px) {
+    #section1, #section2, #section3, #section41, #section42  {
+        margin-left: 150px;
+    }
+  }
+</style>
+        <div class="row" >
+            <nav class="span3" id="myScrollspy">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#section1">Section 1</a></li>
+                    <li><a href="#section2">Section 2</a></li>
+                    <li><a href="#section3">Section 3</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#section41">Section 4-1</a></li>
+                            <li><a href="#section42">Section 4-2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="span9">
+                <div id="section1" style="height:100%">
+                    <h1>Section 1</h1>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                </div>
+                <div id="section2">
+                    <h1>Section 2</h1>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                </div>
+                <div id="section3">
+                    <h1>Section 3</h1>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                </div>
+                <div id="section41">
+                    <h1>Section 4-1</h1>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                </div>
+                <div id="section42">
+                    <h1>Section 4-2</h1>
+                    <p>Try to scroll this section and look at the navigation list while scrolling!</p>
+                </div>
+            </div>
+        </div>
 
-    <script>
+    @section scripts{
+
+        <script>
+            $('body').scrollspy({ target: '#navbar-example' })
+        </script>
+        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+
+        <script>tinymce.init({ selector: 'textarea' });</script>
+
+        <script>
 
         var app = angular.module("app", []);
 
@@ -128,22 +217,24 @@
                            DeliveryDate: ''
                        }
                 ]
-            }
+            };
 
             $scope.newDonationLevel = function () {
 
                 var oClone = document.getElementById("newform").cloneNode(true);
-                document.getElementById("section4").appendChild(oClone);
+                document.getElementById("section3").appendChild(oClone);
             }
 
             $scope.submitForm = function (campaign) {
 
-                $http.get('/campaign/startcampaign', campaign).then(function () {
-
+                $http.get('/campaign/startcampaign', campaign).then(function (id) {
+                    $scope.confirmed = true;
+                    $scope.campaign = {};
+                    $scope.id = result;
                 });
             }
 
         });
 
-    </script>
-}
+        </script>
+    }
