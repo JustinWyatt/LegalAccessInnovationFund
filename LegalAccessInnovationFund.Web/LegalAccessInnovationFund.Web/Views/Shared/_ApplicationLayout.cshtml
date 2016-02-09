@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It's Your Campaign</title>
+    <link href="~/Content/custom-styles.css" rel="stylesheet" />
+    <link href="~/Content/flexslider.css" rel="stylesheet" />
+    <link href="~/Content/layoutresponsive.css" rel="stylesheet" />
+    <link href="~/Content/prettyphoto.css" rel="stylesheet" />
+    <link href="~/Content/layoutbootstrap.css" rel="stylesheet" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs /angular-loading-bar/0.7.1/loading-bar.min.css' type='text/css' media='all' />
+</head>
+<body class="home" data-spy="scroll" data-target="#navbar-example">
+    <div class="container main-container">
+        <div class="row header">
+            <!-- Begin Header -->
+            <!-- Logo
+            ================================================== -->
+            <div class="span5 logo">
+                <h4>Legal Access Innovation Fund</h4>
+                @if (Request.IsAuthenticated)
+                {
+                    <h6> You The Real MVP, @Html.ActionLink($"{User.Identity.Name}", "ProfileView", "Profile", null, null)</h6>
+                }
+                else
+                {
+                }
+            </div>
+
+            <!-- Main Navigation
+            ================================================== -->
+            <div class="span7 navigation">
+                <div class="navbar hidden-phone">
+
+                    <ul class="nav">
+                        <li>
+                            @Html.ActionLink("Home", "CampaignAccess", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Campaigns", "Campaigns", "Campaign")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Profile", "ProfileView", "Profile")
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Mobile Nav
+                ================================================== -->
+                <form action="#" id="mobile-nav" class="visible-phone">
+                    <div class="mobile-nav-select">
+                        <select onchange="window.open(this.options[this.selectedIndex].value, '_top')">
+                            <option value="">Navigate...</option>
+                            <option value="index.htm">Home</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+        </div><!-- End Header -->
+
+        @RenderBody()
+    </div><!-- End Container -->
+    <!-- Footer Area
+      ================================================== -->
+    <div class="footer-container">
+        <!-- Begin Footer -->
+        <div class="container">
+            <div class="row footer-row">
+                <div class="span4 footer-col">
+                    <h5>About Us</h5>
+                    <address>
+                        <strong>Design Team</strong><br />
+                        123 Main St, Suite 500<br />
+                        New York, NY 12345<br />
+                    </address>
+                    <ul class="social-icons">
+                        <li><a href="#" class="social-icon facebook"></a></li>
+                        <li><a href="#" class="social-icon twitter"></a></li>
+                    </ul>
+                </div>
+                <div class="span4 footer-col">
+                    <h5>Latest Tweets</h5>
+                    <ul>
+                        <li><a href="#">@@room122</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                        <li><a href="#">@@room122</a> In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Morbi blandit ultricies ultrices.</li>
+                        <li><a href="#">@@room122</a> Vivamus nec lectus sed orci molestie molestie. Etiam mattis neque eu orci rutrum aliquam.</li>
+                    </ul>
+                </div>
+                <div class="span4 footer-col">
+                    <h5>Latest Campaigns</h5>
+                    <ul class="post-list">
+                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
+                        <li><a href="#">Consectetur adipiscing elit est lacus gravida</a></li>
+                        <li><a href="#">Lectus sed orci molestie molestie etiam</a></li>
+                        <li><a href="#">Mattis consectetur adipiscing elit est lacus</a></li>
+                        <li><a href="#">Cras rutrum, massa non blandit convallis est</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <!-- Begin Sub Footer -->
+                <div class="span12 footer-col footer-sub">
+                    <div class="row no-margin">
+                        <div class="span6"><span class="left">Copyright Legal Access Innovation Fund</span></div>
+                        <div class="span6">
+                            <span class="right">
+                                <a href="#">Home</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Gallery</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Blog</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Contact</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End Sub Footer -->
+        </div>
+    </div><!-- End Footer -->
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/layoutbootstrap.js"></script>
+    <script src="~/Scripts/jquery.custom.js"></script>
+    <script src="~/Scripts/jquery.prettyphoto.js"></script>
+    <script src="~/Scripts/jquery.flexslider.js"></script>
+    <script src="~/Scripts/jquery.easing.min.js"></script>
+</body>
+</html>

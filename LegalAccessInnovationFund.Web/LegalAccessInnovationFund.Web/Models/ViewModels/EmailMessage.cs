@@ -599,6 +599,11 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
             }
         }
 
+        public string MessagToStudentOnSubmitApplication { get; set; }
+        public string MessageToAdministratorOnSubmitApplication { get; set; }
+        public string MessageToStudentOnApproveApplication { get; set; }
+        public string MessageToAdministratorOnApproveApplication { get; set; }
+
 
     }
 }

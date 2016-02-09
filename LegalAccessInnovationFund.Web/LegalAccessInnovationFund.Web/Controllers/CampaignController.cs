@@ -38,9 +38,11 @@ namespace LegalAccessInnovationFund.Web.Controllers
         {
             var model = db.Campaigns.Where(x => x.Id == id).Select(x => new CampaignViewModel()
             {
-                RelatedCampaigns = db.Campaigns.Where(that=>that.Category == x.Category).Take(5).Select(n=> new CampaignViewModel()
-                {
-                }).ToList()
+                RelatedCampaigns = db.Campaigns.Where(that => that.Category == x.Category)
+                                               .Take(5)
+                                               .Select(n => new CampaignViewModel()
+                                               {
+                                               }).ToList()
 
             }).ToList();
             return View(model);
@@ -49,10 +51,10 @@ namespace LegalAccessInnovationFund.Web.Controllers
         [HttpGet]
         public JsonResult LatestCampaigns()
         {
-           var model = db.Campaigns.OrderByDescending(x => x.DatePosted).Take(5).Select(x => new CampaignViewModel()
+            var model = db.Campaigns.OrderByDescending(x => x.DatePosted).Take(5).Select(x => new CampaignViewModel()
             {
-               Title = x.Title,
-               DatePosted = x.DatePosted.ToString()
+                Title = x.Title,
+                DatePosted = x.DatePosted.ToString()
             }).ToList();
             return Json(model, JsonRequestBehavior.AllowGet);
         }
@@ -88,10 +90,10 @@ namespace LegalAccessInnovationFund.Web.Controllers
         [HttpGet]
         public JsonResult SearchCampaigns(string search)
         {
-            
-            var model = db.Campaigns.Where(x =>x.Title.StartsWith(search))
-                                    .Where(x=>x.CampaignStarter.Name.Contains(search))
-                                    .Where(x=>x.Category.CategoryName.Contains(search))
+
+            var model = db.Campaigns.Where(x => x.Title.StartsWith(search))
+                                    .Where(x => x.CampaignStarter.Name.Contains(search))
+                                    .Where(x => x.Category.CategoryName.Contains(search))
                                     .Select(campaign => new CampaignViewModel()
                                     {
                                         Picture = campaign.Picture
@@ -123,7 +125,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Category = db.Categories.Find(newCampaign.CategoryName),
                 CampaignStarter = user,
                 DateEnd = DateTime.Now.AddDays(60),
-                DonationLevels = newCampaign.DonationLevels.Select(x=> new DonationLevel()
+                DonationLevels = newCampaign.DonationLevels.Select(x => new DonationLevel()
                 {
                     Amount = x.Amount,
                     Title = x.Title,

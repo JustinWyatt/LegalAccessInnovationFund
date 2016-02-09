@@ -14,7 +14,7 @@ using LegalAccessInnovationFund.Web.Models.ViewModels;
 using System.Net.Http;
 using SendGrid;
 using System.Net.Mail;
-
+using System.Net;
 
 namespace LegalAccessInnovationFund.Web.Controllers
 {
@@ -72,7 +72,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
 
         [Authorize]
         [HttpPost]
-        public void ConfirmApplication(int pendingApplicationId)
+        public void ConfirmApplication(int pendingApplicationId, string emailPassword)
         {
             var app = db.PendingApplications.Find(pendingApplicationId);
             var applicant = new Applicant()
@@ -87,19 +87,55 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Links = new List<UserLink>(),
                 BirthDate = DateTime.Parse(app.DateOfBirth),
                 Email = app.Email,
-                UserName = app.FirstName + "123"
+                UserName = app.FirstName + new Guid("d")
             };
             var password = System.Web.Security.Membership.GeneratePassword(10, 10);
             UserManager.Create(applicant, password);
+            db.SaveChanges();
+            EmailMessage emailMessage = new EmailMessage();
 
-            var messageToApplicant = new SendGrid.SendGridMessage();
-            messageToApplicant.AddTo(applicant.Email);
-            messageToApplicant.From = new MailAddress("");
-            messageToApplicant.Subject = $"";
-            messageToApplicant.Text = "";
+            System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\Asus\\Desktop\\LegalAccessInnovationFund\\secretfile.txt");
 
-            var transportWeb = new SendGrid.Web("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");
-            transportWeb.DeliverAsync(messageToApplicant).Wait();
+            var secret = file.ReadToEnd();
+
+            //Send Email To Student
+            using (MailMessage mail = new MailMessage())
+            {
+                mail.From = new MailAddress("justinjwyatt@hotmail.com");
+                mail.To.Add(app.Email);
+                mail.Subject = $"Thank You! Your Application Is Pending { app.FirstName }";
+                mail.Body = emailMessage.Message;
+                mail.IsBodyHtml = true;
+                // Can set to false, if you are sending pure text.
+
+                using (SmtpClient smtp = new SmtpClient("smtp.live.com", 587))
+                {
+                    smtp.Credentials = new NetworkCredential("justinjwyatt@hotmail.com", emailPassword);
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+                }
+            }
+
+            EmailMessage adminEmail = new EmailMessage();
+            
+            //Send Email To Administrator
+            using (MailMessage adminMail = new MailMessage())
+            {
+                adminMail.From = new MailAddress("justinjwyatt@hotmail.com");
+                adminMail.To.Add(app.Email);
+                adminMail.Subject = $"Thank You! Your Application Is Pending { app.FirstName }";
+                adminMail.Body = adminEmail.MessageToAdministratorOnApproveApplication;
+                adminMail.IsBodyHtml = true;
+                // Can set to false, if you are sending pure text.
+
+                using (SmtpClient smtp = new SmtpClient("smtp.live.com", 587))
+                {
+                    smtp.Credentials = new NetworkCredential("justinjwyatt@hotmail.com", emailPassword);
+                    smtp.EnableSsl = true;
+                    smtp.Send(adminMail);
+                }
+            }
+
         }
 
         //

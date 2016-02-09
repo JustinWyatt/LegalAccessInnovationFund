@@ -418,6 +418,7 @@
     <Content Include="Scripts\smoothscroll.js" />
     <Content Include="Scripts\wow.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\AngularViews\begincampaign.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -450,14 +451,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\Campaign\Campaigns.cshtml" />
     <Content Include="Views\Profile\ProfileView.cshtml" />
-    <Content Include="Views\Campaign\CampaignBegin.cshtml" />
     <Content Include="Views\Profile\ApplicationConfirmation.cshtml" />
     <Content Include="Views\Profile\ApplicationForm.cshtml" />
     <Content Include="Views\Campaign\CampaignView.cshtml" />
     <Content Include="Views\Home\CampaignAccess.cshtml" />
+    <Content Include="Views\Shared\_ApplicationLayout.cshtml" />
+    <Content Include="Views\Campaign\CampaignBegin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

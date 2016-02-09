@@ -20,7 +20,6 @@ namespace LegalAccessInnovationFund.Web.Controllers
     {
 
         ApplicationDbContext db = new ApplicationDbContext();
-
         [AllowAnonymous]
         [HttpGet]
         public ActionResult ApplicationForm()
