@@ -26,7 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -456,9 +456,9 @@
     <Content Include="Views\Profile\ApplicationConfirmation.cshtml" />
     <Content Include="Views\Profile\ApplicationForm.cshtml" />
     <Content Include="Views\Campaign\CampaignView.cshtml" />
-    <Content Include="Views\Home\CampaignAccess.cshtml" />
     <Content Include="Views\Shared\_ApplicationLayout.cshtml" />
     <Content Include="Views\Campaign\CampaignBegin.cshtml" />
+    <Content Include="Views\Home\CampaignAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

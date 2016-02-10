@@ -26,10 +26,11 @@ namespace LegalAccessInnovationFund.Web.Controllers
         public ActionResult MyCampaigns()
         {
             var userId = User.Identity.GetUserId();
-            var model = db.Users.Where(x => x.Id == userId).Select(x => new CampaignViewModel()
-            {
+            var model = db.Users.Where(x => x.Id == userId)
+                                .Select(x => new CampaignViewModel()
+                                {
 
-            }).ToList();
+                                }).ToList();
             return View(model);
         }
 
