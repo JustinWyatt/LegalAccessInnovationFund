@@ -36,8 +36,16 @@ namespace LegalAccessInnovationFund.Web.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult SubmitApplication(ApplicationViewModel pendingApplication)
+        public JsonResult SubmitApplication(ApplicationViewModel pendingApplication)
         {
+
+            if (db.PendingApplications.Any(x=>x.Email == pendingApplication.Email))
+            {
+                var message = $"There is already an email address matching {pendingApplication.Email}. Your application is pending. We'll send you an email regarding the status of your application";
+
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+
             var application = new PendingApplication()
             {
                 FirstName = pendingApplication.FirstName,
@@ -47,13 +55,14 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Email = pendingApplication.Email,
                 MailingAccount = new MailingAccount(pendingApplication.Email),
                 DateApplied = DateTime.Now,
-                PhoneNumber = pendingApplication.PhoneNumber
+                PhoneNumber = pendingApplication.PhoneNumber,
+                DateOfBirth = pendingApplication.DateOfBirth
             };
 
             db.PendingApplications.Add(application);
             db.SaveChanges();
 
-            System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\Asus\\Desktop\\LegalAccessInnovationFund\\secretfile.txt");
+            System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\Justin Wyatt\\Source\\Repos\\LegalAccessInnovationFund\\file.txt.txt");
 
             var secret = file.ReadToEnd();
 
@@ -100,7 +109,9 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 }
             }
 
-            return RedirectToAction("ApplicationConfirmation", "Profile");
+            var success = "Your application has been submitted. We will send you a confirmation letter.";
+
+            return Json(success, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

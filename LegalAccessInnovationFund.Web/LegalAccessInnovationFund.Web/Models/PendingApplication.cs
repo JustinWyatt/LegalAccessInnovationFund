@@ -18,7 +18,7 @@ namespace LegalAccessInnovationFund.Web.Models
         public string Email { get; set; }
         public ApplicationCategory Category { get; set; }
         public MailingAccount MailingAccount { get; set; }
-        public string DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
     }
 }

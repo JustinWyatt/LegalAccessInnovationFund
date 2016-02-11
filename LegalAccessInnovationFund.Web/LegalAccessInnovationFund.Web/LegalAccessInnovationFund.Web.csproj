@@ -240,6 +240,10 @@
     <Compile Include="Migrations\201602071736361_UpdatingDatabase.Designer.cs">
       <DependentUpon>201602071736361_UpdatingDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602101904596_SavingChanges.cs" />
+    <Compile Include="Migrations\201602101904596_SavingChanges.Designer.cs">
+      <DependentUpon>201602101904596_SavingChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationCategory.cs" />
@@ -416,6 +420,7 @@
     <Content Include="Scripts\scrollupto.js" />
     <Content Include="Scripts\skillset.js" />
     <Content Include="Scripts\smoothscroll.js" />
+    <Content Include="Scripts\tinymce.js" />
     <Content Include="Scripts\wow.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\AngularViews\begincampaign.html" />
@@ -483,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602071736361_UpdatingDatabase.resx">
       <DependentUpon>201602071736361_UpdatingDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602101904596_SavingChanges.resx">
+      <DependentUpon>201602101904596_SavingChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

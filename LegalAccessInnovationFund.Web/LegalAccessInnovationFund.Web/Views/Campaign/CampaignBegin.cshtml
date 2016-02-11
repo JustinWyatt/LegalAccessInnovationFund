@@ -1,441 +1,259 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "CampaignBegin";
+    Layout = "~/Views/Shared/_ApplicationLayout.cshtml";
 }
 
 
-<!DOCTYPE html>
-<html lang="en" ng-app="app" ng-controller="formController">
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <script>
-        tinymce.init(
-                {
-                    selector: '.editable',
-                    height: 500,
-                    plugins: [
-                      'advlist autolink lists link image charmap print preview anchor',
-                      'searchreplace visualblocks code fullscreen',
-                      'insertdatetime media table contextmenu paste code'
-                    ],
-                    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                    content_css: [
-                      '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
-                      '//www.tinymce.com/css/codepen.min.css'
-                    ]
-                }
-
-        );
-
-    </script>
-
-    <script>
-        tinymce.init({
-
-            selector: '#donation',
-            plugins: [
-              'advlist autolink lists link image charmap print preview anchor',
-              'searchreplace visualblocks code fullscreen',
-              'insertdatetime media table contextmenu paste code'
-            ],
-            toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-            content_css: [
-              '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
-              '//www.tinymce.com/css/codepen.min.css'
-            ]
-        });
-
-    </script>
-    <style>
-        #wrapper {
-            padding-left: 250px;
-            transition: all 0.4s ease 0s;
-        }
-
-        #sidebar-wrapper {
-            margin-left: -250px;
-            left: 250px;
-            width: 250px;
-            background: #000;
-            position: fixed;
-            height: 100%;
-            overflow-y: auto;
-            z-index: 1000;
-            transition: all 0.4s ease 0s;
-        }
-
-        #wrapper.active {
-            padding-left: 0;
-        }
-
-            #wrapper.active #sidebar-wrapper {
-                left: 0;
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>
+    tinymce.init(
+            {
+                selector: '.editable',
+                height: 400,
+                plugins: [
+                  'advlist autolink lists link image charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table contextmenu paste code'
+                ],
+                toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                content_css: [
+                  '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+                  '//www.tinymce.com/css/codepen.min.css'
+                ]
             }
 
-        #page-content-wrapper {
-            width: 100%;
+    );
+
+</script>
+
+<script>
+    tinymce.init({
+
+        selector: '.donation',
+        plugins: [
+          'advlist autolink lists link image charmap print preview anchor',
+          'searchreplace visualblocks code fullscreen',
+          'insertdatetime media table contextmenu paste code'
+        ],
+        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        content_css: [
+          '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+          '//www.tinymce.com/css/codepen.min.css'
+        ]
+    });
+
+</script>
+
+<style>
+    .btn.outline {
+        background: none;
+        padding: 12px 22px;
+    }
+
+    .btn-primary.outline {
+        border: 2px solid #0099cc;
+        color: #0099cc;
+    }
+
+        .btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+            color: #33a6cc;
+            border-color: #33a6cc;
         }
 
-
-
-        .sidebar-nav {
-            position: absolute;
-            top: 0;
-            width: 250px;
-            list-style: none;
-            margin: 0;
-            padding: 0;
+        .btn-primary.outline:active, .btn-primary.outline.active {
+            border-color: #007299;
+            color: #007299;
+            box-shadow: none;
         }
 
-            .sidebar-nav li {
-                line-height: 40px;
-                text-indent: 20px;
-            }
-
-                .sidebar-nav li a {
-                    color: #999999;
-                    display: block;
-                    text-decoration: none;
-                    padding-left: 60px;
-                }
-
-                    .sidebar-nav li a span:before {
-                        position: absolute;
-                        left: 0;
-                        color: #41484c;
-                        text-align: center;
-                        width: 20px;
-                        line-height: 18px;
-                    }
-
-                    .sidebar-nav li a:hover,
-                    .sidebar-nav li.active {
-                        color: #fff;
-                        background: rgba(255,255,255,0.2);
-                        text-decoration: none;
-                    }
-
-                    .sidebar-nav li a:active,
-                    .sidebar-nav li a:focus {
-                        text-decoration: none;
-                    }
-
-            .sidebar-nav > .sidebar-brand {
-                height: 65px;
-                line-height: 60px;
-                font-size: 18px;
-            }
-
-                .sidebar-nav > .sidebar-brand a {
-                    color: #999999;
-                }
-
-                    .sidebar-nav > .sidebar-brand a:hover {
-                        color: #fff;
-                        background: none;
-                    }
-
-
-
-        .content-header {
-            height: 65px;
-            line-height: 65px;
-        }
-
-            .content-header h1 {
-                margin: 0;
-                margin-left: 20px;
-                line-height: 65px;
-                display: inline-block;
-            }
-
-        #menu-toggle {
-            text-decoration: none;
-        }
-
-        .btn-menu {
-            color: #000;
-        }
-
-        .inset {
-            padding: 20px;
-        }
-
-        @@media (max-width:767px) {
-
-            #wrapper {
-                padding-left: 0;
-            }
-
-            #sidebar-wrapper {
-                left: 0;
-            }
-
-            #wrapper.active {
-                position: relative;
-                left: 250px;
-            }
-
-                #wrapper.active #sidebar-wrapper {
-                    left: 250px;
-                    width: 250px;
-                    transition: all 0.4s ease 0s;
-                }
-
-            #menu-toggle {
-                display: inline-block;
-            }
-
-            .inset {
-                padding: 15px;
-            }
-        }
-    </style>
-</head>
-<body>
-    
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <nav id="spy">
-                <ul class="sidebar-nav nav">
-                    <li class="sidebar-brand">
-                        <a href="#home"><span class="fa fa-home solo">Home</span></a>
-                    </li>
-                    <li>
-                        <a href="#anch1" data-scroll>
-                            <span class="fa fa-anchor solo">Anchor 1</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#anch2" data-scroll>
-                            <span class="fa fa-anchor solo">Anchor 2</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#anch3" data-scroll>
-                            <span class="fa fa-anchor solo">Anchor 3</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#anch4" data-scroll>
-                            <span class="fa fa-anchor solo">Anchor 4</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-        <div id="sidebar-wrapper">
-
-        </div>
-
-        <!-- Page content -->
-        <div id="page-content-wrapper" class="span6">
-            <div class="page-content inset" data-spy="scroll" data-target="#spy">
-                <div class="row">
-
-                    <div class="jumbotron text-center">
-                        <h1>Start Your Campaign</h1>
-                        <p>Here is where you will build your campaign. Put your story details and all other information here.</p>
-                        <p>
-                            <a class="btn btn-default">Optional Button</a>
-                            <a class="btn btn-info">Optional Button</a>
-                        </p>
-                    </div>
-
+    .donations {
+        text-align: center;
+        vertical-align: middle;
+        border-radius: 6px;
+        height: 75px;
+        margin-bottom: 50px;
+    }
+</style>
+<!-- Page content -->
+<div ng-app="app" ng-controller="formController" ng-cloak>
+    <form>
+        <div class="span12">
+            <div class="row">
+                <div class="jumbotron text-center">
+                    <h1>Start Your Campaign</h1>
+                    <p>Here is where you will build your campaign. Put your story details and all other information here.</p>
                 </div>
-                <form>
 
-                    <div class="row">
-                        <div class="col-md-12 well">
-                            <h2 id="anch1">Write Your Story</h2>
-                            <p>Give us a title of your story. We want it to be a summation of the topic of your story. Please keep it brief.</p>
+                <div class="row">
+                    <div class="span12">
+                        <br />
+                        <br />
+                        <br />
+
+                        <h2 id="anch1">Write Your Story</h2>
+                        <p>Give us a title of your story. We want it to be a summation of the topic of your story. Please keep it brief.</p>
+                        <div class="row">
                             <fieldset>
-                                <input type="text" placeholder="Write the title of your story here." ng-model="campaign.Title" />
-                            </fieldset>
-                            <p>Tell us your story in full detail. You may add pictures from the web. You may not upload pictures at this time. Be as detailed as possible when describing your story. We want to know the whole thing!</p>
-                            <fieldset>
-                                <div class="editable" ng-model="campaign.Story">
-                                    Write Your Story Here
+                                <div class="span6">
+                                    <label>Title</label>
+                                    <input type="text" placeholder="Write the title of your story here." ng-model="campaign.Title" />
+                                </div>
+                                <div class="span6">
+                                    <label>Goal</label>
+                                    <input type="number" placeholder="What's your goal amount?" ng-model="campaign.Goal" />
                                 </div>
                             </fieldset>
                         </div>
-                        <div class="col-md-12 well">
-                            <h3>Give Us A Picture</h3>
-                            <br />
-                            <p>Copy and paste a picture representing your story. The picture must be high definition and has quality. The picture can be of yourself or your organization</p>
-                            <fieldset>
-                                <input type="text" ng-model="campaign.Picture" />
-                            </fieldset>
+                        <p>Tell us your story in full detail. You may add pictures from the web. You may not upload pictures at this time. Be as detailed as possible when describing your story. We want to know the whole thing!</p>
+                        <fieldset>
+                            <textarea style="height:500px" ui-tinymce ng-model="rawStory">Enter the details of your story here.</textarea>
 
-                            <img ng-src="{{campaign.Picture}}" style="height:250px" />
+                        </fieldset>
+                    </div>
+                    <div class="span12">
+                        <h3>Give Us A Picture</h3>
+                        <br />
+                        <p>Copy and paste a picture representing your story. The picture must be high definition and has quality. The picture can be of yourself or your organization</p>
+                        <fieldset>
+                            <input type="text" ng-model="campaign.Picture" />
+                        </fieldset>
+
+                        <img ng-src="{{campaign.Picture}}" style="height:250px" />
+                    </div>
+                    <div class="span12">
+                        <div class="row">
+                            <br />
+                            <br />
+                            <br />
+
+                            <h3>Add Donation Levels<span></span></h3>
+
+                            <br />
+                            <p width="100%">Detail some donation levels for your cause. Whatever your cause, you can add perks for people at $25, $50, or $100 intervals. List your perks, the amount of contribution they represent and the quantity that are available. </p>
                         </div>
-                        <div class="col-md-12 well">
-
-                            <h3>Add Donation Levels</h3>
-                            <br />
-                            <p>Detail some donation levels for your cause. Whatever your cause, you can add perks for people at $25, $50, or $100 intervals. List your perks, the amount of contribution they represent and the quantity that are available. </p>
-                            <div id="append">
-                                <div ng-hide="hide" id="newform">
-                                    <fieldset">
-                                        <label>Title</label>
-                                        <input type="text" ng-model="campaign.DonationLevels.Title" />
-
-                                        <label>Description</label>
-                                        <textarea id="story" ng-model="campaign.DonationLevels.Description">
-                                            Enter your donation details here.
-                                        </textarea>
-                                        <label>Donation Amount</label>
-                                        <input type="text" ng-model="campaign.DonationLevels.Amount" />
-
-                                        <label>Quantity</label>
-                                        <input type="number" ng-model="campaign.DonationLevels.Quantity" />
-
-                                        <label>Add A Delivery Date</label>
-                                        <input type="date" ng-model="campaign.DonationLevels.DeliveryDate" />
-
-                                        <button class="btn btn-default" ng-click="newDonationLevel()" value="Add New Donation Level" />
-
-                                        <button class="btn btn-danger" ng-click="removeDonationLevel()" value="Remove This Donation Level" />
-                                    </fieldset">
-                                </div>
+                        <div class="row">
+                            <div class="span6">
                                 <fieldset>
-                                    <div class="col-md-6">
-                                        <label>Title</label>
-                                        <input type="text" ng-model="campaign.DonationLevels.Title" />
+                                    <label>Title</label>
 
-                                        <label>Description</label>
-                                        <div class="col-md-6" id="donation" ng-model="campaign.DonationLevels.DeliveryDate">
-                                            Enter your donation details here.
-                                        </div>
-                                        <label>Donation Amount</label>
-                                        <input type="text" ng-model="campaign.DonationLevels.Amount" />
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Quantity</label>
-                                        <input type="number" ng-model="campaign.DonationLevels.Quantity" />
+                                    <input type="text" ng-model="donationModel.Title" />
 
-                                        <label>Add A Delivery Date</label>
-                                        <input type="date" ng-model="campaign.DonationLevels.DeliveryDate" />
-                                    </div>
-                                    <button class="btn btn-default" ng-click="newDonationLevel()" value="Add New Donation Level" />
+                                    <label>Description</label>
 
-                                    <button class="btn btn-danger" ng-click="removeDonationLevel()" value="Remove This Donation Level" />
+                                    <textarea ui-tinymce ng-model="donationModel.Description">Enter your donation details here.</textarea>
+                                    <label>Quantity</label>
+                                    <input type="number" ng-model="donationModel.Quantity" />
+
+                                    <label>Add A Delivery Date</label>
+                                    <input type="date" ng-model="donationModel.DeliveryDate" />
+
+                                    <label>Donation Amount</label>
+                                    <input type="text" ng-model="donationModel.Amount" />
+                                    <br />
+                                    <button class="fa fa-plus btn outline" ng-click="newDonationLevel(donationModel)">Add This Donation</button>
+
                                 </fieldset>
                             </div>
-                        </div>
-                        <div class="col-md-6 well">
-                            <h4 class="title-bg">Campaign Confirmation</h4>
-                            <div ng-show="!confirmed">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#step-1" data-toggle="tab">Your Story</a></li>
-                                    <li><a href="#step-2" data-toggle="tab">Picture</a></li>
-                                    <li><a href="#step-3" data-toggle="tab">Donation Levels</a></li>
-                                </ul>
-                                <div class="tab-content" style="height: 375px">
-                                    <div class="tab-pane active" id="step-1">
-                                        <p>Title: {{campaign.Title}}</p>
-                                        <br />
-                                        <p>Story: {{campaign.Story}}</p>
-                                    </div>
-                                    <div class="tab-pane" id="step-2">
-                                        <img ng-src="{{campaign.Picture}}" style="height:250px" />
-                                    </div>
-
-                                    <div class="tab-pane" id="step-3">
-                                        <ul ng-hide="noDonationLevels" ng-repeat="d in campaign.DonationLevels" s">
-                                            <li>
-                                                <p>Donation Title: {{d.Title}}</p>
-                                                <p>Donation Description: {{d.Description}}</p>
-                                                <p>Donations Available: {{d.Quantity}}</p>
-                                                <p>Delivery Date: {{d.DeliveryDate}}</p>
-                                            </li>
-                                        </ul>
+                            <div class="span6">
+                                <div class="row">
+                                    <div class="span2" ng-repeat="donationLevel in campaign.DonationLevels">
+                                        <div ng-model="donationLevel"  class="span2 donations">{{donationLevel.Title}}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6" style="position:relative">
-                            <fieldset>
-                                <input class="btn btn-primary btn-lg" style="position:absolute; margin:auto; top:75px; left:150px;"  type="submit" ng-click="submitForm(campaign)" value="Submit This Campaign" />
-                            </fieldset>
-
-                            <div ng-show="confirmed">
-                                <div class="alert alert-success">Your campaign has been uploaded. Click "Go To Your Campaign" to view your uploaded campaign. You may edit or delete a campaign.</div>
-                                <a href="/campaign/campaignview/{{id}}" class="btn btn-success">Go To Your Campaign</a>
-
-                            </div>
-                            
-                        </div>
                     </div>
-                </form>
-
-                <div class="navbar navbar-default navbar-static-bottom">
-                    <p class="navbar-text pull-left">
-                        Go Back To Campaign Access
-                    </p>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+        <div class="row">
+            <div class="span4"></div>
+            <div class="span4">
+                <fieldset>
+                    <input ng-hide="confirmed" class="btn btn-primary outline span4" type="submit" ng-click="submitForm(campaign)" value="Submit This Campaign" />
+                    <br />
+                    <br />
+                    <br />
 
-    <script>
+                </fieldset>
 
-        var app = angular.module("app", []);
+                <div ng-show="confirmed">
+                    <div class="alert alert-success">Your campaign has been uploaded. Click "Go To Your Campaign" to view your uploaded campaign. You may edit or delete a campaign.</div>
+                    <a href="/campaign/campaignview/{{id}}" class="btn btn-success outline">Go To Your Campaign</a>
+                </div>
+            </div>
+            <div class="span4"></div>
+        </div>
+    </form>
+</div>
 
-        app.controller("formController", function ($scope, $http) {
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="~/Scripts/tinymce.js"></script>
 
-            $scope.hide = true;
-            $scope.confirmed = false;
+<script>
 
-            $scope.campaign = {
+    var app = angular.module("app", ['ui.tinymce']);
 
-                Picture: '',
-                Title: '',
-                DonationLevels: [
+    app.controller("formController", function ($sce, $scope, $http) {
 
-                       {
-                           Title: '',
-                           Description: '',
-                           Amount: 0,
-                           Quantity: 0,
-                           DeliveryDate: ''
-                       }
-                ]
-            };
+        $scope.tinymceOptions = {
+            onChange: function (e) {
+                // put logic here for keypress and cut/paste changes
+            },
+            inline: false,
+            plugins: 'advlist autolink link image lists charmap print preview',
+            skin: 'lightgray',
+            theme: 'advanced',
+            height: 500
+        };
 
-            if ($scope.campaign.DonationLevels.length === 0) {
+        $scope.hide = true;
+        $scope.confirmed = false;
 
-                $scope.noDonationLevels = true;
+        $scope.campaign = {
+
+            Picture: '',
+            Title: '',
+            Goal: 0,
+            Story: '',
+            DonationLevels: [
+
+                   {
+                       Title: '',
+                       Description: '',
+                       Amount: 0,
+                       Quantity: 0,
+                       DeliveryDate: ''
+                   }
+            ]
+        };
+
+        $scope.newDonationLevel = function (donationModel) {
+
+            $scope.donationModel.donationModelId = 0;
+
+            if (donationModel != {}) {
+                $scope.campaign.DonationLevels.push(donationModel);
+                $scope.donationmodel.donationModelId + 1;
+                $scope.donationModel = {};
 
             }
 
-            $scope.campaign.Picture = "http://www.bestfact.net/wp-content/uploads/2014/05/Bestfact-JL-Carli-Conference-La-Defense-3112_original.jpg";
+        }
 
-            $scope.newDonationLevel = function () {
+            $scope.campaign.Story = $sce.trustAsHtml($scope.rawStory);
 
-                var oClone = document.getElementById("newform").cloneNode(true);
-                document.getElementById("append").appendChild(oClone);
-            }
+        $scope.campaign.Picture = "http://www.bestfact.net/wp-content/uploads/2014/05/Bestfact-JL-Carli-Conference-La-Defense-3112_original.jpg";
 
-            $scope.submitForm = function (campaign) {
+        $scope.submitForm = function (campaign) {
+            $scope.confirmed = true;
 
-                $http.post('/campaign/startcampaign', campaign).then(function (id) {
-                    $scope.confirmed = true;
-                    $scope.campaign = {};
-                    $scope.id = id;
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+            $http.post('/campaign/startcampaign', campaign).then(function (id) {
+                $scope.campaign = {};
+                $scope.id = id;
+            });
+        }
+    });
+</script>
+

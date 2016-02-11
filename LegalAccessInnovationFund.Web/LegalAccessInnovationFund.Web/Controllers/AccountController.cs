@@ -85,7 +85,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 State = app.State,
                 PostalCode = app.PostalCode,
                 Links = new List<UserLink>(),
-                BirthDate = DateTime.Parse(app.DateOfBirth),
+                BirthDate = app.DateOfBirth,
                 Email = app.Email,
                 UserName = app.FirstName + new Guid("d")
             };

@@ -12,7 +12,7 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
         public string City { get; set; }
         public string Email { get; set; }
         public string State { get; set; }
-        public string DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
     }   
 }
