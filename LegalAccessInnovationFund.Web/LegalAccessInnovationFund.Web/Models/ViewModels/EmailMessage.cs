@@ -308,58 +308,7 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
   							<!--  The ""mc:hideable"" is a feature for MailChimp which allows
   								you to disable certain row. It works perfectly for our row structure.
   								http://kb.mailchimp.com/article/template-language-creating-editable-content-areas/
-  							-->
-  							<tr mc:hideable>
-  								<td align=""center"" valign=""top"">
-  									<!-- CENTERING TABLE // -->
-  									<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"">
-  										<tr>
-  											<td align=""center"" valign=""top"">
-  												<!-- FLEXIBLE CONTAINER // -->
-  												<table border=""0"" cellpadding=""30"" cellspacing=""0"" width=""500"" class=""flexibleContainer"">
-  													<tr>
-  														<td valign=""top"" width=""500"" class=""flexibleContainerCell"">
-
-  															<!-- CONTENT TABLE // -->
-  															<table align=""left"" border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"">
-  																<tr>
-  																	<td align=""left"" valign=""top"" class=""flexibleContainerBox"">
-  																		<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""210"" style=""max-width: 100%;"">
-  																			<tr>
-  																				<td align=""left"" class=""textContent"">
-                                          // Todo Put Name Here
-  																					<h3 style=""color:#5F5F5F;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Left Column</h3>
-  																					<div style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;"">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.</div>
-  																				</td>
-  																			</tr>
-  																		</table>
-  																	</td>
-  																	<td align=""right"" valign=""middle"" class=""flexibleContainerBox"">
-  																		<table class=""flexibleContainerBoxNext"" border=""0"" cellpadding=""0"" cellspacing=""0"" width=""210"" style=""max-width: 100%;"">
-  																			<tr>
-  																				<td align=""left"" class=""textContent"">
-                                          // Todo Put Other Info Here
-  																					<h3 style=""color:#5F5F5F;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Right Column</h3>
-  																					<div style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;"">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.</div>
-  																				</td>
-  																			</tr>
-  																		</table>
-  																	</td>
-  																</tr>
-  															</table>
-  															<!-- // CONTENT TABLE -->
-
-  														</td>
-  													</tr>
-  												</table>
-  												<!-- // FLEXIBLE CONTAINER -->
-  											</td>
-  										</tr>
-  									</table>
-  									<!-- // CENTERING TABLE -->
-  								</td>
-  							</tr>
-  							<!-- // MODULE ROW -->
+  							
 
 
   							<!-- MODULE ROW // -->
@@ -374,16 +323,6 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
   													<tr>
   														<td style=""padding-top:0;"" align=""center"" valign=""top"" width=""500"" class=""flexibleContainerCell"">
 
-  															<!-- CONTENT TABLE // -->
-  															<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""50%"" class=""emailButton"" style=""background-color: #3498DB;"">
-  																<tr>
-  																	<td align=""center"" valign=""middle"" class=""buttonContent"" style=""padding-top:15px;padding-bottom:15px;padding-right:15px;padding-left:15px;"">
-                                    // Todo Make Button
-  																		<a style=""color:#FFFFFF;text-decoration:none;font-family:Helvetica,Arial,sans-serif;font-size:20px;line-height:135%;"" href=""#"" target=""_blank"">Confirmation</a>
-  																	</td>
-  																</tr>
-  															</table>
-  															<!-- // CONTENT TABLE -->
 
   														</td>
   													</tr>
@@ -422,9 +361,8 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
   																						you to edit certain row. It makes it easy for you to quickly edit row sections.
   																						http://kb.mailchimp.com/templates/code/create-editable-content-areas-with-mailchimps-template-language
   																					-->
-                                            // Todo Add More Info
-  																					<h3 mc:edit=""header"" style=""color:#5F5F5F;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Message Title</h3>
-  																					<div mc:edit=""body"" style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;"">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</div>
+                                            					<h3 mc:edit=""header"" style=""color:#5F5F5F;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Enter Name</h3>
+  																					<div mc:edit=""body"" style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;"">Location: Enter Location <br/> Phone Number: Enter Phonenumber <br/> Date Applied: Enter Date Applied <br/> Email: Enter Email</div>
   																				</td>
   																			</tr>
   																		</table>
@@ -464,8 +402,8 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
   																		<table border=""0"" cellpadding=""30"" cellspacing=""0"" width=""100%"" style=""max-width:100%;"">
   																			<tr>
   																				<td align=""left"" class=""textContent"">
-  																					<h3 style=""color:#FFFFFF;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Left Column</h3>
-  																					<div style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;"">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.</div>
+  																					<a href=""/account/rejectapplication/ApplicationId""><h3 style=""color:#FFFFFF;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Reject Application</h3></a>
+  																					<div style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;"">By clicking this button, you will be redirected to a page where you can reject this user's application. The appilcation will still be pending once you reject this application.</div>
   																				</td>
   																			</tr>
   																		</table>
@@ -474,8 +412,8 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
   																		<table class=""flexibleContainerBoxNext"" border=""0"" cellpadding=""30"" cellspacing=""0"" width=""100%"" style=""max-width:100%;"">
   																			<tr>
   																				<td align=""left"" class=""textContent"">
-  																					<h3 style=""color:#FFFFFF;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Right Column</h3>
-  																					<div style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;"">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.</div>
+  																					<a href=""/account/approveapplication/ApplicationId""<h3 style=""color:#FFFFFF;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Approve Application</h3>
+  																					<div style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;"">By clicking this button, you will approve this user's application. The user will automatically generate a username and password for this user. The system will also notify the user.</div>
   																				</td>
   																			</tr>
   																		</table>
@@ -567,11 +505,6 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
   															<table border=""0"" cellpadding=""30"" cellspacing=""0"" width=""100%"">
   																<tr>
   																	<td valign=""top"" bgcolor=""#E1E1E1"">
-
-  																		<div style=""font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#828282;text-align:center;line-height:120%;"">
-  																			<div>Copyright &#169; 2014 <a href=""http://www.charlesmudy.com/respmail/"" target=""_blank"" style=""text-decoration:none;color:#828282;""><span style=""color:#828282;"">Respmail</span></a>. All&nbsp;rights&nbsp;reserved.</div>
-  																			<div>If you do not want to recieve emails from us, you can <a href=""#"" target=""_blank"" style=""text-decoration:none;color:#828282;""><span style=""color:#828282;"">unsubscribe</span></a>.</div>
-  																		</div>
 
   																	</td>
   																</tr>

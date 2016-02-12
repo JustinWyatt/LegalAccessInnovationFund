@@ -62,7 +62,7 @@
 
         <div class="span5">
 
-            
+
             <div ng-app="app" ng-controller="applicationController" ng-cloak>
                 <form>
                     <label>First Name <span ng-show="!application.FirstName" style="color:red">*</span></label>
@@ -110,9 +110,11 @@
                     </div>
                     <br />
 
-                    <div ng-hide="submitted">
-                        <input type="submit" class="btn btn-large span4" ng-click="submit(application)" />
+                    <div ng-hide="buttonClicked" >
+                        <input type="submit" class="btn btn-large span4"  ng-disabled="!application" ng-click="submit(application)" />
                     </div>
+                    
+                        <img ng-show="loading" src="~/Content/ajax-loader (1).gif" />
                     <div ng-show="submitted" class="alert alert-success">
                         {{message}}
                     </div>
@@ -139,12 +141,26 @@
 
             $scope.submitted = false;
             $scope.error = false;
+            $scope.loading = false;
 
             $scope.submit = function (input) {
+
+                $scope.loading = true;
+                $scope.buttonClicked = true;
+
                 $http.post("/profile/submitapplication", input).success(function (message) {
+
                     $scope.application = {};
+                    $scope.loading = false;
                     $scope.submitted = true;
                     $scope.message = message;
+                })
+
+                .error(function (error) {
+                    
+                    $scope.loading = false;
+                    $scope.error = true;
+
                 });
             }
         });

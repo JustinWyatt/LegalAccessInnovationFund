@@ -69,7 +69,7 @@
                         </div>
                         <p>Tell us your story in full detail. You may add pictures from the web. You may not upload pictures at this time. Be as detailed as possible when describing your story. We want to know the whole thing!</p>
                         <fieldset>
-                            <textarea style="height:500px" ui-tinymce ng-model="rawStory">Enter the details of your story here.</textarea>
+                            <textarea ui-tinymce="" ng-model="campaign.Description"></textarea>
                         </fieldset>
                     </div>
                     <div class="span12">
@@ -100,7 +100,7 @@
                                     <input type="text" ng-model="donationModel.Title" />
 
                                     <label>Description</label>
-                                    <textarea ui-tinymce ng-model="donationModel.Description">Enter your donation details here.</textarea>
+                                    <textarea ui-tinymce="" ng-model="donaatinoModel.Description"></textarea>
 
                                     <label>Quantity</label>
                                     <input type="number" ng-model="donationModel.Quantity" />
@@ -115,10 +115,8 @@
 
                                 </fieldset>
                             </div>
-                            <div class="row" ng-repeat="donation in campaign.DonationLevels">
-                                <div class="span6">
-                                    <div class="span2 donations">{{donation.Title}}</div>
-                                </div>
+                            <div class="span6">
+                                <div class="span2 donations" ng-repeat="donation in campaign.DonationLevels">{{donation.Title}}</div>
                             </div>
                         </div>
                     </div>
@@ -129,7 +127,7 @@
             <div class="span4"></div>
             <div class="span4">
                 <fieldset>
-                    <input ng-hide="confirmed" class="btn btn-primary outline span4" type="submit" ng-click="submitForm(campaign)" value="Submit This Campaign" />
+                    <input ng-hide="confirmed" class="btn btn-primary outline span4" type="submit" ng-click="submitForm()" value="Submit This Campaign" />
                     <br />
                     <br />
                     <br />
@@ -146,11 +144,71 @@
     </form>
 </div>
 
+
 @section scripts{
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script src="~/Scripts/tinymce.js"></script>
-    <script src="~/Scripts/campaignBegin.js"></script>
+
+    <script>
+        var app = angular.module("app", ['ui.tinymce']);
+
+        app.controller("formController", function ($scope, $http) {
+
+            var ctrl = this;
+
+            this.updateHtml = function () {
+                ctrl.tinymceHtml = $sce.trustAsHtml(ctrl.tinymce);
+            };
+
+
+            $scope.tinymceOptions = {
+                onChange: function (e) {
+                    // put logic here for keypress and cut/paste changes
+                },
+                inline: false,
+                plugins: 'advlist autolink link image lists charmap print preview',
+                skin: 'lightgray',
+                theme: 'modern',
+            };
+
+            $scope.campaign = {
+                Title: '',
+                Goal: 0,
+                Picture: '',
+                DonationLevels: [
+
+                ]
+            }
+
+            $scope.hide = true;
+            $scope.confirmed = false;
+
+
+            $scope.newDonationLevel = function () {
+
+                if ($scope.donationModel) {
+
+                    $scope.campaign.DonationLevels.push($scope.donationModel);
+                    $scope.donationModel = {};
+                }
+
+            }
+
+            $scope.campaign.Picture = "http://www.bestfact.net/wp-content/uploads/2014/05/Bestfact-JL-Carli-Conference-La-Defense-3112_original.jpg";
+
+            $scope.submitForm = function () {
+                $scope.confirmed = true;
+
+                $http.post('/campaign/startcampaign', $scope.campaign).then(function (id) {
+                    $scope.campaign = {};
+                    $scope.id = id;
+                });
+            }
+
+        });
+    </script>
+
+
 }
-
-

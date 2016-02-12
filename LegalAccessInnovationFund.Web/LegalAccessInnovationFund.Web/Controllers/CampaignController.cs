@@ -133,7 +133,6 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Picture = newCampaign.Picture,
                 Location = newCampaign.Location,
                 Status = Status.Pending,
-                Category = db.Categories.Find(newCampaign.CategoryName),
                 CampaignStarter = user,
                 DateEnd = DateTime.Now.AddDays(60),
                 DonationLevels = newCampaign.DonationLevels.Select(x => new DonationLevel()
@@ -149,7 +148,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
             {
                 donationLevel.Campaign = campaign;
             }
-            user.Campaigns.Add(campaign);
+            db.Campaigns.Add(campaign);
             db.SaveChanges();
             return Json(campaign.Id);
         }

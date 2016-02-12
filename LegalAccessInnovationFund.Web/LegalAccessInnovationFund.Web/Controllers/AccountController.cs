@@ -15,12 +15,11 @@ using System.Net.Http;
 using SendGrid;
 using System.Net.Mail;
 using System.Net;
+using System.Web.Security;
 
 namespace LegalAccessInnovationFund.Web.Controllers
 {
-
-
-    [Authorize]
+    
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -69,12 +68,25 @@ namespace LegalAccessInnovationFund.Web.Controllers
             return View();
         }
 
-
-        [Authorize]
-        [HttpPost]
-        public void ConfirmApplication(int pendingApplicationId, string emailPassword)
+        [HttpGet]
+        public ActionResult ConfirmApplication(int id)
         {
-            var app = db.PendingApplications.Find(pendingApplicationId);
+            var application = db.PendingApplications.Find(id);
+            return View(application);
+        }
+
+        [HttpGet]
+        public ActionResult RejectApplication(int id)
+        {
+            var application = db.PendingApplications.Find(id);
+            return View(application);
+        }
+
+        //[Authorize(Roles = "Administrator")]
+        [HttpPost]
+        public ActionResult ApplicationConfirmation(int id)
+        {
+            var app = db.PendingApplications.Find(id);
             var applicant = new Applicant()
             {
                 Name = app.FirstName + app.LastName,
@@ -87,54 +99,65 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Links = new List<UserLink>(),
                 BirthDate = DateTime.Parse(app.DateOfBirth),
                 Email = app.Email,
-                UserName = app.FirstName + new Guid("d")
+                UserName = app.Email,
             };
+
+            Roles.AddUserToRole(applicant.UserName, "User");
+
             var password = System.Web.Security.Membership.GeneratePassword(10, 10);
             UserManager.Create(applicant, password);
             db.SaveChanges();
-            EmailMessage emailMessage = new EmailMessage();
 
-            System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\Asus\\Desktop\\LegalAccessInnovationFund\\secretfile.txt");
+            return RedirectToAction("ProfileView", "Profile", new { id = applicant.Id });
+            //EmailMessage emailMessage = new EmailMessage();
 
-            var secret = file.ReadToEnd();
+            //System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\Asus\\Desktop\\LegalAccessInnovationFund\\secretfile.txt");
 
-            //Send Email To Student
-            using (MailMessage mail = new MailMessage())
-            {
-                mail.From = new MailAddress("justinjwyatt@hotmail.com");
-                mail.To.Add(app.Email);
-                mail.Subject = $"Thank You! Your Application Is Pending { app.FirstName }";
-                mail.Body = emailMessage.Message;
-                mail.IsBodyHtml = true;
-                // Can set to false, if you are sending pure text.
+            //var secret = file.ReadToEnd();
 
-                using (SmtpClient smtp = new SmtpClient("smtp.live.com", 587))
-                {
-                    smtp.Credentials = new NetworkCredential("justinjwyatt@hotmail.com", emailPassword);
-                    smtp.EnableSsl = true;
-                    smtp.Send(mail);
-                }
-            }
+            ////Send Email To Student
+            //using (MailMessage mail = new MailMessage())
+            //{
+            //    mail.From = new MailAddress("justinjwyatt@hotmail.com");
+            //    mail.To.Add(app.Email);
+            //    mail.Subject = $"Thank You! Your Application Is Pending { app.FirstName }";
+            //    mail.Body = emailMessage.Message;
+            //    mail.IsBodyHtml = true;
+            //    // Can set to false, if you are sending pure text.
 
-            EmailMessage adminEmail = new EmailMessage();
+            //    using (SmtpClient smtp = new SmtpClient("smtp.live.com", 587))
+            //    {
+            //        smtp.Credentials = new NetworkCredential("justinjwyatt@hotmail.com", secret);
+            //        smtp.EnableSsl = true;
+            //        smtp.Send(mail);
+            //    }
+            //}
+
+            //EmailMessage adminEmail = new EmailMessage();
             
-            //Send Email To Administrator
-            using (MailMessage adminMail = new MailMessage())
-            {
-                adminMail.From = new MailAddress("justinjwyatt@hotmail.com");
-                adminMail.To.Add(app.Email);
-                adminMail.Subject = $"Thank You! Your Application Is Pending { app.FirstName }";
-                adminMail.Body = adminEmail.MessageToAdministratorOnApproveApplication;
-                adminMail.IsBodyHtml = true;
-                // Can set to false, if you are sending pure text.
+            ////Send Email To Administrator
+            //using (MailMessage adminMail = new MailMessage())
+            //{
+            //    adminMail.From = new MailAddress("justinjwyatt@hotmail.com");
+            //    adminMail.To.Add(app.Email);
+            //    adminMail.Subject = $"Thank You! Your Application Is Pending { app.FirstName }";
+            //    adminMail.Body = adminEmail.MessageToAdministratorOnApproveApplication;
+            //    adminMail.IsBodyHtml = true;
+            //    // Can set to false, if you are sending pure text.
 
-                using (SmtpClient smtp = new SmtpClient("smtp.live.com", 587))
-                {
-                    smtp.Credentials = new NetworkCredential("justinjwyatt@hotmail.com", emailPassword);
-                    smtp.EnableSsl = true;
-                    smtp.Send(adminMail);
-                }
-            }
+            //    using (SmtpClient smtp = new SmtpClient("smtp.live.com", 587))
+            //    {
+            //        smtp.Credentials = new NetworkCredential("justinjwyatt@hotmail.com", emailPassword);
+            //        smtp.EnableSsl = true;
+            //        smtp.Send(adminMail);
+            //    }
+            //}
+
+        }
+
+        [HttpPost]
+        public void RejectTheApplication(int pendingApplication)
+        {
 
         }
 

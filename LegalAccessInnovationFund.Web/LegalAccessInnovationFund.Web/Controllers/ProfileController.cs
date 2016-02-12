@@ -28,23 +28,16 @@ namespace LegalAccessInnovationFund.Web.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet]
-        public ActionResult ApplicationConfirmation()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
         [HttpPost]
         public JsonResult SubmitApplication(ApplicationViewModel pendingApplication)
         {
 
-            if (db.PendingApplications.Any(x=>x.Email == pendingApplication.Email))
-            {
-                var message = $"There is already an email address matching {pendingApplication.Email}. Your application is pending. We'll send you an email regarding the status of your application";
+            //if (db.PendingApplications.Any(x=>x.Email == pendingApplication.Email))
+            //{
+            //    var message = $"There is already an email address matching {pendingApplication.Email}. Your application is pending. We'll send you an email regarding the status of your application";
 
-                return Json(message, JsonRequestBehavior.AllowGet);
-            }
+            //    return Json(message, JsonRequestBehavior.AllowGet);
+            //}
 
             var application = new PendingApplication()
             {
@@ -66,38 +59,22 @@ namespace LegalAccessInnovationFund.Web.Controllers
 
             var secret = file.ReadToEnd();
 
-            //var messageToApplicant = new SendGrid.SendGridMessage();
-            //messageToApplicant.AddTo(pendingApplication.Email);
-            //messageToApplicant.From = new MailAddress("donotreply@leglaccessinnovationfund.com");
-            //messageToApplicant.Subject = $"Thank you for your application {pendingApplication.FirstName} !";
-            //messageToApplicant.Text = "Thank you for your application. Your application is pending. Once we confirm your application, we will send you an email and passowrd confirmation. Thank you!";
-
-            //var messageToAdministrator = new SendGrid.SendGridMessage();
-            //messageToAdministrator.AddTo("justinjwyatt@hotmail.com");
-            //messageToAdministrator.From = new MailAddress("donotreply@legalaccessinnovationfund.com");
-            //messageToAdministrator.Subject = "Another applicant has applied!";
             var emailMessage = new EmailMessage();
-
-            emailMessage.Message.Replace("uniqueName", $"{application.FirstName + "" + application.LastName}");
-            emailMessage.Message.Replace("uniqueLocation", $"{application.City + ", " + application.State + "" + application.PostalCode.ToString()}");
-            emailMessage.Message.Replace("uniquePhone", $"{application.PhoneNumber}");
-            emailMessage.Message.Replace("uniqueDate", $"{application.DateApplied.ToShortDateString()}");
-            emailMessage.Message.Replace("uniqueEmail", $"{application.Email}");
-
-
-            //messageToAdministrator.Text = emailMessage.Message;
-
-            //var transportWeb = new SendGrid.Web(apiKey);
-            //transportWeb.DeliverAsync(messageToApplicant).Wait();
-            //transportWeb.DeliverAsync(messageToAdministrator).Wait();
 
             string password = secret;
             using (MailMessage mail = new MailMessage())
             {
                 mail.From = new MailAddress("justinjwyatt@hotmail.com");
                 mail.To.Add(application.Email);
-                mail.Subject = $"Thank You! Your Application Is Pending { application.FirstName }"; 
-                mail.Body = emailMessage.Message;
+                mail.Subject = $"Thank You! Your Application Is Pending { application.FirstName }";
+
+                mail.Body = emailMessage.Message.Replace("Enter Name", $"{application.FirstName + "" + application.LastName}")
+                                                .Replace("Enter Location", $"{application.City + ", " + application.State + "" + application.PostalCode.ToString()}")
+                                                .Replace("Enter Phonenumber", $"{application.PhoneNumber}")
+                                                .Replace("Enter Date Applied", $"{application.DateApplied.ToShortDateString()}")
+                                                .Replace("Enter Email", $"{application.Email}")
+                                                .Replace("ApplicationId", $"{application.Id}");
+
                 mail.IsBodyHtml = true;
                 // Can set to false, if you are sending pure text.
 

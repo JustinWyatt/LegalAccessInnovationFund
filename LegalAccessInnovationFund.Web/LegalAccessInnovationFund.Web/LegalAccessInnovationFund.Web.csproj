@@ -281,6 +281,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ajax-loader %281%29.gif" />
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -388,6 +389,8 @@
     <Content Include="img\tm1.png" />
     <Content Include="img\ui.totop.png" />
     <Content Include="img\user-avatar.jpg" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angularwysiwg.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -400,6 +403,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\colorpicker.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\imagesloaded.pkgd.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -432,10 +436,12 @@
     <Content Include="Scripts\owl.carousel.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sanitize.js" />
     <Content Include="Scripts\scrollupto.js" />
     <Content Include="Scripts\skillset.js" />
     <Content Include="Scripts\smoothscroll.js" />
     <Content Include="Scripts\tinymce.js" />
+    <Content Include="Scripts\tinymceoptions.js" />
     <Content Include="Scripts\wow.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="SignalR.Sample\jquery-1.10.2.min.js" />
@@ -485,6 +491,7 @@
     <Content Include="Views\Campaign\CampaignBegin.cshtml" />
     <Content Include="Views\Home\CampaignAccess.cshtml" />
     <Content Include="SignalR.Sample\jquery-1.10.2.min.map" />
+    <Content Include="Views\Account\ConfirmApplication.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
