@@ -7,13 +7,13 @@ namespace LegalAccessInnovationFund.Web.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class SavingChanges : IMigrationMetadata
+    public sealed partial class RemovingNullable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SavingChanges));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RemovingNullable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602101904596_SavingChanges"; }
+            get { return "201602111931086_RemovingNullable"; }
         }
         
         string IMigrationMetadata.Source

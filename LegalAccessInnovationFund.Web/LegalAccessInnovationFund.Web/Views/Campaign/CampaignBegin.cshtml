@@ -5,46 +5,6 @@
 }
 
 
-<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-<script>
-    tinymce.init(
-            {
-                selector: '.editable',
-                height: 400,
-                plugins: [
-                  'advlist autolink lists link image charmap print preview anchor',
-                  'searchreplace visualblocks code fullscreen',
-                  'insertdatetime media table contextmenu paste code'
-                ],
-                toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-                content_css: [
-                  '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
-                  '//www.tinymce.com/css/codepen.min.css'
-                ]
-            }
-
-    );
-
-</script>
-
-<script>
-    tinymce.init({
-
-        selector: '.donation',
-        plugins: [
-          'advlist autolink lists link image charmap print preview anchor',
-          'searchreplace visualblocks code fullscreen',
-          'insertdatetime media table contextmenu paste code'
-        ],
-        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-        content_css: [
-          '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
-          '//www.tinymce.com/css/codepen.min.css'
-        ]
-    });
-
-</script>
-
 <style>
     .btn.outline {
         background: none;
@@ -69,10 +29,12 @@
 
     .donations {
         text-align: center;
-        vertical-align: middle;
         border-radius: 6px;
         height: 75px;
         margin-bottom: 50px;
+        border: 0.5px solid solid;
+        display: table-cell;
+        background-color: lightblue;
     }
 </style>
 <!-- Page content -->
@@ -108,7 +70,6 @@
                         <p>Tell us your story in full detail. You may add pictures from the web. You may not upload pictures at this time. Be as detailed as possible when describing your story. We want to know the whole thing!</p>
                         <fieldset>
                             <textarea style="height:500px" ui-tinymce ng-model="rawStory">Enter the details of your story here.</textarea>
-
                         </fieldset>
                     </div>
                     <div class="span12">
@@ -136,30 +97,27 @@
                             <div class="span6">
                                 <fieldset>
                                     <label>Title</label>
-
                                     <input type="text" ng-model="donationModel.Title" />
 
                                     <label>Description</label>
-
                                     <textarea ui-tinymce ng-model="donationModel.Description">Enter your donation details here.</textarea>
+
                                     <label>Quantity</label>
                                     <input type="number" ng-model="donationModel.Quantity" />
 
                                     <label>Add A Delivery Date</label>
-                                    <input type="date" ng-model="donationModel.DeliveryDate" />
+                                    <input type="date" ng-model="donationModel.Delivery" />
 
                                     <label>Donation Amount</label>
                                     <input type="text" ng-model="donationModel.Amount" />
                                     <br />
-                                    <button class="fa fa-plus btn outline" ng-click="newDonationLevel(donationModel)">Add This Donation</button>
+                                    <button class="fa fa-plus btn outline" type="submit" ng-click="newDonationLevel()">Add This Donation</button>
 
                                 </fieldset>
                             </div>
-                            <div class="span6">
-                                <div class="row">
-                                    <div class="span2" ng-repeat="donationLevel in campaign.DonationLevels">
-                                        <div ng-model="donationLevel"  class="span2 donations">{{donationLevel.Title}}</div>
-                                    </div>
+                            <div class="row" ng-repeat="donation in campaign.DonationLevels">
+                                <div class="span6">
+                                    <div class="span2 donations">{{donation.Title}}</div>
                                 </div>
                             </div>
                         </div>
@@ -188,72 +146,11 @@
     </form>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-<script src="~/Scripts/tinymce.js"></script>
+@section scripts{
 
-<script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="~/Scripts/tinymce.js"></script>
+    <script src="~/Scripts/campaignBegin.js"></script>
+}
 
-    var app = angular.module("app", ['ui.tinymce']);
-
-    app.controller("formController", function ($sce, $scope, $http) {
-
-        $scope.tinymceOptions = {
-            onChange: function (e) {
-                // put logic here for keypress and cut/paste changes
-            },
-            inline: false,
-            plugins: 'advlist autolink link image lists charmap print preview',
-            skin: 'lightgray',
-            theme: 'advanced',
-            height: 500
-        };
-
-        $scope.hide = true;
-        $scope.confirmed = false;
-
-        $scope.campaign = {
-
-            Picture: '',
-            Title: '',
-            Goal: 0,
-            Story: '',
-            DonationLevels: [
-
-                   {
-                       Title: '',
-                       Description: '',
-                       Amount: 0,
-                       Quantity: 0,
-                       DeliveryDate: ''
-                   }
-            ]
-        };
-
-        $scope.newDonationLevel = function (donationModel) {
-
-            $scope.donationModel.donationModelId = 0;
-
-            if (donationModel != {}) {
-                $scope.campaign.DonationLevels.push(donationModel);
-                $scope.donationmodel.donationModelId + 1;
-                $scope.donationModel = {};
-
-            }
-
-        }
-
-            $scope.campaign.Story = $sce.trustAsHtml($scope.rawStory);
-
-        $scope.campaign.Picture = "http://www.bestfact.net/wp-content/uploads/2014/05/Bestfact-JL-Carli-Conference-La-Defense-3112_original.jpg";
-
-        $scope.submitForm = function (campaign) {
-            $scope.confirmed = true;
-
-            $http.post('/campaign/startcampaign', campaign).then(function (id) {
-                $scope.campaign = {};
-                $scope.id = id;
-            });
-        }
-    });
-</script>
 

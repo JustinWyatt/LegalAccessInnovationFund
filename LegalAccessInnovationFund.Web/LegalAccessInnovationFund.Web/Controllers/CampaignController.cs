@@ -106,8 +106,18 @@ namespace LegalAccessInnovationFund.Web.Controllers
         [HttpGet]
         public ActionResult CampaignBegin()
         {
-            return View();
+            var currentCampaign = CurrentCampaign.Retrieve();
+            return View(currentCampaign);
         }
+
+        [HttpPost]
+        public void AddDonationLevels(DonationLevelViewModel donationLevel)
+        {
+            var currentCampaign = CurrentCampaign.Retrieve();
+            currentCampaign.DonationLevels.Add(donationLevel);
+            currentCampaign.Save();
+        }
+
 
         [HttpPost]
         public JsonResult StartCampaign(CampaignViewModel newCampaign)
