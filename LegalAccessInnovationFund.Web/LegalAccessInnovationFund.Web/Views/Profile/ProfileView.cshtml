@@ -5,18 +5,55 @@
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
+<div class="row">
+    <div class="span9 contact">
+        @if (!Model.Campaigns.Any())
+        {
+            <div class="span3"></div>
+            <div class="span3">
 
-<div class="span12">
-    <div class="row">
-        <div class="span3">
+                <h2>You Have No Campaigns</h2>
 
-        </div>
-        <div class="span9">
-            
-        </div>
+                <h5>Start A Campaign Today</h5>
+                <a href="/campaigns/campaignbegin" class="btn btn-large btn-primary outline">Go To Start Campaign</a>
+            </div>
+            <div class="span3"></div>
+
+        }
+        else
+        {
+            <ul class="gallery-post-grid holder">
+                @foreach (var item in Model.Campaigns)
+                {
+                    <li class="span3 gallery-item" data-id="id-1" data-type="illustration">
+
+                        <a href=""><img src="@item.Picture" alt="Gallery"></a>
+                        <span class="project-details"><a href="gallery-single.htm">@item.Title</a>Date Added: @item.DatePosted</span>
+                    </li>
+                }
+
+            </ul>
+        }
+
+    </div>
+
+    <div class="span3 sidebar page-sidebar">
+
+        <h5 class="title-bg"></h5>
+        <img src="@Model.Avatar" alt="map">
+
+        <h5 class="title-bg">Profile</h5>
+        <address>
+            <strong>@Model.Name</strong><br>
+            Contributions: @Model.Contributions.Count()<br>
+            Campaigns: @Model.Campaigns.Count()<br>
+        </address>
+
+        <h5 class="title-bg">
+            Contributions
+        </h5>
     </div>
 </div>
-
 @section scripts{
     <script>
 
@@ -101,3 +138,5 @@
 
     </script>
 }
+
+

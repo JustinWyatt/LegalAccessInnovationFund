@@ -484,14 +484,13 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Campaign\Campaigns.cshtml" />
     <Content Include="Views\Profile\ProfileView.cshtml" />
-    <Content Include="Views\Profile\ApplicationConfirmation.cshtml" />
     <Content Include="Views\Profile\ApplicationForm.cshtml" />
-    <Content Include="Views\Campaign\CampaignView.cshtml" />
     <Content Include="Views\Shared\_ApplicationLayout.cshtml" />
     <Content Include="Views\Campaign\CampaignBegin.cshtml" />
     <Content Include="Views\Home\CampaignAccess.cshtml" />
     <Content Include="SignalR.Sample\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\ConfirmApplication.cshtml" />
+    <Content Include="Views\Campaign\CampaignView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

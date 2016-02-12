@@ -108,7 +108,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
             UserManager.Create(applicant, password);
             db.SaveChanges();
 
-            return RedirectToAction("ProfileView", "Profile", new { id = applicant.Id });
+            return RedirectToAction("ProfileView", "Profile");
             //EmailMessage emailMessage = new EmailMessage();
 
             //System.IO.StreamReader file = new System.IO.StreamReader("C:\\Users\\Asus\\Desktop\\LegalAccessInnovationFund\\secretfile.txt");

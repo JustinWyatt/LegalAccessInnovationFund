@@ -111,7 +111,7 @@
                                     <label>Donation Amount</label>
                                     <input type="text" ng-model="donationModel.Amount" />
                                     <br />
-                                    <button class="fa fa-plus btn outline" type="submit" ng-click="newDonationLevel()">Add This Donation</button>
+                                    <button ng-disabled="noMoreDonations"class="fa fa-plus btn outline" type="submit" ng-click="newDonationLevel()">Add This Donation</button>
 
                                 </fieldset>
                             </div>
@@ -156,6 +156,8 @@
 
         app.controller("formController", function ($scope, $http) {
 
+            $scope.noMoreDonations = false;
+
             var ctrl = this;
 
             this.updateHtml = function () {
@@ -180,6 +182,10 @@
                 DonationLevels: [
 
                 ]
+            }
+
+            if ($scope.campaign.DonationLevels.length === 6) {
+                $scope.noMoreDontionLevels = true;
             }
 
             $scope.hide = true;

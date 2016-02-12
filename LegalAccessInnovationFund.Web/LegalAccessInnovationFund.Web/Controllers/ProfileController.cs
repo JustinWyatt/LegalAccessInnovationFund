@@ -90,66 +90,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
 
             return Json(success, JsonRequestBehavior.AllowGet);
         }
-
-        [HttpGet]
-        public JsonResult ProfileViewJs()
-        {
-            var userId = User.Identity.GetUserId();
-            var model = db.Users.Where(x => x.Id == userId).Select(user => new ProfileViewModel()
-            {
-                Name = user.Name,
-                Email = user.Email,
-                Avatar = user.AvatarImagePath,
-                Contributions = user.Contributions.Select(contribution => new ContributionViewModel
-                {
-                    Amount = contribution.Amount,
-                    Note = contribution.Note,
-                    DonationLevel = contribution.DonationLevel.Title,
-                    Contributor = new ProfileViewModel()
-                    {
-                        Name = contribution.Contributor.Name,
-                        Email = contribution.Contributor.Email,
-                        Avatar = contribution.Contributor.AvatarImagePath
-                    }
-
-                }).ToList(),
-                Campaigns = user.Campaigns.ToList().Select(campaign => new CampaignViewModel()
-                {
-                    CampaignId = campaign.Id,
-                    Title = campaign.Title,
-                    Story = campaign.Story,
-                    Goal = campaign.Goal,
-                    Picture = campaign.Picture,
-                    Location = campaign.Location,
-                    DonationLevels = campaign.DonationLevels.Select(donationlevel => new DonationLevelViewModel()
-                    {
-                        Amount = donationlevel.Amount,
-                        Title = donationlevel.Title,
-                        Description = donationlevel.Description,
-                        Quantity = donationlevel.Quantity,
-                        DeliveryDate = donationlevel.DeliveryDate.ToShortDateString()
-
-                    }).ToList(),
-                    Status = campaign.Status.ToString(),
-                    CategoryName = campaign.Category.CategoryName,
-                    Contributions = campaign.Contributions.Select(contribution => new ContributionViewModel()
-                    {
-                        Amount = contribution.Amount,
-                        Note = contribution.Note,
-                        DonationLevel = contribution.DonationLevel.Title,
-                        Contributor = new ProfileViewModel()
-                        {
-                            Name = contribution.Contributor.Name,
-                            Email = contribution.Contributor.Email,
-                            Avatar = contribution.Contributor.AvatarImagePath
-                        }
-
-                    }).ToList(),
-                }).ToList()
-            });
-            return Json(model, JsonRequestBehavior.AllowGet);
-        }
-
+        
         [Authorize]
         [HttpGet]
         public ActionResult ProfileView()
