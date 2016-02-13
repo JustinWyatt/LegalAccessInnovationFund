@@ -12,5 +12,6 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
         public string Description { get; set; }
         public int Quantity { get; set; }
         public string DeliveryDate { get; set; }
+        public string RemainingQuantity { get; set; }
     }
 }

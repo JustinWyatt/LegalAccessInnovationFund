@@ -105,7 +105,6 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 {
                     Amount = contribution.Amount,
                     Note = contribution.Note,
-                    DonationLevel = contribution.DonationLevel.Title,
                     Contributor = new ProfileViewModel()
                     {
                         Name = contribution.Contributor.Name,
@@ -136,7 +135,6 @@ namespace LegalAccessInnovationFund.Web.Controllers
                     {
                         Amount = contribution.Amount,
                         Note = contribution.Note,
-                        DonationLevel = contribution.DonationLevel.Title,
                         Contributor = new ProfileViewModel()
                         {
                             Name = contribution.Contributor.Name,
@@ -161,7 +159,6 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 {
                     Amount = contribution.Amount,
                     Note = contribution.Note,
-                    DonationLevel = contribution.DonationLevel.Title,
                     Contributor = new ProfileViewModel()
                     {
                         Name = contribution.Contributor.Name,
@@ -191,7 +188,6 @@ namespace LegalAccessInnovationFund.Web.Controllers
                     {
                         Amount = contribution.Amount,
                         Note = contribution.Note,
-                        DonationLevel = contribution.DonationLevel.Title,
                         Contributor = new ProfileViewModel()
                         {
                             Name = contribution.Contributor.Name,

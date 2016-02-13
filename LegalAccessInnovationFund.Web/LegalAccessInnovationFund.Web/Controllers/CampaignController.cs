@@ -37,16 +37,13 @@ namespace LegalAccessInnovationFund.Web.Controllers
         [HttpGet]
         public ActionResult CampaignView(int id)
         {
-            var model = db.Campaigns.Where(x => x.Id == id).Select(x => new CampaignViewModel()
+            var model = db.Campaigns.Find(id);
+            var campaign = new CampaignViewModel()
             {
-                RelatedCampaigns = db.Campaigns.Where(that => that.Category == x.Category)
-                                               .Take(5)
-                                               .Select(n => new CampaignViewModel()
-                                               {
-                                               }).ToList()
+                Goal = model.Goal,
 
-            }).ToList();
-            return View(model);
+            };
+            return View(campaign);
         }
 
         [HttpGet]
@@ -154,15 +151,22 @@ namespace LegalAccessInnovationFund.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult MakeContribution(int campaignId)
+        public ActionResult MakeContribution(int id, ContributionViewModel contribution)
         {
-            var contribution = new Contribution()
-            {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
 
+            var newContribution = new Contribution()
+            {
+                Campaign = db.Campaigns.Find(id),
+                Amount = contribution.Amount,
+                Contributor = user,
+
+                
             };
 
-            var campaign = db.Campaigns.Find(campaignId);
-            campaign.Contributions.Add(contribution);
+            var campaign = db.Campaigns.Find(id);
+            campaign.Contributions.Add(newContribution);
             db.SaveChanges();
             return RedirectToAction("");
         }
