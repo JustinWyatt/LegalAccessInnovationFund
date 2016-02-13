@@ -16,10 +16,12 @@ using SendGrid;
 using System.Net.Mail;
 using System.Net;
 using System.Web.Security;
+using System.Data.Entity.Validation;
 
 namespace LegalAccessInnovationFund.Web.Controllers
 {
-    
+
+
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -102,11 +104,32 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 UserName = app.Email,
             };
 
-            Roles.AddUserToRole(applicant.UserName, "User");
-
-            var password = System.Web.Security.Membership.GeneratePassword(10, 10);
+            var password = "Password@123";
             UserManager.Create(applicant, password);
-            db.SaveChanges();
+
+            db.Users.Add(applicant);
+
+            try
+            {
+                db.SaveChanges();
+
+            }
+            catch (DbEntityValidationException ex)
+            {
+                // Retrieve the error messages as a list of strings.
+                var errorMessages = ex.EntityValidationErrors
+                        .SelectMany(x => x.ValidationErrors)
+                        .Select(x => x.ErrorMessage);
+
+                // Join the list to a single string.
+                var fullErrorMessage = string.Join("; ", errorMessages);
+
+                // Combine the original exception message with the new one.
+                var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                // Throw a new DbEntityValidationException with the improved exception message.
+                throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+            }
 
             return RedirectToAction("ProfileView", "Profile");
             //EmailMessage emailMessage = new EmailMessage();
@@ -134,7 +157,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
             //}
 
             //EmailMessage adminEmail = new EmailMessage();
-            
+
             ////Send Email To Administrator
             //using (MailMessage adminMail = new MailMessage())
             //{
@@ -156,9 +179,24 @@ namespace LegalAccessInnovationFund.Web.Controllers
         }
 
         [HttpPost]
-        public void RejectTheApplication(int pendingApplication)
+        public ActionResult ApplicationRejection(int pendingApplication)
         {
+            var app = db.PendingApplications.Find();
+            db.PendingApplications.Remove(app);
 
+            return RedirectToAction("ApplicationWasRejected", "Account");
+        }
+
+        [HttpGet]
+        public ActionResult ApplicationWasRejected()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ApplicationWasApproved()
+        {
+            return View();
         }
 
         //

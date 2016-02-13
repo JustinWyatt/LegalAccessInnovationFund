@@ -285,7 +285,7 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
   																	<td align=""center"" valign=""top"" class=""textContent"">
   																		<h1 style=""color:#FFFFFF;line-height:100%;font-family:Helvetica,Arial,sans-serif;font-size:35px;font-weight:normal;margin-bottom:5px;text-align:center;"">What's Up Miguel</h1>
   																		<h2 style=""text-align:center;font-weight:normal;font-family:Helvetica,Arial,sans-serif;font-size:23px;margin-bottom:10px;color:#205478;line-height:135%;"">You Have A New Applicant</h2>
-  																		<div style=""text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;"">Click on the button ""Approve Applicant"" below to approve this application. When you click the button, please enter your username and password and it will redirect you to a confirmation page, letting you know that the application has been confirmed. Our system will generate a password and username for the applicant.</div>
+  																		<div style=""text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;"">Click on the button ""Approve Application"" below to approve this application. When you click the button, please enter your username and password and it will redirect you to a confirmation page, letting you know that the application has been confirmed. Our system will generate a password and username for the applicant.</div>
   																	</td>
   																</tr>
   															</table>
@@ -402,7 +402,7 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
   																		<table border=""0"" cellpadding=""30"" cellspacing=""0"" width=""100%"" style=""max-width:100%;"">
   																			<tr>
   																				<td align=""left"" class=""textContent"">
-  																					<a href=""http://localhost60115/account/rejectapplication/ApplicationId""><h3 style=""color:#FFFFFF;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Reject Application</h3></a>
+  																					<a href=""http://localhost:60115/account/rejectapplication/ApplicationId""><h3 style=""color:#FFFFFF;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Reject Application</h3></a>
   																					<div style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;"">By clicking this button, you will be redirected to a page where you can reject this user's application. The appilcation will still be pending once you reject this application.</div>
   																				</td>
   																			</tr>
@@ -412,7 +412,7 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
   																		<table class=""flexibleContainerBoxNext"" border=""0"" cellpadding=""30"" cellspacing=""0"" width=""100%"" style=""max-width:100%;"">
   																			<tr>
   																				<td align=""left"" class=""textContent"">
-  																					<a href=""http://localhost60115/account/approveapplication/ApplicationId""<h3 style=""color:#FFFFFF;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Approve Application</h3>
+  																					<a href=""http://localhost:60115/account/confirmapplication/ApplicationId""><h3 style=""color:#FFFFFF;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Approve Application</h3></a>
   																					<div style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;"">By clicking this button, you will approve this user's application. The user will automatically generate a username and password for this user. The system will also notify the user.</div>
   																				</td>
   																			</tr>

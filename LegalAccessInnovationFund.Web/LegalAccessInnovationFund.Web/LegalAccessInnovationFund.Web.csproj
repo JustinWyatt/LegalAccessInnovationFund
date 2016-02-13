@@ -502,6 +502,7 @@
     <Content Include="SignalR.Sample\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\ConfirmApplication.cshtml" />
     <Content Include="Views\Campaign\CampaignView.cshtml" />
+    <Content Include="Views\Account\RejectApplication.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

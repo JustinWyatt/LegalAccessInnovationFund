@@ -4,16 +4,8 @@
 }
 <div class="container main-container">
     <div ng-app="app" ng-controller="campaignController" ng-cloak>
-        <!-- Page Content
-        ================================================== -->
         <div class="row">
-            <!--Container row-->
-            <!-- Page Sidebar
-            ================================================== -->
             <div class="span3 sidebar page-sidebar">
-                <!-- Begin sidebar column -->
-                <!--Latest News-->
-                <!--Testimonials-->
                 <div class="title-bg">
                     <form class="form-search">
                         <div class="input-append">
@@ -29,17 +21,13 @@
                         <em>Posted on {{c.DatePosted}}</em>
                     </li>
                 </ul>
-
-            </div><!-- End sidebar column -->
-            <!-- Page Content
-            ================================================== -->
+            </div>
             <div class="span9">
                 <div class="row">
-                    <div class="alert alert-danger" ng-show="void">
+                    <div class="alert alert-danger span9" ng-show="void">
                         There are no queries matching <span>{{searchData}}</span>.
                     </div>
                     <ul class="gallery-post-grid holder" ng-show="!void" ng-repeat="c in campaignresults">
-                        <!-- Gallery Item 1 -->
                         <li class="span4 gallery-item" data-id="id-1" data-type="illustration">
                             <a href="gallery-single.htm"><img ng-src="{{c.Picture}}" alt="Gallery"></a>
                             <span class="project-details"><a href="gallery-single.htm">{{c.Title}}</a>{{c.CampaignStarter.Name}}</span>
@@ -48,31 +36,13 @@
                 </div>
             </div>
         </div>
-    </div> <!--End page content column-->
-</div><!-- End container row -->
+    </div>
+</div>
 <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
 @section scripts{
     <script src="https://code.angularjs.org/1.5.0/angular.js"></script>
-    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.7.1/loading-bar.min.js'></script>
-    <script src="https://code.angularjs.org/1.5.0/angular-animate.js"></script>
     <script>
-        var app = angular.module('app', ['angular-loading-bar', 'ngAnimate']);
-
-        app.config((['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
-
-            cfpLoadingBarProvider.includeBar = false;
-
-            cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Loading...</div>';
-
-            cfpLoadingBarProvider.latencyThreshold = 500;
-
-        }]));
+        var app = angular.module('app', []);
 
         app.controller('campaignController', function ($http, $scope) {
 

@@ -39,6 +39,13 @@
         <h5 class="title-bg"></h5>
         <img src="@Model.Avatar" alt="map">
 
+        <button ng-hide="clicked" class="btn btn-primary">Upload A New Avatar Image</button>
+
+        <form>
+            <input type="text" />
+            <input type="submit" class="btn btn-primary" ng-show="submitted"/>
+        </form>
+
         <h5 class="title-bg">Profile</h5>
         <address>
             <strong>@Model.Name</strong><br>
@@ -46,9 +53,6 @@
             Campaigns: @Model.Campaigns.Count()<br>
         </address>
 
-        <h5 class="title-bg">
-            Contributions
-        </h5>
     </div>
 </div>
 @section scripts{
