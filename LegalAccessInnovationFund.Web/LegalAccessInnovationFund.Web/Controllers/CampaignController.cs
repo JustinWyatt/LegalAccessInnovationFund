@@ -7,13 +7,22 @@ using LegalAccessInnovationFund.Web.Models;
 using LegalAccessInnovationFund.Web.Models.ViewModels;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity.Core.Objects;
+using Braintree;
 
 namespace LegalAccessInnovationFund.Web.Controllers
 {
     public class CampaignController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
 
+        BraintreeGateway gateway = new BraintreeGateway
+        {
+            Environment = Braintree.Environment.SANDBOX,
+            MerchantId = "the_merchant_id",
+            PublicKey = "a_public_key",
+            PrivateKey = "a_private_key"
+        };
+
+        ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Campaign
         [HttpGet]
@@ -115,7 +124,6 @@ namespace LegalAccessInnovationFund.Web.Controllers
             currentCampaign.Save();
         }
 
-
         [HttpPost]
         public JsonResult StartCampaign(CampaignViewModel newCampaign)
         {
@@ -151,26 +159,46 @@ namespace LegalAccessInnovationFund.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult MakeContribution(int id, ContributionViewModel contribution)
+        public JsonResult MakeContribution(int id, ContributionViewModel contribution)
         {
-            var userId = User.Identity.GetUserId();
-            var user = db.Users.Find(userId);
+            var clientToken = gateway.ClientToken.generate(new ClientTokenRequest());
 
-            var newContribution = new Contribution()
+            var amount = (decimal)contribution.Amount;
+
+            var request = new TransactionRequest()
             {
-                Campaign = db.Campaigns.Find(id),
-                Amount = contribution.Amount,
-                Contributor = user,
-
-                
+                Amount = amount,
+                PaymentMethodNonce = ""
             };
 
-            var campaign = db.Campaigns.Find(id);
-            campaign.Contributions.Add(newContribution);
-            db.SaveChanges();
-            return RedirectToAction("");
+            Result<Transaction> result = gateway.Transaction.Sale(request);
+
+            if (result.IsSuccess())
+            {
+
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.Find(userId);
+
+                var newContribution = new Contribution()
+                {
+                    Campaign = db.Campaigns.Find(id),
+                    Amount = contribution.Amount,
+                    Contributor = user,
+                };
+
+                var campaign = db.Campaigns.Find(id);
+                campaign.Contributions.Add(newContribution);
+                db.SaveChanges();
+
+                return Json(result.Message, JsonRequestBehavior.AllowGet);
+            }
+            var errors = new List<string>();
+
+            foreach (var item in result.Errors.DeepAll())
+            {
+                errors.Add(item.Message);
+            }
+            return Json(errors, JsonRequestBehavior.AllowGet);
         }
-
-
     }
 }

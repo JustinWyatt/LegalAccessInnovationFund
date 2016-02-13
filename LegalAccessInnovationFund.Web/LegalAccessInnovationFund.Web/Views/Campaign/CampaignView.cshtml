@@ -5,18 +5,12 @@
     Layout = "~/Views/Shared/_ApplicationLayout.cshtml";
 }
 
-<!-- Blog Content
-    ================================================== -->
 <div class="row">
-    <!--Container row-->
-    <!-- Blog Full Post
-    ================================================== -->
     <div class="span8 blog">
-        <!-- Blog Post 1 -->
         <article>
             <h3 class="title-bg">@Model.Title</h3>
             <div class="post-content">
-                img src="@Model.Picture" alt="Post Thumb">
+                <img src="@Model.Picture" alt="Post Thumb">
                 <div class="post-body">
                     @Model.Story
                 </div>
@@ -28,7 +22,6 @@
                 </div>
             </div>
         </article>
-        <!-- About the Author -->
         <section class="post-content">
             <div class="post-body about-author">
                 <img src="img/author-avatar.jpg" alt="author">
@@ -36,14 +29,11 @@
                 @Model.CampaignStarter
             </div>
         </section>
-        <!-- Post Comments
-        ================================================== -->
         <section class="comments">
             <h4 class="title-bg"><a name="comments"></a>@Model.Contributions.Count() Contributions</h4>
             <ul>
                 @foreach (var item in Model.Contributions)
                 {
-
                     <li>
                         <img src="img/user-avatar.jpg" alt="Image" />
                         <span class="comment-name">John Doe</span>
@@ -58,7 +48,7 @@
     <div class="span4 sidebar">
         <h5 class="title-bg">Campaign Contributions</h5>
         @{
-            var calc = Model.Goal / Model.Contributions.Sum(x => x.Amount);
+            var calc =  Model.Contributions.Sum(x => x.Amount) / Model.Goal;
             var percentage = Math.Round(calc, 0);
         }
         <h6 class="title-bg">Goal: <small>@Model.Goal</small></h6>
@@ -77,18 +67,29 @@
             }
         </ul>
         <h5 class="title-bg">Make A Contribution</h5>
-
-        <div ng-app="app" ng-controller="contributionController">
-            <form>
-                <input type="hidden" value="@Model.CampaignId" />
-                <input type="submit" class="btn btn-primary" />
-            </form>
-        </div>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
+            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
 
     </div>
 </div>
 
 @section scripts{
+
+    <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+
+    <script>
+        var clientToken = "eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiJhMjQwMTg5MzI0OGU4MjZjYzBlZjg2ZGU2N2UxNDA5YmUxZGNkOGY3MzE4N2Q3Y2ZkODI0YjNmNmU5OWZhNTc5fGNyZWF0ZWRfYXQ9MjAxNi0wMi0xM1QwMTozNzoxMy4xMzkwMzQ4MjArMDAwMFx1MDAyNm1lcmNoYW50X2lkPTM0OHBrOWNnZjNiZ3l3MmJcdTAwMjZwdWJsaWNfa2V5PTJuMjQ3ZHY4OWJxOXZtcHIiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvMzQ4cGs5Y2dmM2JneXcyYi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzLzM0OHBrOWNnZjNiZ3l3MmIvY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInRocmVlRFNlY3VyZSI6eyJsb29rdXBVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvMzQ4cGs5Y2dmM2JneXcyYi90aHJlZV9kX3NlY3VyZS9sb29rdXAifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwiYmlsbGluZ0FncmVlbWVudHNFbmFibGVkIjp0cnVlLCJtZXJjaGFudEFjY291bnRJZCI6ImFjbWV3aWRnZXRzbHRkc2FuZGJveCIsImN1cnJlbmN5SXNvQ29kZSI6IlVTRCJ9LCJjb2luYmFzZUVuYWJsZWQiOmZhbHNlLCJtZXJjaGFudElkIjoiMzQ4cGs5Y2dmM2JneXcyYiIsInZlbm1vIjoib2ZmIn0=";
+
+        braintree.setup(clientToken, "dropin", {
+            container: "payment-form"
+        });
+
+    </script>
+
     <script>
         var app = angular.module("app", []);
 
