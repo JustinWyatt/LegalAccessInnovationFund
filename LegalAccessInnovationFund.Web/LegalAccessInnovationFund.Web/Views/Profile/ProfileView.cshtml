@@ -9,15 +9,16 @@
     <div class="span9 contact">
         @if (!Model.Campaigns.Any())
         {
-            <div class="span3"></div>
-            <div class="span3">
+            <div class="span1"></div>
+            <div class="span6">
 
                 <h2>You Have No Campaigns</h2>
 
                 <h5>Start A Campaign Today</h5>
-                <a href="/campaigns/campaignbegin" class="btn btn-large btn-primary outline">Go To Start Campaign</a>
+
+                @Html.ActionLink("Go To Start Campaign", "CampaignBegin", "Campaign", null, htmlAttributes: new { @class= "btn btn-large btn-primary outline" })
             </div>
-            <div class="span3"></div>
+            <div class="span2"></div>
         }
         else
         {
@@ -35,18 +36,20 @@
     </div>
 
     <div class="span3 sidebar page-sidebar">
+        <div ng-app="app" ng-controller="profileController">
 
+            <h5 class="title-bg">Profile</h5>
+            <img src="{{avatar}}" alt="">
+
+
+            <button ng-show="!clicked" ng-click="click()" class="btn btn-primary">Upload A New Avatar Image</button>
+
+            <form ng-show="clicked">
+                <input type="text" ng-model="avatar" placeholder="{{avatar}}" />
+                <input type="submit" ng-click="newAvatar(avatar)" class="btn btn-primary" value="Submitx" />
+            </form>
+        </div>
         <h5 class="title-bg"></h5>
-        <img src="@Model.Avatar" alt="map">
-
-        <button ng-hide="clicked" class="btn btn-primary">Upload A New Avatar Image</button>
-
-        <form>
-            <input type="text" />
-            <input type="submit" class="btn btn-primary" ng-show="submitted"/>
-        </form>
-
-        <h5 class="title-bg">Profile</h5>
         <address>
             <strong>@Model.Name</strong><br>
             Contributions: @Model.Contributions.Count()<br>
@@ -56,6 +59,9 @@
     </div>
 </div>
 @section scripts{
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script>
 
         var app = angular.module('app', []);
@@ -120,18 +126,22 @@
 
         app.controller('profileController', function ($http, $scope, Pagination) {
 
+            $http.get('/profile/getavatar').then(function (result) {
+                $scope.avatar = result.data;
+            });
+            
+            $scope.clicked = false;
 
-            var profileData = function () {
-                $http.get('/profile/profileviewjs').then(function (result) {
-                    $scope.pagination = Pagination.getNew(5);
-                    $scope.profileData = result.data;
-                });
+            $scope.click = function () {
+                $scope.clicked = true;
             }
 
-
-            profileData();
-
-            $scope.pagination.numPages = Math.ceil($scope.profileData.length / $scope.pagination.perPage);
+            $scope.newAvatar = function (avatar) {
+                $http.post('/profile/newavatar', avatar).then(function (result) {
+                    $scope.clicked = false;
+                    $scope.avatar = result.data;
+                });
+            }
 
         });
 

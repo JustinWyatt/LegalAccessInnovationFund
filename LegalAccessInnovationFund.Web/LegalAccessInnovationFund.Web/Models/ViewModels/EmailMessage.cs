@@ -7,533 +7,399 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
 {
     public class EmailMessage
     {
-        public string Message
+        public string MessageToAdministratorOnSubmitApplication
         {
             get
             {
-                return @" <!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Strict//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"">
-  	<html xmlns=""http://www.w3.org/1999/xhtml"">
-  	<head>
-  		<meta http-equiv=""Content-Type"" content=""text/html; charset=UTF-8"" />
-  		<meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
-  		<meta http-equiv=""'X-UA-Compatible"" content=""IE=edge,chrome=1"">
-  		<meta name=""format-detection"" content=""telephone=no"" /> <!-- disable auto telephone linking in iOS -->
-  		<title>Respmail is a response HTML email designed to work on all major email platforms and smartphones</title>
-  		<style type=""text/css"">
-  			/* RESET STYLES */
-  			html { background-color:#E1E1E1; margin:0; padding:0; }
-  			body, #bodyTable, #bodyCell, #bodyCell{height:100% !important; margin:0; padding:0; width:100% !important;font-family:Helvetica, Arial, ""Lucida Grande"", sans-serif;}
-  			table{border-collapse:collapse;}
-  			table[id=bodyTable] {width:100%!important;margin:auto;max-width:500px!important;color:#7A7A7A;font-weight:normal;}
-  			img, a img{border:0; outline:none; text-decoration:none;height:auto; line-height:100%;}
-  			a {text-decoration:none !important;border-bottom: 1px solid;}
-  			h1, h2, h3, h4, h5, h6{color:#5F5F5F; font-weight:normal; font-family:Helvetica; font-size:20px; line-height:125%; text-align:Left; letter-spacing:normal;margin-top:0;margin-right:0;margin-bottom:10px;margin-left:0;padding-top:0;padding-bottom:0;padding-left:0;padding-right:0;}
-  			/* CLIENT-SPECIFIC STYLES */
-  			.ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail/Outlook.com to display emails at full width. */
-  			.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div{line-height:100%;} /* Force Hotmail/Outlook.com to display line heights normally. */
-  			table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up. */
-  			#outlook a{padding:0;} /* Force Outlook 2007 and up to provide a ""view in browser"" message. */
-  			img{-ms-interpolation-mode: bicubic;display:block;outline:none; text-decoration:none;} /* Force IE to smoothly render resized images. */
-  			body, table, td, p, a, li, blockquote{-ms-text-size-adjust:100%; -webkit-text-size-adjust:100%; font-weight:normal!important;} /* Prevent Windows- and Webkit-based mobile platforms from changing declared text sizes. */
-  			.ExternalClass td[class=""ecxflexibleContainerBox""] h3 {padding-top: 10px !important;} /* Force hotmail to push 2-grid sub headers down */
-  			/* /\/\/\/\/\/\/\/\/ TEMPLATE STYLES /\/\/\/\/\/\/\/\/ */
-  			/* ========== Page Styles ========== */
-  			h1{display:block;font-size:26px;font-style:normal;font-weight:normal;line-height:100%;}
-  			h2{display:block;font-size:20px;font-style:normal;font-weight:normal;line-height:120%;}
-  			h3{display:block;font-size:17px;font-style:normal;font-weight:normal;line-height:110%;}
-  			h4{display:block;font-size:18px;font-style:italic;font-weight:normal;line-height:100%;}
-  			.flexibleImage{height:auto;}
-  			.linkRemoveBorder{border-bottom:0 !important;}
-  			table[class=flexibleContainerCellDivider] {padding-bottom:0 !important;padding-top:0 !important;}
-  			body, #bodyTable{background-color:#E1E1E1;}
-  			#emailHeader{background-color:#E1E1E1;}
-  			#emailBody{background-color:#FFFFFF;}
-  			#emailFooter{background-color:#E1E1E1;}
-  			.nestedContainer{background-color:#F8F8F8; border:1px solid #CCCCCC;}
-  			.emailButton{background-color:#205478; border-collapse:separate;}
-  			.buttonContent{color:#FFFFFF; font-family:Helvetica; font-size:18px; font-weight:bold; line-height:100%; padding:15px; text-align:center;}
-  			.buttonContent a{color:#FFFFFF; display:block; text-decoration:none!important; border:0!important;}
-  			.emailCalendar{background-color:#FFFFFF; border:1px solid #CCCCCC;}
-  			.emailCalendarMonth{background-color:#205478; color:#FFFFFF; font-family:Helvetica, Arial, sans-serif; font-size:16px; font-weight:bold; padding-top:10px; padding-bottom:10px; text-align:center;}
-  			.emailCalendarDay{color:#205478; font-family:Helvetica, Arial, sans-serif; font-size:60px; font-weight:bold; line-height:100%; padding-top:20px; padding-bottom:20px; text-align:center;}
-  			.imageContentText {margin-top: 10px;line-height:0;}
-  			.imageContentText a {line-height:0;}
-  			#invisibleIntroduction {display:none !important;} /* Removing the introduction text from the view */
-  			/*FRAMEWORK HACKS & OVERRIDES */
-  			span[class=ios-color-hack] a {color:#275100!important;text-decoration:none!important;} /* Remove all link colors in IOS (below are duplicates based on the color preference) */
-  			span[class=ios-color-hack2] a {color:#205478!important;text-decoration:none!important;}
-  			span[class=ios-color-hack3] a {color:#8B8B8B!important;text-decoration:none!important;}
-  			/* A nice and clean way to target phone numbers you want clickable and avoid a mobile phone from linking other numbers that look like, but are not phone numbers.  Use these two blocks of code to ""unstyle"" any numbers that may be linked.  The second block gives you a class to apply with a span tag to the numbers you would like linked and styled.
-  			Inspired by Campaign Monitor's article on using phone numbers in email: http://www.campaignmonitor.com/blog/post/3571/using-phone-numbers-in-html-email/.
-  			*/
-  			.a[href^=""tel""], a[href^=""sms""] {text-decoration:none!important;color:#606060!important;pointer-events:none!important;cursor:default!important;}
-  			.mobile_link a[href^=""tel""], .mobile_link a[href^=""sms""] {text-decoration:none!important;color:#606060!important;pointer-events:auto!important;cursor:default!important;}
-  			/* MOBILE STYLES */
-  			@media only screen and (max-width: 480px){
-  				/*////// CLIENT-SPECIFIC STYLES //////*/
-  				body{width:100% !important; min-width:100% !important;} /* Force iOS Mail to render the email at full width. */
-  				/* FRAMEWORK STYLES */
-  				/*
-  				CSS selectors are written in attribute
-  				selector format to prevent Yahoo Mail
-  				from rendering media query styles on
-  				desktop.
-  				*/
-  				/*td[class=""textContent""], td[class=""flexibleContainerCell""] { width: 100%; padding-left: 10px !important; padding-right: 10px !important; }*/
-  				table[id=""emailHeader""],
-  				table[id=""emailBody""],
-  				table[id=""emailFooter""],
-  				table[class=""flexibleContainer""],
-  				td[class=""flexibleContainerCell""] {width:100% !important;}
-  				td[class=""flexibleContainerBox""], td[class=""flexibleContainerBox""] table {display: block;width: 100%;text-align: left;}
-  				/*
-  				The following style rule makes any
-  				image classed with 'flexibleImage'
-  				fluid when the query activates.
-  				Make sure you add an inline max-width
-  				to those images to prevent them
-  				from blowing out.
-  				*/
-  				td[class=""imageContent""] img {height:auto !important; width:100% !important; max-width:100% !important; }
-  				img[class=""flexibleImage""]{height:auto !important; width:100% !important;max-width:100% !important;}
-  				img[class=""flexibleImageSmall""]{height:auto !important; width:auto !important;}
-  				/*
-  				Create top space for every second element in a block
-  				*/
-  				table[class=""flexibleContainerBoxNext""]{padding-top: 10px !important;}
-  				/*
-  				Make buttons in the email span the
-  				full width of their container, allowing
-  				for left- or right-handed ease of use.
-  				*/
-  				table[class=""emailButton""]{width:100% !important;}
-  				td[class=""buttonContent""]{padding:0 !important;}
-  				td[class=""buttonContent""] a{padding:15px !important;}
-  			}
-  			/*  CONDITIONS FOR ANDROID DEVICES ONLY
-  			*   http://developer.android.com/guide/webapps/targeting.html
-  			*   http://pugetworks.com/2011/04/css-media-queries-for-targeting-different-mobile-devices/ ;
-  			=====================================================*/
-  			@media only screen and (-webkit-device-pixel-ratio:.75){
-  				/* Put CSS for low density (ldpi) Android layouts in here */
-  			}
-  			@media only screen and (-webkit-device-pixel-ratio:1){
-  				/* Put CSS for medium density (mdpi) Android layouts in here */
-  			}
-  			@media only screen and (-webkit-device-pixel-ratio:1.5){
-  				/* Put CSS for high density (hdpi) Android layouts in here */
-  			}
-  			/* end Android targeting */
-  			/* CONDITIONS FOR IOS DEVICES ONLY
-  			=====================================================*/
-  			@media only screen and (min-device-width : 320px) and (max-device-width:568px) {
-  			}
-  			/* end IOS targeting */
-  		</style>
-  		<!--
-  			Outlook Conditional CSS
-  			These two style blocks target Outlook 2007 & 2010 specifically, forcing
-  			columns into a single vertical stack as on mobile clients. This is
-  			primarily done to avoid the 'page break bug' and is optional.
-  			More information here:
-  			http://templates.mailchimp.com/development/css/outlook-conditional-css
-  		-->
-  		<!--[if mso 12]>
-  			<style type=""text/css"">
-  				.flexibleContainer{display:block !important; width:100% !important;}
-  			</style>
-  		<![endif]-->
-  		<!--[if mso 14]>
-  			<style type=""text/css"">
-  				.flexibleContainer{display:block !important; width:100% !important;}
-  			</style>
-  		<![endif]-->
-  	</head>
-  	<body bgcolor=""#E1E1E1"" leftmargin=""0"" marginwidth=""0"" topmargin=""0"" marginheight=""0"" offset=""0"">
-
-  		<!-- CENTER THE EMAIL // -->
-  		<!--
-  		1.  The center tag should normally put all the
-  			content in the middle of the email page.
-  			I added ""table-layout: fixed;"" style to force
-  			yahoomail which by default put the content left.
-  		2.  For hotmail and yahoomail, the contents of
-  			the email starts from this center, so we try to
-  			apply necessary styling e.g. background-color.
-  		-->
-  		<center style=""background-color:#E1E1E1;"">
-  			<table border=""0"" cellpadding=""0"" cellspacing=""0"" height=""100%"" width=""100%"" id=""bodyTable"" style=""table-layout: fixed;max-width:100% !important;width: 100% !important;min-width: 100% !important;"">
-  				<tr>
-  					<td align=""center"" valign=""top"" id=""bodyCell"">
-
-  						<!-- EMAIL HEADER // -->
-  						<!--
-  							The table ""emailBody"" is the email's container.
-  							Its width can be set to 100% for a color band
-  							that spans the width of the page.
-  						-->
-  						<table bgcolor=""#E1E1E1"" border=""0"" cellpadding=""0"" cellspacing=""0"" width=""500"" id=""emailHeader"">
-
-  							<!-- HEADER ROW // -->
-  							<tr>
-  								<td align=""center"" valign=""top"">
-  									<!-- CENTERING TABLE // -->
-  									<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"">
-  										<tr>
-  											<td align=""center"" valign=""top"">
-  												<!-- FLEXIBLE CONTAINER // -->
-  												<table border=""0"" cellpadding=""10"" cellspacing=""0"" width=""500"" class=""flexibleContainer"">
-  													<tr>
-  														<td valign=""top"" width=""500"" class=""flexibleContainerCell"">
-
-  															<!-- CONTENT TABLE // -->
-  															<table align=""left"" border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"">
-  																<tr>
-  																	<!--
-  																		The ""invisibleIntroduction"" is the text used for short preview
-  																		of the email before the user opens it (50 characters max). Sometimes,
-  																		you do not want to show this message depending on your design but this
-  																		text is highly recommended.
-  																		You do not have to worry if it is hidden, the next <td> will automatically
-  																		center and apply to the width 100% and also shrink to 50% if the first <td>
-  																		is visible.
-  																	-->
-  																	<td align=""left"" valign=""middle"" id=""invisibleIntroduction"" class=""flexibleContainerBox"" style=""display:none !important; mso-hide:all;"">
-  																		<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" style=""max-width:100%;"">
-  																			<tr>
-  																				<td align=""left"" class=""textContent"">
-  																					<div style=""font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#828282;text-align:center;line-height:120%;"">
-  																						The introduction of your message preview goes here. Try to make it short.
-  																					</div>
-  																				</td>
-  																			</tr>
-  																		</table>
-  																	</td>
-  																	<td align=""right"" valign=""middle"" class=""flexibleContainerBox"">
-  																		<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" style=""max-width:100%;"">
-  																			<tr>
-  																				<td align=""left"" class=""textContent"">
-  																					<!-- CONTENT // -->
-  																					<div style=""font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#828282;text-align:center;line-height:120%;"">
-  																						
-  																					</div>
-  																				</td>
-  																			</tr>
-  																		</table>
-  																	</td>
-  																</tr>
-  															</table>
-  														</td>
-  													</tr>
-  												</table>
-  												<!-- // FLEXIBLE CONTAINER -->
-  											</td>
-  										</tr>
-  									</table>
-  									<!-- // CENTERING TABLE -->
-  								</td>
-  							</tr>
-  							<!-- // END -->
-
-  						</table>
-  						<!-- // END -->
-
-  						<!-- EMAIL BODY // -->
-  						<!--
-  							The table ""emailBody"" is the email's container.
-  							Its width can be set to 100% for a color band
-  							that spans the width of the page.
-  						-->
-  						<table bgcolor=""#FFFFFF""  border=""0"" cellpadding=""0"" cellspacing=""0"" width=""500"" id=""emailBody"">
-
-  							<!-- MODULE ROW // -->
-  							<!--
-  								To move or duplicate any of the design patterns
-  								in this email, simply move or copy the entire
-  								MODULE ROW section for each content block.
-  							-->
-  							<tr>
-  								<td align=""center"" valign=""top"">
-  									<!-- CENTERING TABLE // -->
-  									<!--
-  										The centering table keeps the content
-  										tables centered in the emailBody table,
-  										in case its width is set to 100%.
-  									-->
-  									<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" style=""color:#FFFFFF;"" bgcolor=""#3498db"">
-  										<tr>
-  											<td align=""center"" valign=""top"">
-  												<!-- FLEXIBLE CONTAINER // -->
-  												<!--
-  													The flexible container has a set width
-  													that gets overridden by the media query.
-  													Most content tables within can then be
-  													given 100% widths.
-  												-->
-  												<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""500"" class=""flexibleContainer"">
-  													<tr>
-  														<td align=""center"" valign=""top"" width=""500"" class=""flexibleContainerCell"">
-
-  															<!-- CONTENT TABLE // -->
-  															<!--
-  															The content table is the first element
-  																that's entirely separate from the structural
-  																framework of the email.
-  															-->
-  															<table border=""0"" cellpadding=""30"" cellspacing=""0"" width=""100%"">
-  																<tr>
-  																	<td align=""center"" valign=""top"" class=""textContent"">
-  																		<h1 style=""color:#FFFFFF;line-height:100%;font-family:Helvetica,Arial,sans-serif;font-size:35px;font-weight:normal;margin-bottom:5px;text-align:center;"">What's Up Miguel</h1>
-  																		<h2 style=""text-align:center;font-weight:normal;font-family:Helvetica,Arial,sans-serif;font-size:23px;margin-bottom:10px;color:#205478;line-height:135%;"">You Have A New Applicant</h2>
-  																		<div style=""text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;"">Click on the button ""Approve Application"" below to approve this application. When you click the button, please enter your username and password and it will redirect you to a confirmation page, letting you know that the application has been confirmed. Our system will generate a password and username for the applicant.</div>
-  																	</td>
-  																</tr>
-  															</table>
-  															<!-- // CONTENT TABLE -->
-
-  														</td>
-  													</tr>
-  												</table>
-  												<!-- // FLEXIBLE CONTAINER -->
-  											</td>
-  										</tr>
-  									</table>
-  									<!-- // CENTERING TABLE -->
-  								</td>
-  							</tr>
-  							<!-- // MODULE ROW -->
-
-
-  							<!-- MODULE ROW // -->
-  							<!--  The ""mc:hideable"" is a feature for MailChimp which allows
-  								you to disable certain row. It works perfectly for our row structure.
-  								http://kb.mailchimp.com/article/template-language-creating-editable-content-areas/
-  							
-
-
-  							<!-- MODULE ROW // -->
-  							<tr>
-  								<td align=""center"" valign=""top"">
-  									<!-- CENTERING TABLE // -->
-  									<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"">
-  										<tr style=""padding-top:0;"">
-  											<td align=""center"" valign=""top"">
-  												<!-- FLEXIBLE CONTAINER // -->
-  												<table border=""0"" cellpadding=""30"" cellspacing=""0"" width=""500"" class=""flexibleContainer"">
-  													<tr>
-  														<td style=""padding-top:0;"" align=""center"" valign=""top"" width=""500"" class=""flexibleContainerCell"">
-
-
-  														</td>
-  													</tr>
-  												</table>
-  												<!-- // FLEXIBLE CONTAINER -->
-  											</td>
-  										</tr>
-  									</table>
-  									<!-- // CENTERING TABLE -->
-  								</td>
-  							</tr>
-  							<!-- // MODULE ROW -->
-
-
-  							<!-- MODULE ROW // -->
-  							<tr>
-  								<td align=""center"" valign=""top"">
-  									<!-- CENTERING TABLE // -->
-  									<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"" bgcolor=""#F8F8F8"">
-  										<tr>
-  											<td align=""center"" valign=""top"">
-  												<!-- FLEXIBLE CONTAINER // -->
-  												<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""500"" class=""flexibleContainer"">
-  													<tr>
-  														<td align=""center"" valign=""top"" width=""500"" class=""flexibleContainerCell"">
-  															<table border=""0"" cellpadding=""30"" cellspacing=""0"" width=""100%"">
-  																<tr>
-  																	<td align=""center"" valign=""top"">
-
-  																		<!-- CONTENT TABLE // -->
-  																		<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"">
-  																			<tr>
-  																				<td valign=""top"" class=""textContent"">
-  																					<!--
-  																						The ""mc:edit"" is a feature for MailChimp which allows
-  																						you to edit certain row. It makes it easy for you to quickly edit row sections.
-  																						http://kb.mailchimp.com/templates/code/create-editable-content-areas-with-mailchimps-template-language
-  																					-->
-                                            					<h3 mc:edit=""header"" style=""color:#5F5F5F;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Enter Name</h3>
-  																					<div mc:edit=""body"" style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;"">Location: Enter Location <br/> Phone Number: Enter Phonenumber <br/> Date Applied: Enter Date Applied <br/> Email: Enter Email</div>
-  																				</td>
-  																			</tr>
-  																		</table>
-  																		<!-- // CONTENT TABLE -->
-
-  																	</td>
-  																</tr>
-  															</table>
-  														</td>
-  													</tr>
-  												</table>
-  												<!-- // FLEXIBLE CONTAINER -->
-  											</td>
-  										</tr>
-  									</table>
-  									<!-- // CENTERING TABLE -->
-  								</td>
-  							</tr>
-  							<!-- // MODULE ROW -->
-
-  							<!-- MODULE ROW // -->
-  							<tr>
-  								<td align=""center"" valign=""top"">
-  									<!-- CENTERING TABLE // -->
-  									<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"">
-  										<tr>
-  											<td align=""center"" valign=""top"">
-  												<!-- FLEXIBLE CONTAINER // -->
-  												<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""500"" class=""flexibleContainer"">
-  													<tr>
-  														<td valign=""top"" width=""500"" class=""flexibleContainerCell"">
-
-  															<!-- CONTENT TABLE // -->
-  															<table align=""left"" border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"">
-  																<tr>
-  																	<td align=""left"" valign=""top"" class=""flexibleContainerBox"" style=""background-color:#5F5F5F;"">
-  																		<table border=""0"" cellpadding=""30"" cellspacing=""0"" width=""100%"" style=""max-width:100%;"">
-  																			<tr>
-  																				<td align=""left"" class=""textContent"">
-  																					<a href=""http://localhost:60115/account/rejectapplication/ApplicationId""><h3 style=""color:#FFFFFF;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Reject Application</h3></a>
-  																					<div style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;"">By clicking this button, you will be redirected to a page where you can reject this user's application. The appilcation will still be pending once you reject this application.</div>
-  																				</td>
-  																			</tr>
-  																		</table>
-  																	</td>
-  																	<td align=""right"" valign=""top"" class=""flexibleContainerBox"" style=""background-color:#27ae60;"">
-  																		<table class=""flexibleContainerBoxNext"" border=""0"" cellpadding=""30"" cellspacing=""0"" width=""100%"" style=""max-width:100%;"">
-  																			<tr>
-  																				<td align=""left"" class=""textContent"">
-  																					<a href=""http://localhost:60115/account/confirmapplication/ApplicationId""><h3 style=""color:#FFFFFF;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;"">Approve Application</h3></a>
-  																					<div style=""text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;"">By clicking this button, you will approve this user's application. The user will automatically generate a username and password for this user. The system will also notify the user.</div>
-  																				</td>
-  																			</tr>
-  																		</table>
-  																	</td>
-  																</tr>
-  															</table>
-  															<!-- // CONTENT TABLE -->
-
-  														</td>
-  													</tr>
-  												</table>
-  												<!-- // FLEXIBLE CONTAINER -->
-  											</td>
-  										</tr>
-  									</table>
-  									<!-- // CENTERING TABLE -->
-  								</td>
-  							</tr>
-  							<!-- // MODULE ROW -->
-
-
-  							<!-- MODULE ROW // -->
-  							<tr>
-  								<td align=""center"" valign=""top"">
-  									<!-- CENTERING TABLE // -->
-  									<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"">
-  										<tr>
-  											<td align=""center"" valign=""top"">
-  												<!-- FLEXIBLE CONTAINER // -->
-  												<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""500"" class=""flexibleContainer"">
-  													<tr>
-  														<td align=""center"" valign=""top"" width=""500"" class=""flexibleContainerCell"">
-  															<table border=""0"" cellpadding=""30"" cellspacing=""0"" width=""100%"">
-  																<tr>
-  																	<td align=""center"" valign=""top"">
-
-  																		<!-- CONTENT TABLE // -->
-  																		<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"">
-  																			<tr>
-  																				<td valign=""top"" class=""textContent"">
-  																					<div style=""text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;margin-top:3px;color:#5F5F5F;line-height:135%;""></div>
-  																				</td>
-  																			</tr>
-  																		</table>
-  																		<!-- // CONTENT TABLE -->
-
-  																	</td>
-  																</tr>
-  															</table>
-  														</td>
-  													</tr>
-  												</table>
-  												<!-- // FLEXIBLE CONTAINER -->
-  											</td>
-  										</tr>
-  									</table>
-  									<!-- // CENTERING TABLE -->
-  								</td>
-  							</tr>
-  							<!-- // MODULE ROW -->
-
-  						</table>
-  						<!-- // END -->
-
-  						<!-- EMAIL FOOTER // -->
-  						<!--
-  							The table ""emailBody"" is the email's container.
-  							Its width can be set to 100% for a color band
-  							that spans the width of the page.
-  						-->
-  						<table bgcolor=""#E1E1E1"" border=""0"" cellpadding=""0"" cellspacing=""0"" width=""500"" id=""emailFooter"">
-
-  							<!-- FOOTER ROW // -->
-  							<!--
-  								To move or duplicate any of the design patterns
-  								in this email, simply move or copy the entire
-  								MODULE ROW section for each content block.
-  							-->
-  							<tr>
-  								<td align=""center"" valign=""top"">
-  									<!-- CENTERING TABLE // -->
-  									<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""100%"">
-  										<tr>
-  											<td align=""center"" valign=""top"">
-  												<!-- FLEXIBLE CONTAINER // -->
-  												<table border=""0"" cellpadding=""0"" cellspacing=""0"" width=""500"" class=""flexibleContainer"">
-  													<tr>
-  														<td align=""center"" valign=""top"" width=""500"" class=""flexibleContainerCell"">
-  															<table border=""0"" cellpadding=""30"" cellspacing=""0"" width=""100%"">
-  																<tr>
-  																	<td valign=""top"" bgcolor=""#E1E1E1"">
-
-  																	</td>
-  																</tr>
-  															</table>
-  														</td>
-  													</tr>
-  												</table>
-  												<!-- // FLEXIBLE CONTAINER -->
-  											</td>
-  										</tr>
-  									</table>
-  									<!-- // CENTERING TABLE -->
-  								</td>
-  							</tr>
-
-  						</table>
-  						<!-- // END -->
-
-  					</td>
-  				</tr>
-  			</table>
-  		</center>
-  	</body>
-  </html>";
+                return @"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional //EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd""><html xmlns=""http://www.w3.org/1999/xhtml""><head>
+    <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"" />
+    <!--[if !mso]><!--><meta http-equiv=""X-UA-Compatible"" content=""IE=edge"" /><!--<![endif]-->
+    <meta name=""viewport"" content=""width=device-width"" />
+    <title> </title>
+    <style type=""text/css"">
+.wrapper a:hover {
+  text-decoration: none !important;
+}
+.btn a:hover,
+.footer__links a:hover {
+  opacity: 0.8;
+}
+.wrapper .footer__share-button:hover {
+  color: #ffffff !important;
+  opacity: 0.8;
+}
+a[x-apple-data-detectors] {
+  color: inherit !important;
+  text-decoration: none !important;
+  font-size: inherit !important;
+  font-family: inherit !important;
+  font-weight: inherit !important;
+  line-height: inherit !important;
+}
+.column {
+  font-size: 14px;
+  line-height: 21px;
+  padding: 0;
+  text-align: left;
+  vertical-align: top;
+}
+.mso .font-avenir,
+.mso .font-cabin,
+.mso .font-open-sans,
+.mso .font-ubuntu {
+  font-family: sans-serif !important;
+}
+.mso .font-bitter,
+.mso .font-merriweather,
+.mso .font-pt-serif {
+  font-family: Georgia, serif !important;
+}
+.mso .font-lato,
+.mso .font-roboto {
+  font-family: Tahoma, sans-serif !important;
+}
+.mso .font-pt-sans {
+  font-family: ""Trebuchet MS"", sans-serif !important;
+}
+.mso .footer p {
+  margin: 0;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .fblike {
+    background-image: url(https://i7.createsend1.com/static/eb/master/13-the-blueprint-3/images/fblike@2x.png) !important;
+  }
+  .tweet {
+    background-image: url(https://i8.createsend1.com/static/eb/master/13-the-blueprint-3/images/tweet@2x.png) !important;
+  }
+  .linkedinshare {
+    background-image: url(https://i1.createsend1.com/static/eb/master/13-the-blueprint-3/images/lishare@2x.png) !important;
+  }
+  .forwardtoafriend {
+    background-image: url(https://i9.createsend1.com/static/eb/master/13-the-blueprint-3/images/forward@2x.png) !important;
+  }
+}
+@media only screen and (max-width: 620px) {
+  .wrapper h2,
+  .wrapper .size-18,
+  .wrapper .size-20 {
+    font-size: 17px !important;
+    line-height: 26px !important;
+  }
+  .wrapper .size-22 {
+    font-size: 18px !important;
+    line-height: 26px !important;
+  }
+  .wrapper .size-24 {
+    font-size: 20px !important;
+    line-height: 28px !important;
+  }
+  .wrapper h1,
+  .wrapper .size-26 {
+    font-size: 22px !important;
+    line-height: 31px !important;
+  }
+  .wrapper .size-28 {
+    font-size: 24px !important;
+    line-height: 32px !important;
+  }
+  .wrapper .size-30 {
+    font-size: 26px !important;
+    line-height: 34px !important;
+  }
+  .wrapper .size-32 {
+    font-size: 28px !important;
+    line-height: 36px !important;
+  }
+  .wrapper .size-34,
+  .wrapper .size-36 {
+    font-size: 30px !important;
+    line-height: 38px !important;
+  }
+  .wrapper .size-40 {
+    font-size: 32px !important;
+    line-height: 40px !important;
+  }
+  .wrapper .size-44 {
+    font-size: 34px !important;
+    line-height: 43px !important;
+  }
+  .wrapper .size-48 {
+    font-size: 36px !important;
+    line-height: 43px !important;
+  }
+  .wrapper .size-56 {
+    font-size: 40px !important;
+    line-height: 47px !important;
+  }
+  .wrapper .size-64 {
+    font-size: 44px !important;
+    line-height: 50px !important;
+  }
+  .divider {
+    Margin-left: auto !important;
+    Margin-right: auto !important;
+  }
+  .btn a {
+    display: block !important;
+    font-size: 14px !important;
+    line-height: 24px !important;
+    padding: 12px 10px !important;
+    width: auto !important;
+  }
+  .btn--shadow a {
+    padding: 12px 10px 13px 10px !important;
+  }
+  .image img {
+    height: auto;
+    width: 100%;
+  }
+  .layout,
+  .column,
+  .preheader__webversion,
+  .header td,
+  .footer,
+  .footer__left,
+  .footer__right,
+  .footer__inner {
+    width: 320px !important;
+  }
+  .preheader__snippet,
+  .layout__edges {
+    display: none !important;
+  }
+  .preheader__webversion {
+    text-align: center !important;
+  }
+  .header__logo {
+    Margin-left: 20px;
+    Margin-right: 20px;
+  }
+  .layout--full-width {
+    width: 100% !important;
+  }
+  .layout--full-width tbody,
+  .layout--full-width tr {
+    display: table;
+    Margin-left: auto;
+    Margin-right: auto;
+    width: 320px;
+  }
+  .column,
+  .layout__gutter,
+  .footer__left,
+  .footer__right {
+    display: block;
+    Float: left;
+  }
+  .footer__inner {
+    text-align: center;
+  }
+  .footer__links {
+    Float: none;
+    Margin-left: auto;
+    Margin-right: auto;
+  }
+  .footer__right p,
+  .footer__share-button {
+    display: inline-block;
+  }
+  .layout__gutter {
+    font-size: 20px;
+    line-height: 20px;
+  }
+  .layout--no-gutter.layout--has-border:not(.layout--full-width),
+  .layout--has-gutter.layout--has-border .column__background {
+    width: 322px !important;
+  }
+  .layout--has-gutter.layout--has-border {
+    left: -1px;
+    position: relative;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .border {
+    display: none;
+  }
+  .layout--no-gutter.layout--has-border:not(.layout--full-width),
+  .layout--has-gutter.layout--has-border .column__background {
+    width: 320px !important;
+  }
+  .layout--has-gutter.layout--has-border {
+    left: 0 !important;
+  }
+}
+</style>
+    
+  <!--[if !mso]><!--><style type=""text/css"">
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic);
+</style><link href=""https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic"" rel=""stylesheet"" type=""text/css"" /><!--<![endif]--><style type=""text/css"">
+body,.wrapper{background-color:#f6f6f6}.wrapper h1{color:#2f353e}.wrapper h1{}.wrapper h1{font-family:""PT Serif"",Georgia,serif}.mso .wrapper h1{font-family:Georgia,serif !important}.wrapper h2{color:#2f353e}.wrapper h3{color:#929292}.wrapper a{color:#b31b1b}.wrapper a:hover{color:#5a0e0e !important}.column,.column__background td{color:#8e8e8e}.column,.column__background td{font-family:""PT Sans"",""Trebuchet MS"",sans-serif}.mso .column,.mso .column__background td{font-family:""Trebuchet MS"",sans-serif !important}.border{background-color:#c3c3c3}.layout--no-gutter.layout--has-border:not(.layout--full-width),.layout--has-gutter.layout--has-border .column__background,.layout--full-width.layout--has-border{border-top:1px solid #c3c3c3;border-bottom:1px solid #c3c3c3}.wrapper blockquote{border-left:4px solid #c3c3c3}.divider{background-color:#c3c3c3}.wrapper .btn a{color:#fff}.wrapper .btn 
+a{font-family:""PT Sans"",""Trebuchet MS"",sans-serif}.mso .wrapper .btn a{font-family:""Trebuchet MS"",sans-serif !important}.wrapper .btn a:hover{color:#fff !important}.btn--flat a,.btn--shadow a,.btn--depth a{background-color:#b31b1b}.btn--ghost a{border:1px solid #b31b1b}.preheader--inline,.footer__left{color:#8e8e8e}.preheader--inline,.footer__left{font-family:""PT Sans"",""Trebuchet MS"",sans-serif}.mso .preheader--inline,.mso .footer__left{font-family:""Trebuchet MS"",sans-serif !important}.wrapper .preheader--inline a,.wrapper .footer__left a{color:#8e8e8e}.wrapper .preheader--inline a:hover,.wrapper .footer__left a:hover{color:#8e8e8e !important}.header__logo{color:#c3ced9}.header__logo{font-family:Roboto,Tahoma,sans-serif}.mso .header__logo{font-family:Tahoma,sans-serif !important}.wrapper .header__logo a{color:#c3ced9}.wrapper .header__logo a:hover{color:#859bb1 
+!important}.footer__share-button{background-color:#7b7b7b}.footer__share-button{font-family:""PT Sans"",""Trebuchet MS"",sans-serif}.mso .footer__share-button{font-family:""Trebuchet MS"",sans-serif !important}.layout__separator--inline{font-size:20px;line-height:20px;mso-line-height-rule:exactly}
+</style><meta name=""robots"" content=""noindex,nofollow"" />
+<meta property=""og:title"" content=""My First Campaign"" />
+</head>
+<!--[if mso]>
+  <body class=""mso"">
+<![endif]-->
+<!--[if !mso]><!-->
+  <body class=""full-padding"" style=""margin: 0;-webkit-text-size-adjust: 100%;background-color: #f6f6f6;"">
+<!--<![endif]-->
+    <div class=""wrapper"" style=""background-color: #f6f6f6;"">
+      <table style='border-collapse: collapse;table-layout: fixed;color: #8e8e8e;font-family: ""PT Sans"",""Trebuchet MS"",sans-serif;' align=""center"">
+        <tbody><tr>
+          <td class=""preheader__snippet"" style=""padding: 10px 0 5px 0;vertical-align: top;"" width=""300"">
+            
+          </td>
+          <td class=""preheader__webversion"" style=""text-align: right;padding: 10px 0 5px 0;vertical-align: top;"" width=""300"">
+            
+          </td>
+        </tr>
+      </tbody></table>
+      
+      <table class=""layout layout--no-gutter"" style=""border-collapse: collapse;table-layout: fixed;Margin-left: auto;Margin-right: auto;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;"" align=""center"" emb-background-style>
+        <tbody><tr>
+          <td class=""column"" style='font-size: 14px;line-height: 21px;padding: 0;text-align: left;vertical-align: top;color: #8e8e8e;font-family: ""PT Sans"",""Trebuchet MS"",sans-serif;' width=""600"">
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;"">
+      <div style=""line-height:20px;font-size:1px"">&nbsp;</div>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <h1 class=""size-40"" style='Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;font-size: 40px;line-height: 47px;color: #2f353e;font-family: ""PT Serif"",Georgia,serif;text-align: center;'>&#183; You Have A New Applicant &#183;</h1><h3 style=""Margin-top: 20px;Margin-bottom: 12px;font-style: normal;font-weight: normal;font-size: 16px;line-height: 24px;color: #929292;text-align: center;""><strong>Click &quot;Approve Applicant&quot; To Approve The Applicant</strong></h3>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <div style=""line-height:25px;font-size:1px"">&nbsp;</div>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <p class=""size-16"" style=""Margin-top: 0;Margin-bottom: 0;font-size: 16px;line-height: 24px;"">Applicant Name: Enter Name</p><p class=""size-16"" style=""Margin-top: 20px;Margin-bottom: 0;font-size: 16px;line-height: 24px;"">Location: Enter Location</p><p class=""size-16"" style=""Margin-top: 20px;Margin-bottom: 0;font-size: 16px;line-height: 24px;"">Phone Number: Enter Phonenumber</p><p class=""size-16"" style=""Margin-top: 20px;Margin-bottom: 0;font-size: 16px;line-height: 24px;"">Date Applied: Enter DateApplied</p><p class=""size-16"" style=""Margin-top: 20px;Margin-bottom: 20px;font-size: 16px;line-height: 24px;"">Email: Enter Email</p>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <div style=""line-height:20px;font-size:1px"">&nbsp;</div>
+    </div>
+    
+        <div class=""image"" style=""font-size: 12px;font-style: normal;font-weight: 400;"" align=""center"">
+          <img style=""display: block;border: 0;max-width: 174px;"" src=""images/divider5.png"" alt="""" width=""174"" height=""25"" />
+        </div>
+      
+          </td>
+        </tr>
+      </tbody></table>
+  
+      <table class=""layout layout--no-gutter"" style=""border-collapse: collapse;table-layout: fixed;Margin-left: auto;Margin-right: auto;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;"" align=""center"" emb-background-style>
+        <tbody><tr>
+          <td class=""column"" style='font-size: 14px;line-height: 21px;padding: 0;text-align: left;vertical-align: top;color: #8e8e8e;font-family: ""PT Sans"",""Trebuchet MS"",sans-serif;' width=""300"">
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;"">
+      <div style=""line-height:15px;font-size:1px"">&nbsp;</div>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <h1 style='Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;font-size: 26px;line-height: 34px;color: #2f353e;font-family: ""PT Serif"",Georgia,serif;text-align: center;'>&#183; Approve Applicant&#183;</h1><h3 style=""Margin-top: 20px;Margin-bottom: 12px;font-style: normal;font-weight: normal;font-size: 16px;line-height: 24px;color: #929292;text-align: center;"">&nbsp;</h3>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <div style=""line-height:15px;font-size:1px"">&nbsp;</div>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <p class=""size-16"" style=""Margin-top: 0;Margin-bottom: 20px;font-size: 16px;line-height: 24px;text-align: center;""><span style=""color:#4d484d"">By clicking this button, you will approve this user's application. The user will automatically generate a username and password for this user. The system will also notify th</span><span style=""color:rgb(255, 255, 255)"">e user.</span></p>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <div style=""line-height:10px;font-size:1px"">&nbsp;</div>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <div class=""btn btn--flat"" style=""Margin-bottom: 20px;text-align: center;"">
+        <![if !mso]><a style=""border-radius: 4px;display: inline-block;font-weight: bold;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #fff;background-color: #b31b1b;font-family: 'PT Sans', 'Trebuchet MS', sans-serif;font-size: 12px;line-height: 22px;padding: 10px 28px;"" href=""http://localhost:60115/account/confirmapplication/ApplicationId"" data-width=""112"">APPROVE APPLICANT</a><![endif]>
+      <!--[if mso]><p style=""line-height:0;margin:0;"">&nbsp;</p><v:roundrect xmlns:v=""urn:schemas-microsoft-com:vml"" href=""http://localhost:60115/account/confirmapplication/ApplicationId"" style=""width:168px"" arcsize=""10%"" fillcolor=""#B31B1B"" stroke=""f""><v:textbox style=""mso-fit-shape-to-text:t"" inset=""0px,9px,0px,9px""><center style=""font-size:12px;line-height:22px;color:#FFFFFF;font-family:sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:4px"">APPROVE APPLICANT</center></v:textbox></v:roundrect><![endif]--></div>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;"">
+      <div style=""line-height:5px;font-size:1px"">&nbsp;</div>
+    </div>
+    
+          </td>
+          <td class=""column"" style='font-size: 14px;line-height: 21px;padding: 0;text-align: left;vertical-align: top;color: #8e8e8e;font-family: ""PT Sans"",""Trebuchet MS"",sans-serif;' width=""300"">
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;"">
+      <div style=""line-height:15px;font-size:1px"">&nbsp;</div>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <h1 style='Margin-top: 0;Margin-bottom: 0;font-style: normal;font-weight: normal;font-size: 26px;line-height: 34px;color: #2f353e;font-family: ""PT Serif"",Georgia,serif;text-align: center;'>&#183; Reject Applicant&#183;</h1><h3 style=""Margin-top: 20px;Margin-bottom: 12px;font-style: normal;font-weight: normal;font-size: 16px;line-height: 24px;color: #929292;text-align: center;""><strong>&nbsp;</strong></h3>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <div style=""line-height:15px;font-size:1px"">&nbsp;</div>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <p class=""size-16"" style=""Margin-top: 0;Margin-bottom: 20px;font-size: 16px;line-height: 24px;text-align: center;"">B<span style=""color:rgb(153, 147, 153)"">y clicking this button, you will be redirected to a page where you can reject this user's application. The appilcation will still be pending once you reject this application.</span></p>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <div style=""line-height:10px;font-size:1px"">&nbsp;</div>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;"">
+      <div class=""btn btn--flat"" style=""Margin-bottom: 20px;text-align: center;"">
+        <![if !mso]><a style=""border-radius: 4px;display: inline-block;font-weight: bold;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #fff;background-color: #b31b1b;font-family: 'PT Sans', 'Trebuchet MS', sans-serif;font-size: 12px;line-height: 22px;padding: 10px 28px;"" href=""http://localhost:60115/account/rejectapplication/ApplicationId"" data-width=""100"">REJECT APPLICANT</a><![endif]>
+      <!--[if mso]><p style=""line-height:0;margin:0;"">&nbsp;</p><v:roundrect xmlns:v=""urn:schemas-microsoft-com:vml"" href=""http://localhost:60115/account/rejectapplication/ApplicationId"" style=""width:156px"" arcsize=""10%"" fillcolor=""#B31B1B"" stroke=""f""><v:textbox style=""mso-fit-shape-to-text:t"" inset=""0px,9px,0px,9px""><center style=""font-size:12px;line-height:22px;color:#FFFFFF;font-family:sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:4px"">REJECT APPLICANT</center></v:textbox></v:roundrect><![endif]--></div>
+    </div>
+    
+            <div style=""Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;"">
+      <div style=""line-height:5px;font-size:1px"">&nbsp;</div>
+    </div>
+    
+          </td>
+        </tr>
+      </tbody></table>
+  
+      <div style=""font-size: 20px;line-height: 20px;mso-line-height-rule: exactly;"">&nbsp;</div>
+    
+      <table class=""footer"" style=""border-collapse: collapse;table-layout: fixed;Margin-right: auto;Margin-left: auto;border-spacing: 0;"" width=""600"" align=""center"">
+        <tbody><tr>
+          <td style=""padding: 0 0 40px 0;"">
+            <table class=""footer__right"" style=""border-collapse: collapse;table-layout: auto;border-spacing: 0;"" align=""right"">
+              <tbody><tr>
+                <td class=""footer__inner"" style=""padding: 0;"">
+                </td>
+              </tr>
+            </tbody></table>
+            <table class=""footer__left"" style='border-collapse: collapse;table-layout: fixed;border-spacing: 0;color: #8e8e8e;font-family: ""PT Sans"",""Trebuchet MS"",sans-serif;' width=""400"">
+              <tbody><tr>
+                <td class=""footer__inner"" style=""padding: 0;font-size: 12px;line-height: 19px;"">
+                  
+                  <div>
+                    
+                  </div>
+                  <div class=""footer__permission"" style=""Margin-top: 18px;"">
+                    
+                  </div>
+                  <div>
+                  </div>
+                </td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+      </tbody></table>
+      <badge>
+        
+      </badge>
+    </div>
+  
+</body></html>
+";
             }
         }
 
         public string MessagToStudentOnSubmitApplication { get; set; }
-        public string MessageToAdministratorOnSubmitApplication { get; set; }
         public string MessageToStudentOnApproveApplication { get; set; }
         public string MessageToAdministratorOnApproveApplication { get; set; }
 

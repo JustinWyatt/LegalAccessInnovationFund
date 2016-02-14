@@ -101,18 +101,17 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Links = new List<UserLink>(),
                 BirthDate = DateTime.Parse(app.DateOfBirth),
                 Email = app.Email,
-                UserName = app.Email,
+                UserName = "jwyatt123",
+                AvatarImagePath = "http://www.designmissionseries.com/dmseries/india/wp-content/uploads/2015/09/user.png"
             };
 
             var password = "Password@123";
             UserManager.Create(applicant, password);
-
             db.Users.Add(applicant);
 
             try
             {
                 db.SaveChanges();
-
             }
             catch (DbEntityValidationException ex)
             {

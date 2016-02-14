@@ -146,7 +146,6 @@ namespace LegalAccessInnovationFund.Web.Controllers
                     Title = x.Title,
                     Description = x.Description,
                     Quantity = x.Quantity,
-                    DeliveryDate = DateTime.Parse(x.DeliveryDate)
                 }).ToList()
             };
             foreach (var donationLevel in campaign.DonationLevels)

@@ -15,6 +15,7 @@ using RestSharp.Authenticators;
 using System.Net;
 
 namespace LegalAccessInnovationFund.Web.Controllers
+
 {
     public class ProfileController : Controller
     {
@@ -68,12 +69,12 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 mail.To.Add(application.Email);
                 mail.Subject = $"Thank You! Your Application Is Pending { application.FirstName }";
 
-                mail.Body = emailMessage.Message.Replace("Enter Name", $"{application.FirstName + "" + application.LastName}")
-                                                .Replace("Enter Location", $"{application.City + ", " + application.State + "" + application.PostalCode.ToString()}")
-                                                .Replace("Enter Phonenumber", $"{application.PhoneNumber}")
-                                                .Replace("Enter Date Applied", $"{application.DateApplied.ToShortDateString()}")
-                                                .Replace("Enter Email", $"{application.Email}")
-                                                .Replace("ApplicationId", $"{application.Id}");
+                mail.Body = emailMessage.MessageToAdministratorOnSubmitApplication.Replace("Enter Name", $"{application.FirstName + "" + application.LastName}")
+                                                                                   .Replace("Enter Location", $"{application.City + ", " + application.State}")
+                                                                                   .Replace("Enter Phonenumber", $"{application.PhoneNumber}")
+                                                                                   .Replace("Enter Date Applied", $"{application.DateApplied.ToShortDateString()}")
+                                                                                   .Replace("Enter Email", $"{application.Email}")
+                                                                                   .Replace("ApplicationId", $"{application.Id}");
 
                 mail.IsBodyHtml = true;
                 // Can set to false, if you are sending pure text.
@@ -90,13 +91,40 @@ namespace LegalAccessInnovationFund.Web.Controllers
 
             return Json(success, JsonRequestBehavior.AllowGet);
         }
-        
+
+        [HttpGet]
+        public JsonResult GetAvatar()
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            var avatar = user.AvatarImagePath;
+            if (avatar == null)
+            {
+                return Json("http://www.designmissionseries.com/dmseries/india/wp-content/uploads/2015/09/user.png", JsonRequestBehavior.AllowGet);
+
+            }
+            return Json(avatar, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult NewAvatar(string newAvatarPath)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Find(userId);
+            user.AvatarImagePath = newAvatarPath;
+            db.SaveChanges();
+
+            return Json(newAvatarPath.ToString(), JsonRequestBehavior.AllowGet);
+        }
+
         [Authorize]
         [HttpGet]
         public ActionResult ProfileView()
         {
             var userId = User.Identity.GetUserId();
-            var model = db.Users.Where(x => x.Id == userId).Select(user => new ProfileViewModel()
+            var user = db.Users.Find(userId);
+
+            var model = new ProfileViewModel()
             {
                 Name = user.Name,
                 Email = user.Email,
@@ -144,7 +172,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
 
                     }).ToList(),
                 }).ToList()
-            });
+            };
             return View(model);
         }
 
