@@ -22,31 +22,12 @@ namespace LegalAccessInnovationFund.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/html5shiv.js",
-                      "~/Scripts/jquery.slitslider.js",
-                      "~/Scripts/jquery.easing.min.js",
-                      "~/Scripts/jquery.isotope.min.js",
-                      "~/Scripts/wow.min.js",
-                      "~/Scripts/main.js",
-                      "~/Scripts/imagesloaded.pkgd.min.js",
-                      "~/Scripts/jquery.ba-cond.min.js",
-                      "~/Scripts/modernizr.custom.79639.js",
-                      "~/Scripts/owl.carousel.js",
-                      "~/Scripts/scrollupto.js",
-                      "~/Scripts/skillset.js",
-                      "~/Scripts/jquery.nicescroll.js",
-                      "~/Scripts/jquery.mixitup.min.js"));
+                      "~/Scripts/jquery.easing.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/animate.min.css",
-                      "~/Content/skillset.css",
-                      "~/Content/owl.theme.css",
                       "~/Content/bootstrap.min.css",
-                      "~/Content/owl.transition.css",
                       "~/Content/responsive.css",
-                      "~/Content/bootstrap.css",
-                      "~/Content/owl.carousel.css",
-                      "~/Content/style.css"
-                      ));
+                      "~/Content/bootstrap.css"));
         }
     }
 }

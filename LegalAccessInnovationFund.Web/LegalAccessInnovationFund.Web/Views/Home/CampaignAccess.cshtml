@@ -5,8 +5,8 @@
 }
 
 
-<style>
 
+<style>
     .btn.outline {
         background: none;
         padding: 12px 22px;
@@ -28,60 +28,234 @@
             box-shadow: none;
         }
 </style>
-<div class="row headline">
-    <div class="row">
-        <div class="span12" style="position:relative; text-align:center; height: 500px;">
-            @*<img  style="width: 100%; position:absolute;"src="http://www.macwallhd.com/wp-content/Wallpapers/20120625/At%20the%20Office%20Mac%20Apple%20Wallpapers%20Creative%20Planning-2982192420.jpeg" />*@
-            <h1 style="position: absolute; margin: auto; top: 30%;    left:0;    right:0;    bottom:0;">
-                This Is The Header To Introduce Campaigns
-            </h1>
-            <p></p>
-        </div>
+    <div class="row headline">
+        <div class="row">
+            <div class="span12" style="position: relative; text-align: center; height: 500px;">
+                @*<img style="width: 100%; position:absolute;" src="http://www.macwallhd.com/wp-content/Wallpapers/20120625/At%20the%20Office%20Mac%20Apple%20Wallpapers%20Creative%20Planning-2982192420.jpeg" />*@
+    <h1 style="position: absolute; margin: auto; top: 30%;    left: 0; right: 0; bottom: 0;">
+                    This Is The Header To Introduce Campaigns
+                </h1>
+                <p></p>
+            </div>
     </div>
     <div class="row">
-        <div class="span6">
-            <div>
-                <img src="https://c1.staticflickr.com/3/2855/9323706832_efbf0759ba_b.jpg" />
+    <div class="span6">
+    <div>
+    <img src="https://c1.staticflickr.com/3/2855/9323706832_efbf0759ba_b.jpg" />
+    </div>
+    <div style="background-color:none; ">
+    <br />
+    <br />
+    <div style="left:20px; right: 20px;"><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p></div>
+    <br />
+    <br />
+    @Html.ActionLink("See Our Featured Campaigns", "Campaigns", "Campaign", null, new { @class = "btn btn-primary btn-lg btn-block outline", type = "button", style = "color:blue" })<br />
+                    <br />
+                </div>
             </div>
-            <div style="background-color:none; ">
+            <div class="span6">
+                <div>
+    <img src="http://wholeheartsfamilycenter.com/wp-content/uploads/2015/03/26.jpg" />
+    </div>
+    <div style="background:none">
+    <br />
+    <br />
+    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+    <br />
+    <br />
+    @Html.ActionLink("Start A Campaign", "CampaignBegin", "Campaign", null, new { @class = "btn btn-primary btn-lg btn-block outline", type = "button", style = "color:blue;" })
+<br />
+                    <br />
+                </div>
                 <br />
                 <br />
-                <div style="left:20px; right:20px;"><p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p></div>
                 <br />
                 <br />
-                @Html.ActionLink("See Our Featured Campaigns", "Campaigns", "Campaign", null, new { @class = "btn btn-primary btn-lg btn-block outline", type = "button", style = "color:blue" })
-                <br />
-                <br />
+    <br />
+    </div>
+    </div>
+    </div><!-- End Headline -->
+
+
+
+
+
+
+
+
+
+
+    <div id="hero-widgets" class="clear">
+        <div class="col-width">
+            <div class="section-wrap">
+                <aside id="text-2" class="widget widget_text">
+                    <h2 class="widget-title">Welcome to Legal Access Innovation Fund</h2>
+                    <div class="textwidget">
+                        The Campaign Access tool for legal students!
+                        (@Model.Count() campaigns)
+                    </div>
+                </aside><aside id="search-3" class="widget widget_search">
+                    @using (Html.BeginForm("SearchCampaigns", "Campaigns", new { }, FormMethod.Post, null))
+                    {
+                        <input type="search" class="search-field" placeholder="Search Campaigns" value="" name="s" title="Search for:" />
+                        <input type="submit" class="fa search-submit" value="&#xf002;" />
+
+                    }
+                    @*<form role="search" method="get" class="search-form" action="http://www.govpress.co/">
+                            <label>
+                                <span class="screen-reader-text">Search for:</span>
+                                <input type="search" class="search-field" placeholder="Search Campaigns" value="" name="s" title="Search for:" />
+                            </label>
+                            <input type="submit" class="fa search-submit" value="&#xf002;" />
+                        </form>*@
+                </aside>
             </div>
-        </div>
-        <div class="span6">
-            <div>
-                <img src="http://wholeheartsfamilycenter.com/wp-content/uploads/2015/03/26.jpg" />
-            </div>
-            <div style="background:none">
-                <br />
-                <br />
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                <br />
-                <br />
-                @Html.ActionLink("Start A Campaign", "CampaignBegin", "Campaign", null, new { @class = "btn btn-primary btn-lg btn-block outline", type = "button", style = "color:blue;" })
-                <br />
-                <br />
-            </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
         </div>
     </div>
-</div><!-- End Headline -->
+
+    <div id="menu-icon" class="clear">
+        <div class="col-width">
+            <div class="menu-icon-container">
+                <ul id="menu-icon" class="menu">
+                    <li id="menu-item-537" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-537"><a href="" class="fa-info-circle">Home</a></li>
+                    <li id="menu-item-780" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-780"><a href="" class="fa-comments">Campaigns</a></li>
+                    <li id="menu-item-735" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-735"><a href="" class="fa-cloud-download">Contributions</a></li>
+                    <li id="menu-item-533" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-533"><a href="" class="fa-newspaper-o">Profile</a></li>
+                    <li id="menu-item-736" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-736"><a href="" class="fa-life-ring">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-width">
+        <div id="content" class="site-content">
+            <div id="primary" class="content-area">
+                <div id="main" class="site-main" role="main">
+
+                    <article id="post-90" class="post-90 page type-page status-publish has-post-thumbnail hentry">
+                        <header class="entry-header">
+                            <h1 class="entry-title">Welcome &#8211; The Legal Access Innovation Fund</h1>
+                        </header><!-- .entry-header -->
+
+                        <div class="entry-content">
+                            <h2>Our Campaign Fundraising</h2>
+                            <blockquote><p>Legal Access Technology & Innovation Fellowship (LATIF)- offers a 10-week paid summer fellowship each year to innovative law students who will spur innovation and accelerate the development of legal technology to improve access to justice for low-income clients. LATIF seeks to incentivize some of our best and brightest legal scholars to help solve pressing issues related to the U.S. legal system, namely those that prevent low-come clients from receiving adequate legal services.</p></blockquote>
+                            <hr>
+                            <blockquote><p>The recipient(s) of this fellowship will develop, test, and replicate technologies that improve efficiency and provide greater access to high-quality legal services for low-income clients. LATIF recipient(s) will participate in an accelerator type model where they will collaborate with software developers, user interface designers, user experience engineers, legal mentors and subject matter experts to create and develop their ATJ technologies. LATIF recipient(s) will work from a partner co-working space and provided with a stipend for living expenses, legal/tech resources, and training webinars that will cultivate law students with the technology know-how and entrepreneurial foundation to develop sustainable applications.</p></blockquote>
+                        </div><!-- .entry-content -->
+
+                    </article><!-- #post-## -->
+
+                    <div id="home-page-featured" class="widget-area clear">
+                        <div class="section-wrap">
+                            <aside id="text-6" class="widget widget_text">
+                                <h2 class="widget-title">Featured Campaigns</h2>
+                                <div class="textwidget">
+                                    <div class="row">
+                                        @if (!Model.Any())
+                                        {
+                                            
+                                        }
+                                        else
+                                        {
+                                            foreach (var item in Model)
+                                            {
+                                                <img src="@item.Picture"/>
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            </aside>
+                            <aside id="text-3" class="widget widget_text">
+                                <h2 class="widget-title">See More Of Our Featured Campaigns</h2>
+                                <div class="textwidget">
+
+                                </div>
+                            </aside>
+                            <aside id="nav_menu-2" class="widget widget_nav_menu">
+                                <h2 class="widget-title">Start A Campaign</h2>
+                                <div class="textwidget">
+                                    <p>Law students who have an entrepreneurial spirit and passion for public interest law and technology are encouraged to apply. Selected recipient(s) will be provided tools and resources to crowd fund and raise money to cover their living expenses over the summer.</p>
+                                </div>
+                            </aside>
+                            @*<aside id="recent-posts-3" class="widget widget_recent_entries">
+                                    <h2 class="widget-title">News</h2>		<ul>
+                                        <li>
+                                            <a href="http://www.govpress.co/govpress/">GovPress 1.5.0 now available</a>
+                                            <span class="post-date">January 17, 2016</span>
+                                        </li>
+                                        <li>
+                                            <a href="http://www.govpress.co/govpress-launch-glenbeulah-wisconsin/">GovPress launch: Glenbeulah (Wisconsin)</a>
+                                            <span class="post-date">February 23, 2015</span>
+                                        </li>
+                                        <li>
+                                            <a href="http://www.govpress.co/govpress-wordpress-simplifying-city-websites/">GovPress + WordPress: Simplifying city websites</a>
+                                            <span class="post-date">February 8, 2015</span>
+                                        </li>
+                                        <li>
+                                            <a href="http://www.govpress.co/govpress-launch-agile-government-leadership/">GovPress launch: Agile Government Leadership</a>
+                                            <span class="post-date">January 25, 2015</span>
+                                        </li>
+                                        <li>
+                                            <a href="http://www.govpress.co/govpress-launch-city-ferndale-washington/">GovPress launch: City of Ferndale (Washington)</a>
+                                            <span class="post-date">January 25, 2015</span>
+                                        </li>
+                                    </ul>
+                                </aside>*@
+                        </div>
+                    </div>
+
+                </div><!-- #main -->
+            </div><!-- #primary -->
 
 
-@section scripts{
 
-    <script src=""></script>
+            <div id="secondary" class="widget-area" role="complementary">
+                <aside id="social-widget-2" class="widget Social_Widget">
+                    <h1 class="widget-title">Connect</h1><div class="socialmedia-buttons smw_center">
+                        <a href="http://govpress.co/help" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="http://govpress.co/wp-content/uploads/2015/02/email.png"
+                                 alt="Follow Us on Contact"
+                                 title="Follow Us on Contact" style="opacity: 0.8; -moz-opacity: 0.8;" class="fade" />
+                        </a><a href="http://twitter.com/getgovpress" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="http://govpress.co/wp-content/uploads/2014/11/twitter-150x150.png"
+                                 alt="Follow Us on Twitter"
+                                 title="Follow Us on Twitter" style="opacity: 0.8; -moz-opacity: 0.8;" class="fade" />
+                        </a><a href="http://wordpress.org/themes/govpress" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="http://govpress.co/wp-content/uploads/2015/01/wordpress.png"
+                                 alt="Follow Us on WordPress"
+                                 title="Follow Us on WordPress" style="opacity: 0.8; -moz-opacity: 0.8;" class="fade" />
+                        </a><a href="https://github.com/govfresh/govpress" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="http://govpress.co/wp-content/uploads/2014/11/github-150x150.png"
+                                 alt="Follow Us on GitHub"
+                                 title="Follow Us on GitHub" style="opacity: 0.8; -moz-opacity: 0.8;" class="fade" />
+                        </a><a href="http://govpress.co/feed" rel="nofollow" target="_blank">
+                            <img width="32" height="32" src="http://govpress.co/wp-content/uploads/2014/11/rss-150x150.png"
+                                 alt="Follow Us on RSS"
+                                 title="Follow Us on RSS" style="opacity: 0.8; -moz-opacity: 0.8;" class="fade" />
+                        </a>
+                    </div>
+                </aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">
+                    <h1 class="widget-title">News</h1>		<ul>
+                        <li>
+                            <a href="http://www.govpress.co/govpress/">GovPress 1.5.0 now available</a>
+                        </li>
+                        <li>
+                            <a href="http://www.govpress.co/govpress-launch-glenbeulah-wisconsin/">GovPress launch: Glenbeulah (Wisconsin)</a>
+                        </li>
+                        <li>
+                            <a href="http://www.govpress.co/govpress-wordpress-simplifying-city-websites/">GovPress + WordPress: Simplifying city websites</a>
+                        </li>
+                    </ul>
+                </aside>		<aside id="twitter_timeline-2" class="widget widget_twitter_timeline"><h1 class="widget-title">Twitter</h1><a class="twitter-timeline" data-widget-id="511573617700642816" data-theme="light" data-link-color="#0072bc" data-border-color="#e8e8e8" data-tweet-limit="3" width="300" height="300" lang="EN">My Tweets</a></aside>
+            </div><!-- #secondary -->
+        </div><!-- #content -->
+    </div><!-- .col-width -->
+    @section scripts{
 
-}
+        <script src=""></script>
+
+    }
 
 

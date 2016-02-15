@@ -24,6 +24,12 @@ namespace LegalAccessInnovationFund.Web.Controllers
 
         ApplicationDbContext db = new ApplicationDbContext();
 
+        [HttpGet]
+        public ActionResult Test()
+        {
+            return View();
+        }
+
         // GET: Campaign
         [HttpGet]
         public ActionResult Campaigns()
