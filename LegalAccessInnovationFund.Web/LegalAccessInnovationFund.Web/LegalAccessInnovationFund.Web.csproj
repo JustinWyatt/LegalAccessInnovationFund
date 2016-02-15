@@ -301,6 +301,7 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\indexpage.css" />
     <Content Include="Content\responsive.css" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -461,6 +462,10 @@
     <Content Include="img\tm1.png" />
     <Content Include="img\ui.totop.png" />
     <Content Include="img\user-avatar.jpg" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angularbuttons.js" />
     <Content Include="Scripts\angularwysiwg.js" />
@@ -476,8 +481,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\classie.js" />
     <Content Include="Scripts\colorpicker.js" />
     <Content Include="Scripts\combined-min.js" />
+    <Content Include="Scripts\count-to.js" />
     <Content Include="Scripts\customizer.js" />
     <Content Include="Scripts\html5.js" />
     <Content Include="Scripts\html5shiv.js" />
@@ -507,6 +514,7 @@
     <Content Include="Scripts\layoutbootstrap.js" />
     <Content Include="Scripts\lightbox.min.js" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\modernizercustom.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr.custom.79639.js" />
     <Content Include="Scripts\mousescroll.js" />
@@ -522,6 +530,7 @@
     <Content Include="Scripts\smoothscroll.js" />
     <Content Include="Scripts\tinymce.js" />
     <Content Include="Scripts\tinymceoptions.js" />
+    <Content Include="Scripts\uiprogressbutton.js" />
     <Content Include="Scripts\util.js" />
     <Content Include="Scripts\wow.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -572,6 +581,7 @@
     <Content Include="Views\Account\ConfirmApplication.cshtml" />
     <Content Include="Views\Campaign\CampaignView.cshtml" />
     <Content Include="Views\Account\RejectApplication.cshtml" />
+    <Content Include="Views\Campaign\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

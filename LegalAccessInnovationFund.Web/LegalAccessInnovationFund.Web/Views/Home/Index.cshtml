@@ -25,7 +25,7 @@
             <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus aliquam et tempus lorem feugiat adipiscing lorem. Morbi pharetra vitae felis placerat pharetra. Nulla risus orci, dapibus id malesuada et nec, malesuada quis orci. Pellentesque eget consequat.</p>
             <br />
             <ul class="actions">
-                <li><a href="#" class="button alt">See Our Featured Campaigns</a></li>
+                <li><a href="/campaign/campaigns" class="button alt">See Our Featured Campaigns</a></li>
             </ul>
         </section>
         <section>
@@ -33,7 +33,7 @@
             <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus aliquam et tempus lorem feugiat adipiscing lorem. Morbi pharetra vitae felis placerat pharetra. Nulla risus orci, dapibus id malesuada et nec, malesuada quis orci. Pellentesque eget consequat.</p>
             <br />
             <ul class="actions">
-                <li><a href="#" class="button alt">Start A Campaign</a></li>
+                <li><a href="/campaign/campaignbegin" class="button alt">Start A Campaign</a></li>
             </ul>
         </section>
     </div>
@@ -70,8 +70,7 @@
                 <h3>Campaign Example 1 - <small>$50,500</small></h3>
                 <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus malesuada quis orci. Pellentesque eget consequat.</p>
                 <ul class="actions">
-                    <li><a href="/campaign/campainview/" class="button alt">Go To Campaign</a></li>
-                    <li><a href="" class="button alt">Contribute</a></li>
+                    <li><a href="/campaign/test" class="button alt">Go To Campaign</a></li>
                 </ul>
             </div>
         </div>
@@ -83,9 +82,7 @@
                 <h3>Campaign Example 2 - <small>$50,500</small></h3>
                 <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus malesuada quis orci. Pellentesque eget consequat.</p>
                 <ul class="actions">
-                    <li><a href="/campaign/campaignview/" class="button alt">Go To Campaign</a></li>
-                    <li><a href="" class="button alt">Contribute</a></li>
-
+                    <li><a href="/campaign/test" class="button alt">Go To Campaign</a></li>
                 </ul>
             </div>
         </div>
@@ -97,8 +94,7 @@
                 <h3>Campaign Example 3 - <small>$50,500</small></h3>
                 <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus malesuada quis orci. Pellentesque eget consequat.</p>
                 <ul class="actions">
-                    <li><a href="/campaign/campaignview/" class="button alt">Go To Campaign</a></li>
-                    <li><a href="" class="button alt">Contribute</a></li>
+                    <li><a href="/campaign/test" class="button alt">Go To Campaign</a></li>
                 </ul>
             </div>
         </div>
@@ -135,6 +131,7 @@
                 </div>
                 <ul class="actions">
                     <li><input ng-hide="submitted" class="alt" value="Apply" type="submit" ng-click="submit(application)"></li>
+                    
                 </ul>
             </form>
         </section>
@@ -149,6 +146,27 @@
 </section>
 
 @section scripts{
+    <script src="~/Scripts/modernizercustom.js"></script>
+    <script src="~/Scripts/classie.js"></script>
+    <script src="~/Scripts/uiprogressbutton.js"></script>
+    <script>
+        [].slice.call(document.querySelectorAll('.actions')).forEach(function (bttn, pos) {
+            new UIProgressButton(bttn, {
+                callback: function (instance) {
+                    var progress = 0,
+                        interval = setInterval(function () {
+                            progress = Math.min(progress + Math.random() * 0.1, 1);
+                            instance.setProgress(progress);
+
+                            if (progress === 1) {
+                                instance.stop(pos === 1 || pos === 3 ? -1 : 1);
+                                clearInterval(interval);
+                            }
+                        }, 150);
+                }
+            });
+        });
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script>

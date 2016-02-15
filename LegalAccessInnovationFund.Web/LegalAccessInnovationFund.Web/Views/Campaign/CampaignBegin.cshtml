@@ -1,149 +1,276 @@
 ﻿
 @{
     ViewBag.Title = "CampaignBegin";
-    Layout = "~/Views/Shared/_ApplicationLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <style>
-    .btn.outline {
-        background: none;
-        padding: 12px 22px;
+    .wizard {
+        margin: 20px auto;
+        background: #fff;
     }
 
-    .btn-primary.outline {
-        border: 2px solid #0099cc;
-        color: #0099cc;
+        .wizard .nav-tabs {
+            position: relative;
+            margin: 40px auto;
+            margin-bottom: 0;
+            border-bottom-color: #e0e0e0;
+        }
+
+        .wizard > div.wizard-inner {
+            position: relative;
+        }
+
+    .connecting-line {
+        height: 2px;
+        background: #e0e0e0;
+        position: absolute;
+        width: 80%;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: 50%;
+        z-index: 1;
     }
 
-        .btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
-            color: #33a6cc;
-            border-color: #33a6cc;
-        }
+    .wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+        color: #555555;
+        cursor: default;
+        border: 0;
+        border-bottom-color: transparent;
+    }
 
-        .btn-primary.outline:active, .btn-primary.outline.active {
-            border-color: #007299;
-            color: #007299;
-            box-shadow: none;
-        }
-
-    .donations {
+    span.round-tab {
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        display: inline-block;
+        border-radius: 100px;
+        background: #fff;
+        border: 2px solid #e0e0e0;
+        z-index: 2;
+        position: absolute;
+        left: 0;
         text-align: center;
-        border-radius: 6px;
-        height: 75px;
-        margin-bottom: 50px;
-        border: 0.5px solid solid;
-        display: table-cell;
-        background-color: lightblue;
+        font-size: 25px;
+    }
+
+        span.round-tab i {
+            color: #555555;
+        }
+
+    .wizard li.active span.round-tab {
+        background: #fff;
+        border: 2px solid #5bc0de;
+    }
+
+        .wizard li.active span.round-tab i {
+            color: #5bc0de;
+        }
+
+    span.round-tab:hover {
+        color: #333;
+        border: 2px solid #333;
+    }
+
+    .wizard .nav-tabs > li {
+        width: 25%;
+    }
+
+    .wizard li:after {
+        content: " ";
+        position: absolute;
+        left: 46%;
+        opacity: 0;
+        margin: 0 auto;
+        bottom: 0px;
+        border: 5px solid transparent;
+        border-bottom-color: #5bc0de;
+        transition: 0.1s ease-in-out;
+    }
+
+    .wizard li.active:after {
+        content: " ";
+        position: absolute;
+        left: 46%;
+        opacity: 1;
+        margin: 0 auto;
+        bottom: 0px;
+        border: 10px solid transparent;
+        border-bottom-color: #5bc0de;
+    }
+
+    .wizard .nav-tabs > li a {
+        width: 70px;
+        height: 70px;
+        margin: 20px auto;
+        border-radius: 100%;
+        padding: 0;
+    }
+
+        .wizard .nav-tabs > li a:hover {
+            background: transparent;
+        }
+
+    .wizard .tab-pane {
+        position: relative;
+        padding-top: 50px;
+    }
+
+    .wizard h3 {
+        margin-top: 0;
+    }
+
+    @@media( max-width : 585px ) {
+
+        .wizard {
+            width: 90%;
+            height: auto !important;
+        }
+
+        span.round-tab {
+            font-size: 16px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .wizard .nav-tabs > li a {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .wizard li.active:after {
+            content: " ";
+            position: absolute;
+            left: 35%;
+        }
     }
 </style>
-<!-- Page content -->
-<div ng-app="app" ng-controller="formController" ng-cloak>
-    <form>
-        <div class="span12">
-            <div class="row">
-                <div class="jumbotron text-center">
-                    <h1>Start Your Campaign</h1>
-                    <p>Here is where you will build your campaign. Put your story details and all other information here.</p>
+
+<div class="container">
+    <br />
+    <br />
+
+    <div>
+        <section>
+            <div class="wizard">
+                <div class="wizard-inner">
+                    <div class="connecting-line"></div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                <span class="round-tab">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li role="presentation" class="disabled">
+                            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                <span class="round-tab">
+                                    <i class="glyphicon glyphicon-folder-open"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li role="presentation" class="disabled">
+                            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                <span class="round-tab">
+                                    <i class="glyphicon glyphicon-picture"></i>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li role="presentation" class="disabled">
+                            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                                <span class="round-tab">
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="row">
-                    <div class="span12">
-                        <br />
-                        <br />
-                        <br />
+                <form role="form">
+                    <div class="tab-content">
+                        <div class="tab-pane active" role="tabpanel" id="step1">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <h3>Write Your Campaign Description </h3>
+                                <br />
 
-                        <h2 id="anch1">Write Your Story</h2>
-                        <p>Give us a title of your story. We want it to be a summation of the topic of your story. Please keep it brief.</p>
-                        <div class="row">
-                            <fieldset>
-                                <div class="span6">
-                                    <label>Title</label>
-                                    <input type="text" placeholder="Write the title of your story here." ng-model="campaign.Title" />
-                                </div>
-                                <div class="span6">
-                                    <label>Goal</label>
-                                    <input type="number" placeholder="What's your goal amount?" ng-model="campaign.Goal" />
-                                </div>
-                            </fieldset>
-                        </div>
-                        <p>Tell us your story in full detail. You may add pictures from the web. You may not upload pictures at this time. Be as detailed as possible when describing your story. We want to know the whole thing!</p>
-                        <fieldset>
-                            <textarea ui-tinymce="" ng-model="campaign.Description"></textarea>
-                        </fieldset>
-                    </div>
-                    <div class="span12">
-                        <h3>Give Us A Picture</h3>
-                        <br />
-                        <p>Copy and paste a picture representing your story. The picture must be high definition and has quality. The picture can be of yourself or your organization</p>
-                        <fieldset>
-                            <input type="text" ng-model="campaign.Picture" />
-                        </fieldset>
-
-                        <img ng-src="{{campaign.Picture}}" style="height:250px" />
-                    </div>
-                    <div class="span12">
-                        <div class="row">
-                            <br />
-                            <br />
-                            <br />
-
-                            <h3>Add Donation Levels<span></span></h3>
-
-                            <br />
-                            <p width="100%">Detail some donation levels for your cause. Whatever your cause, you can add perks for people at $25, $50, or $100 intervals. List your perks, the amount of contribution they represent and the quantity that are available. </p>
-                        </div>
-                        <div class="row">
-                            <div class="span6">
+                            </div>
+                            <div lcass="col-md-4"></div>
+                            <div class="col-md-6">
                                 <fieldset>
-                                    <label>Title</label>
-                                    <input type="text" ng-model="donationModel.Title" />
+                                    <textarea tinymce=""></textarea>
+                                </fieldset>
 
-                                    <label>Description</label>
-                                    <textarea ui-tinymce="" ng-model="donaatinoModel.Description"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
+                                    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+                                </p>
 
-                                    <label>Quantity</label>
-                                    <input type="number" ng-model="donationModel.Quantity" />
+                            </div>
+                            <ul class="list-inline pull-right">
 
-                                    <label>Add A Delivery Date</label>
-                                    <input type="date" ng-model="donationModel.Delivery" />
-
-                                    <label>Donation Amount</label>
-                                    <input type="text" ng-model="donationModel.Amount" />
-                                    <br />
-                                    <button ng-disabled="noMoreDonations"class="fa fa-plus btn outline" type="submit" ng-click="newDonationLevel()">Add This Donation</button>
+                                <li><button type="button" class="btn btn-primary next-step" >Save and continue</button></li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane" role="tabpanel" id="step2">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <h3>Add Your Perks</h3>
+                            </div>
+                            <div lcass="col-md-4"></div>
+                            <div class="col-md-6">
+                                <fieldset>
 
                                 </fieldset>
                             </div>
-                            <div class="span6">
-                                <div class="span2 donations" ng-repeat="donation in campaign.DonationLevels">{{donation.Title}}</div>
+                            <div class="col-md-6">
+                                <p>
+                                    Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
+                                    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+                                </p>
                             </div>
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+                            </ul>
                         </div>
+                        <div class="tab-pane" role="tabpanel" id="step3">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <h1>Upload Your Picture</h1>
+                                
+                            </div>
+                            <div class="col-md-4"></div>
+
+                            <div col-md-6></div>
+                                
+                            <div col-md-6></div>
+
+                            <ul class="list-inline pull-right">
+                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+                                <li><button type="button" class="btn btn-default next-step">Skip</button></li>
+                                <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane" role="tabpanel" id="complete">
+                            <h3>Complete</h3>
+                            <p>You have successfully completed all steps.</p>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                </div>
+                </form>
             </div>
-        </div>
-        <div class="row">
-            <div class="span4"></div>
-            <div class="span4">
-                <fieldset>
-                    <input ng-hide="confirmed" class="btn btn-primary outline span4" type="submit" ng-click="submitForm()" value="Submit This Campaign" />
-                    <br />
-                    <br />
-                    <br />
-
-                </fieldset>
-
-                <div ng-show="confirmed">
-                    <div class="alert alert-success">Your campaign has been uploaded. Click "Go To Your Campaign" to view your uploaded campaign. You may edit or delete a campaign.</div>
-                    <a href="/campaign/campaignview/{{id}}" class="btn btn-success outline">Go To Your Campaign</a>
-                </div>
-            </div>
-            <div class="span4"></div>
-        </div>
-    </form>
+        </section>
+    </div>
 </div>
-
 
 @section scripts{
 
@@ -152,69 +279,72 @@
     <script src="~/Scripts/tinymce.js"></script>
 
     <script>
+        $(document).ready(function () {
+            //Initialize tooltips
+            $('.nav-tabs > li a[title]').tooltip();
+
+            //Wizard
+            $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+                var $target = $(e.target);
+
+                if ($target.parent().hasClass('disabled')) {
+                    return false;
+                }
+            });
+
+            $(".next-step").click(function (e) {
+
+                var $active = $('.wizard .nav-tabs li.active');
+                $active.next().removeClass('disabled');
+                nextTab($active);
+
+            });
+            $(".prev-step").click(function (e) {
+
+                var $active = $('.wizard .nav-tabs li.active');
+                prevTab($active);
+
+            });
+        });
+
+        function nextTab(elem) {
+            $(elem).next().find('a[data-toggle="tab"]').click();
+        }
+        function prevTab(elem) {
+            $(elem).prev().find('a[data-toggle="tab"]').click();
+        }
+    </script>
+
+    <script>
         var app = angular.module("app", ['ui.tinymce']);
 
         app.controller("formController", function ($scope, $http) {
 
-            $scope.noMoreDonations = false;
+           app.value('froalaConfig', {
+                toolbarInline: false,
+                placeholderText: "Edit Your Content Here!"
+            });
 
-            var ctrl = this;
+            // create the controller and inject Angular's $scope
+            myApp.controller('mainController', function($scope) {
 
-            this.updateHtml = function () {
-                ctrl.tinymceHtml = $sce.trustAsHtml(ctrl.tinymce);
-            };
+                $scope.titleOptions = {
+                    placeholderText : 'Add a Title',
+                    charCounterCount: false,
+                    toolbarInline: true
+                };
 
+                $scope.initialize = function (initControls) {
+                    $scope.initControls = initControls;
+                    $scope.deleteAll = function() {initControls.getEditor()('html.set', '');};
+                };
 
-            $scope.tinymceOptions = {
-                onChange: function (e) {
-                    // put logic here for keypress and cut/paste changes
-                },
-                inline: false,
-                plugins: 'advlist autolink link image lists charmap print preview',
-                skin: 'lightgray',
-                theme: 'modern',
-            };
-
-            $scope.campaign = {
-                Title: '',
-                Goal: 0,
-                Picture: '',
-                DonationLevels: [
-
-                ]
-            }
-
-            if ($scope.campaign.DonationLevels.length === 6) {
-                $scope.noMoreDontionLevels = true;
-            }
-
-            $scope.hide = true;
-            $scope.confirmed = false;
-
-
-            $scope.newDonationLevel = function () {
-
-                if ($scope.donationModel) {
-
-                    $scope.campaign.DonationLevels.push($scope.donationModel);
-                    $scope.donationModel = {};
-                }
-
-            }
-
-            $scope.campaign.Picture = "http://www.bestfact.net/wp-content/uploads/2014/05/Bestfact-JL-Carli-Conference-La-Defense-3112_original.jpg";
-
-            $scope.submitForm = function () {
-                $scope.confirmed = true;
-
-                $http.post('/campaign/startcampaign', $scope.campaign).then(function (id) {
-                    $scope.campaign = {};
-                    $scope.id = id;
-                });
-            }
+                $scope.myTitle = '<span style="font-family: Verdana,Geneva,sans-serif; font-size: 30px;">My Document\'s Title</span><span style="font-size: 18px;"></span></span>';
+                $scope.sample2Text = "";
+                $scope.sample3Text = "";
 
         });
     </script>
-
 
 }
