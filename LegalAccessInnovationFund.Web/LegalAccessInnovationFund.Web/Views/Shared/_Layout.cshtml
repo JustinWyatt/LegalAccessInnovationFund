@@ -6,31 +6,33 @@
     <title>@ViewBag.Title - Legal Access Innovation Fund</title>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link href="~/Content/newmain.css" rel="stylesheet" />
+    
+    <link href="~/Content/indexpage.css" rel="stylesheet" />
+    <link href="~/Content/campaignpage.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-
     <nav class="navbar navbar-default navbar-fixed-top" style="background-color:white; color:purple;">
-        <div class="container">
-            <div class="navbar-header">
-                <p class="navbar-brand">Legal Access Innovation Fund</p>
+            <div class="container">
+                <div class="navbar-header">
+                    <p class="navbar-brand">Legal Access Innovation Fund</p>
+                </div>
+                <ul class="nav navbar-nav navbar-right" >
+                    <li><a href="/home/index" style="text-decoration: none">Home</a></li>
+                    <li><a href="/campaign/campaigns" style="text-decoration: none">Campaigns</a></li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li><a href="/profile/profileview/" style="text-decoration: none">Profile</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="/account/login" style="text-decoration: none">Sign In</a></li>
+                    }
+                </ul>
             </div>
-            <ul class="nav navbar-nav navbar-right" >
-                <li><a href="/home/index" style="text-decoration: none">Home</a></li>
-                <li><a href="/campaigns/campaigns" style="text-decoration: none">Campaigns</a></li>
-                @if (Request.IsAuthenticated)
-                {
-                    <li><a href="/profile/profileview/" style="text-decoration: none">Profile</a></li>
-                }
-                else
-                {
-                    <li><a href="/account/login" style="text-decoration: none">Sign In</a>></li>
-                }
-            </ul>
-        </div>
-    </nav>
+        </nav>
+
     @RenderBody()
 
     <!-- Footer -->

@@ -6,7 +6,7 @@
 <section id="banner">
     <div class="inner split">
         <section>
-            <h2>Legal Access Innovation Fund</h2>
+            <h2>Campaign Fundraising<small></small></h2>
             <br /> <small>Legal Access Technology & Innovation offers a 10-week paid summer fellowship each year to innovative law students who will spur innovation and accelerate the development of legal technology to improve access to justice for low-income clients.</small>
         </section>
         <section>
@@ -23,6 +23,7 @@
         <section>
             <h2>Contribute To Our Campaigns</h2>
             <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus aliquam et tempus lorem feugiat adipiscing lorem. Morbi pharetra vitae felis placerat pharetra. Nulla risus orci, dapibus id malesuada et nec, malesuada quis orci. Pellentesque eget consequat.</p>
+            <br />
             <ul class="actions">
                 <li><a href="#" class="button alt">See Our Featured Campaigns</a></li>
             </ul>
@@ -30,13 +31,13 @@
         <section>
             <h2>Start A Campaign</h2>
             <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus aliquam et tempus lorem feugiat adipiscing lorem. Morbi pharetra vitae felis placerat pharetra. Nulla risus orci, dapibus id malesuada et nec, malesuada quis orci. Pellentesque eget consequat.</p>
+            <br />
             <ul class="actions">
                 <li><a href="#" class="button alt">Start A Campaign</a></li>
             </ul>
         </section>
     </div>
 </section>
-<!-- Two -->
 <section id="two" class="wrapper style2 alt">
     <div class="inner">
         @*@model IEnumerable<LegalAccessInnovationFund.Web.Models.ViewModels.CampaignViewModel>
@@ -66,7 +67,7 @@
                 <img src="~/images/150403-law-student-stock.jpg" />
             </div>
             <div class="content">
-                <h3>Campaign Example 1</h3>
+                <h3>Campaign Example 1 - <small>$50,500</small></h3>
                 <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus malesuada quis orci. Pellentesque eget consequat.</p>
                 <ul class="actions">
                     <li><a href="/campaign/campainview/" class="button alt">Go To Campaign</a></li>
@@ -79,7 +80,7 @@
                 <img src="~/images/pic02.jpg" alt="" />
             </div>
             <div class="content">
-                <h3>Campaign Example 2</h3>
+                <h3>Campaign Example 2 - <small>$50,500</small></h3>
                 <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus malesuada quis orci. Pellentesque eget consequat.</p>
                 <ul class="actions">
                     <li><a href="/campaign/campaignview/" class="button alt">Go To Campaign</a></li>
@@ -93,7 +94,7 @@
                 <img src="~/images/pic03.jpg" alt="" />
             </div>
             <div class="content">
-                <h3>Campaign Example 3</h3>
+                <h3>Campaign Example 3 - <small>$50,500</small></h3>
                 <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus malesuada quis orci. Pellentesque eget consequat.</p>
                 <ul class="actions">
                     <li><a href="/campaign/campaignview/" class="button alt">Go To Campaign</a></li>
@@ -107,7 +108,6 @@
         </ul>
     </div>
 </section>
-<!-- Contact -->
 <section id="contact" class="wrapper">
     <div class="inner split">
         <section>
@@ -125,7 +125,8 @@
                         <input name="email" placeholder="Email" ng-model="application.Email" type="text">
                     </div>
                     <div class="6u$ 12u$(xsmall)">
-                        <input name="phone" placeholder="Phone Number" ng-model="application.Phonenumber" type="text">
+
+                        <input type="text" class="input-medium bfh-phone" placeholder="Phone Number" ng-model="application.Phonenumber" data-country="US">
                     </div>
                     <div class="6u 12u$(xlarge)">
                         <input name="location" placeholder="City, State" ng-model="application.Location" type="text" />
