@@ -468,6 +468,7 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angularbuttons.js" />
+    <Content Include="Scripts\angularfroala.js" />
     <Content Include="Scripts\angularwysiwg.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -481,11 +482,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\ckeditor.js" />
     <Content Include="Scripts\classie.js" />
     <Content Include="Scripts\colorpicker.js" />
     <Content Include="Scripts\combined-min.js" />
     <Content Include="Scripts\count-to.js" />
     <Content Include="Scripts\customizer.js" />
+    <Content Include="Scripts\froalasanitize.js" />
     <Content Include="Scripts\html5.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\imagesloaded.pkgd.min.js" />

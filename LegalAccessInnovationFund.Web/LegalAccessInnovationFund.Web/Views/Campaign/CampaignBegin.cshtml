@@ -5,6 +5,27 @@
 }
 
 <style>
+    input[type=checkbox] {
+        display: none;
+    }
+
+        input[type=checkbox] + label:before {
+            font-family: FontAwesome;
+            display: inline-block;
+        }
+
+        input[type=checkbox] + label:before {
+            content: "\f096";
+        }
+
+        input[type=checkbox]:checked + label:before {
+            content: "\f046";
+        }
+
+        input[type=checkbox]:checked + label:before {
+            letter-spacing: 5px;
+        }
+
     .wizard {
         margin: 20px auto;
         background: #fff;
@@ -167,14 +188,14 @@
                             </a>
                         </li>
 
-                        <li role="presentation" class="disabled">
+                        <li role="presentation">
                             <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                                 <span class="round-tab">
                                     <i class="glyphicon glyphicon-folder-open"></i>
                                 </span>
                             </a>
                         </li>
-                        <li role="presentation" class="disabled">
+                        <li role="presentation">
                             <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                                 <span class="round-tab">
                                     <i class="glyphicon glyphicon-picture"></i>
@@ -182,7 +203,7 @@
                             </a>
                         </li>
 
-                        <li role="presentation" class="disabled">
+                        <li role="presentation">
                             <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
                                 <span class="round-tab">
                                     <i class="glyphicon glyphicon-ok"></i>
@@ -191,82 +212,117 @@
                         </li>
                     </ul>
                 </div>
+                <div ng-app="app" ng-controller="formController">
+                    <form role="form">
+                        <div class="tab-content">
+                            <div class="tab-pane active" role="tabpanel" id="step1">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <h3>Write Your Campaign Description </h3>
+                                    <br />
 
-                <form role="form">
-                    <div class="tab-content">
-                        <div class="tab-pane active" role="tabpanel" id="step1">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
-                                <h3>Write Your Campaign Description </h3>
-                                <br />
+                                </div>
+                                <div lcass="col-md-4"></div>
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <textarea ckeditor="editorOptions" ng-model="campaign.Story"></textarea>
+                                    </fieldset>
 
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control input-lg" id="inputlg" type="text" value="{{campaign.Title}}">
+
+                                    <br />
+                                    <div ng-bind-html="campaign.Story"></div>
+
+                                    @*<p>
+                                            Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
+                                            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+                                        </p>*@
+                                </div>
+                                <ul class="list-inline pull-right">
+                                    @*<li><button type="button" class="btn btn-default next-step">Save and continue</button></li>*@
+                                </ul>
                             </div>
-                            <div lcass="col-md-4"></div>
-                            <div class="col-md-6">
-                                <fieldset>
-                                    <textarea tinymce=""></textarea>
-                                </fieldset>
+                            <div class="tab-pane" role="tabpanel" id="step2">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <h3>Your Perks</h3>
+                                    <p>Your campaign by default comes with five donation levels. For this demo, you are only allowed five donation levels. On production, you will be able to add up to twenty different perks with your donation levels.</p>
+                                    <br />
+                                    <br />
 
+                                    <div class="spotlight">
+                                        <div class="content" style="position:relative; border: 1px solid gray; height:150px;  width: 1000px">
+                                            <h3 style="position:absolute; margin:auto; left:35%">$25 Donation Level</h3>
+                                        </div>
+                                    </div>
+                                    <br />
+
+                                    <div class="spotlight">
+                                        <div class="content" style="position:relative; border: 1px solid gray; height:150px; width: 1000px">
+                                            <h3 style="position:absolute; margin:auto; left:35%">$50 Donation Level</h3>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="spotlight">
+                                        <div class="content" style="position:relative; border: 1px solid gray; height:150px; width: 1000px">
+                                            <h3 style="position:absolute; margin:auto; left:35%">$75 Donation Level</h3>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="spotlight">
+                                        <div class="content" style="position:relative; border: 1px solid gray; height:150px; width: 1000px">
+                                            <h3 style="position:absolute; margin:auto; left:35%">$100 Donation Level</h3>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="spotlight">
+                                        <div class="content" style="position:relative; border: 1px solid gray; height:150px; width: 1000px">
+                                            <h3 style="position:absolute; margin:auto; left:35%">$150 Donation Level</h3>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div lcass="col-md-2"></div>
+                                <ul class="list-inline pull-right">
+                                    @*<li><button type="button" class="btn btn-default prev-step">Previous</button></li>*@
+                                    @*<li><button type="button" class="btn btn-default next-step">Save and continue</button></li>*@
+                                </ul>
                             </div>
-                            <div class="col-md-6">
-                                <p>
-                                    Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-                                    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-                                </p>
+                            <div class="tab-pane" role="tabpanel" id="step3">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <h3>Upload Your Picture</h3>
 
+                                    <br />
+
+                                    <p>Your campaign picture will represent your campaign. Be sure to upload an image that will represent your campaign accurately.</p>
+
+                                    <br />
+
+                                    <div class="form-group">
+                                        <input class="form-control input-lg" id="inputlg" type="text" value="{{campaign.Picture}}">
+                                        <br />
+                                        <img style="height:300px;" src="{{campaign.Picture}}" />
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2"></div>
+
+                                <ul class="list-inline pull-right">
+                                    @*                           <li><button type="button" class="btn btn-default prev-step">Previous</button></li>*@
+                                    @*                         <li><button type="button" class="btn btn-default btn-info-full next-step">Save and continue</button></li>*@
+                                </ul>
                             </div>
-                            <ul class="list-inline pull-right">
-
-                                <li><button type="button" class="btn btn-primary next-step" >Save and continue</button></li>
-                            </ul>
+                            <div class="tab-pane" role="tabpanel" id="complete">
+                                <h3>Complete</h3>
+                                <p>You have successfully completed all steps.</p>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="tab-pane" role="tabpanel" id="step2">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
-                                <h3>Add Your Perks</h3>
-                            </div>
-                            <div lcass="col-md-4"></div>
-                            <div class="col-md-6">
-                                <fieldset>
-
-                                </fieldset>
-                            </div>
-                            <div class="col-md-6">
-                                <p>
-                                    Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
-                                    "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-                                </p>
-                            </div>
-                            <ul class="list-inline pull-right">
-                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                                <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
-                            </ul>
-                        </div>
-                        <div class="tab-pane" role="tabpanel" id="step3">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4">
-                                <h1>Upload Your Picture</h1>
-                                
-                            </div>
-                            <div class="col-md-4"></div>
-
-                            <div col-md-6></div>
-                                
-                            <div col-md-6></div>
-
-                            <ul class="list-inline pull-right">
-                                <li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-                                <li><button type="button" class="btn btn-default next-step">Skip</button></li>
-                                <li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
-                            </ul>
-                        </div>
-                        <div class="tab-pane" role="tabpanel" id="complete">
-                            <h3>Complete</h3>
-                            <p>You have successfully completed all steps.</p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </section>
     </div>
@@ -275,9 +331,9 @@
 @section scripts{
 
     <script src="~/Scripts/angular.js"></script>
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <script src="~/Scripts/tinymce.js"></script>
-
+    <script src="https://code.angularjs.org/1.5.0/angular-sanitize.js"></script>
+    <script src="//cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+    <script src="~/Scripts/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
             //Initialize tooltips
@@ -317,33 +373,35 @@
     </script>
 
     <script>
-        var app = angular.module("app", ['ui.tinymce']);
+        var app = angular.module("app", ['ngSanitize', 'ngCkeditor']);
 
         app.controller("formController", function ($scope, $http) {
 
-           app.value('froalaConfig', {
-                toolbarInline: false,
-                placeholderText: "Edit Your Content Here!"
-            });
+            $scope.campaign = {
+                Story : '',
+                Picture: '',
+                Goal: 0,
+                Title: '',
+                DonationLevels: [
 
-            // create the controller and inject Angular's $scope
-            myApp.controller('mainController', function($scope) {
+                ],
 
-                $scope.titleOptions = {
-                    placeholderText : 'Add a Title',
-                    charCounterCount: false,
-                    toolbarInline: true
-                };
+            };
 
-                $scope.initialize = function (initControls) {
-                    $scope.initControls = initControls;
-                    $scope.deleteAll = function() {initControls.getEditor()('html.set', '');};
-                };
+            $scope.campaign.Title = "Put Your Title Here"
 
-                $scope.myTitle = '<span style="font-family: Verdana,Geneva,sans-serif; font-size: 30px;">My Document\'s Title</span><span style="font-size: 18px;"></span></span>';
-                $scope.sample2Text = "";
-                $scope.sample3Text = "";
+            $scope.campaign.Story = "<h1>" + $scope.campaign.Title + "</h1><p>This is where you will write the description of your campaign. Be detailed but brief.<br/><br/>We want to know what your purpose is for starting this campaign. Our administration will collect the details of your campaign description and tailor your contributions to willing contributors. <br/><br/>We are affiliated with several organizations dedicated to helping young legal students in pursuing their goals.<br/><br/>Have fun and keep it clean!</p>";
 
+            $scope.campaign.Picture = "http://law.depaul.edu/student-resources/PublishingImages/law3.jpg";
+
+            $scope.submit = function () {
+                $http.post('/campaign/startcampaign')
+            }
+
+            $scope.editorOptions = {
+                language: 'en',
+                uiColor: '#FFFFFF'
+            };
         });
     </script>
 

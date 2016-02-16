@@ -142,17 +142,9 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Story = newCampaign.Story,
                 Goal = newCampaign.Goal,
                 Picture = newCampaign.Picture,
-                Location = newCampaign.Location,
                 Status = Status.Pending,
                 CampaignStarter = user,
-                DateEnd = DateTime.Now.AddDays(60),
-                DonationLevels = newCampaign.DonationLevels.Select(x => new DonationLevel()
-                {
-                    Amount = x.Amount,
-                    Title = x.Title,
-                    Description = x.Description,
-                    Quantity = x.Quantity,
-                }).ToList()
+                DateEnd = DateTime.Now.AddDays(60)
             };
             foreach (var donationLevel in campaign.DonationLevels)
             {
