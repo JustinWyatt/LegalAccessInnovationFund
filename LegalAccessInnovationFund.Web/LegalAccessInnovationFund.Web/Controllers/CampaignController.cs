@@ -17,12 +17,20 @@ namespace LegalAccessInnovationFund.Web.Controllers
         BraintreeGateway gateway = new BraintreeGateway
         {
             Environment = Braintree.Environment.SANDBOX,
-            MerchantId = "the_merchant_id",
-            PublicKey = "a_public_key",
-            PrivateKey = "a_private_key"
+            MerchantId = "74g82mvss5tmhynf",
+            PublicKey = "64sf2dk5d92x2fgm",
+            PrivateKey = "382ca186fef82f6367ab6b637b45108c"
         };
 
         ApplicationDbContext db = new ApplicationDbContext();
+
+        [HttpGet]
+        public JsonResult GetToken()
+        {
+            var clientToken = gateway.ClientToken.generate(new ClientTokenRequest());
+
+            return Json(clientToken, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpGet]
         public ActionResult Test()
@@ -140,7 +148,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
             {
                 Title = newCampaign.Title,
                 Story = newCampaign.Story,
-                Goal = newCampaign.Goal,
+                Goal = (double)newCampaign.Goal,
                 Picture = newCampaign.Picture,
                 Status = Status.Pending,
                 CampaignStarter = user,
@@ -156,23 +164,24 @@ namespace LegalAccessInnovationFund.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult MakeContribution(int id, ContributionViewModel contribution)
+        public JsonResult CreditCardContribution(string nonce, string id, ContributionViewModel contribution)
         {
-            var clientToken = gateway.ClientToken.generate(new ClientTokenRequest());
-
             var amount = (decimal)contribution.Amount;
 
-            var request = new TransactionRequest()
+            var request = new TransactionRequest
             {
                 Amount = amount,
-                PaymentMethodNonce = ""
+                PaymentMethodNonce = nonce,
+                Options = new TransactionOptionsRequest
+                {
+                    SubmitForSettlement = true
+                }
             };
 
             Result<Transaction> result = gateway.Transaction.Sale(request);
 
             if (result.IsSuccess())
             {
-
                 var userId = User.Identity.GetUserId();
                 var user = db.Users.Find(userId);
 
@@ -187,15 +196,68 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 campaign.Contributions.Add(newContribution);
                 db.SaveChanges();
 
-                return Json(result.Message, JsonRequestBehavior.AllowGet);
-            }
+                return Json(result.Message);
+            };
+
             var errors = new List<string>();
 
             foreach (var item in result.Errors.DeepAll())
             {
                 errors.Add(item.Message);
             }
-            return Json(errors, JsonRequestBehavior.AllowGet);
+
+            return Json(errors);
+        }
+
+        [HttpPost]
+        public JsonResult PaypalContribution(string nonce, string id, ContributionViewModel contribution)
+        {
+
+            var amount = (decimal)contribution.Amount;
+
+            TransactionRequest request = new TransactionRequest()
+            {
+                Amount = amount,
+                PaymentMethodNonce = nonce,
+                OrderId = "Mapped to PayPal Invoice Number",
+                Options = new TransactionOptionsRequest()
+                {
+                    SubmitForSettlement = true,
+                    PayPal = new TransactionOptionsPayPalRequest()
+                    {
+                        CustomField = "PayPal custom field",
+                        Description = "Description for PayPal email receipt"
+                    }
+                }
+            };
+
+            Result<Transaction> result = gateway.Transaction.Sale(request);
+
+            if (result.IsSuccess())
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.Find(userId);
+
+                var newContribution = new Contribution()
+                {
+                    Campaign = db.Campaigns.Find(id),
+                    Amount = contribution.Amount,
+                    Contributor = user,
+                };
+
+                var campaign = db.Campaigns.Find(id);
+                campaign.Contributions.Add(newContribution);
+                db.SaveChanges();
+
+                return Json(result.Message);
+            };
+            var errors = new List<string>();
+
+            foreach (var item in result.Errors.DeepAll())
+            {
+                errors.Add(item.Message);
+            }
+            return Json(errors);
         }
     }
 }

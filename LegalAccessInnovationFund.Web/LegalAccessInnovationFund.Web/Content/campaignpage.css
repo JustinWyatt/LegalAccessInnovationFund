@@ -532,6 +532,8 @@ ul.tab_img li {
 	float: left;
 	width: 15%;
 	margin: 0 2% 2% 0;
+  text-decoration: none;
+
 }
 ul.tab_img li a:hover{
 	text-decoration:none;
@@ -543,6 +545,7 @@ ul.tab_img li.last{
   padding: 20px 10px;
   list-style: none;
   border: 1px solid #f0f0f0;
+  text-decoration:none;
 }
 .tab_desc p, .tab_desc1 p{
   font-size: 0.8125em;
@@ -550,6 +553,8 @@ ul.tab_img li.last{
   margin-bottom: 10px;
   font-weight:600;
   line-height: 1.5em;
+  text-decoration:none;
+
 }
 .tab_desc h4, .tab_desc1 h4{
   font-size: 0.8125em;
@@ -897,16 +902,21 @@ ul.size h3 {
 ul.size li {
   display: inline-block;
   margin: 0 10px 0 0;
+  text-decoration:none;
+
 }
 ul.size li a {
   color: #555;
   font-size: 1.1em;
   border: 1px solid #a8b2b1;
   padding:18px 25px;
+  text-decoration:none;
 }
 ul.size li a:hover{
   text-decoration:none;
   border:1px solid #00C78A;
+  text-decoration:none;
+
 }
 .btn_3{
   cursor: pointer;
@@ -923,6 +933,7 @@ ul.size li a:hover{
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   margin:3em 0;
+  text-decoration: none;
   border-radius:4px;
   -webkit-border-radius:4px;
   -moz-border-radius:4px;
@@ -1336,6 +1347,7 @@ ul.plan-details{
   width: 53%;
 }
 .tab_desc p, .tab_desc1 p {
+  text-decoration:none;
   font-size: 12px;
 }
 .contact-to input[type="text"] {
@@ -1365,6 +1377,8 @@ ul.plan-details{
 ul.size li a {
   font-size: 1em;
   padding: 8px 15px;
+  text-decoration:none;
+
 }
 .btn_3{
   font-size: 1em;
@@ -1397,6 +1411,7 @@ ul.size li a {
   width: 60%;
 }
 .tab_desc {
+  text-decoration:none;
   padding: 10px 5px;
 }
 .register {
@@ -1479,6 +1494,8 @@ ul.size li a {
 }
 ul.tab_img li {
   width: 31%;
+  text-decoration: none;
+
 }
 .single_left{
   margin-bottom:2em;
@@ -1712,6 +1729,8 @@ ul#footer-links li a {
 ul.size li a {
   font-size: 0.85em;
   padding: 3px 9px;
+  text-decoration:none;
+
 }
 .single_left, .col_6{
   padding: 0;
@@ -1798,6 +1817,7 @@ ul.list1 li a {
 }  
 ul.tab_img li {
   width: 48%;
+  text-decoration: none;
 }
 .subnav {
   width: 110px;

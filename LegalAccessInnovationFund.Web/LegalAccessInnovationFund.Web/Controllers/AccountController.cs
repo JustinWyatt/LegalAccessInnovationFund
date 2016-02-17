@@ -95,11 +95,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 DateRegistered = DateTime.Now,
                 Campaigns = new List<Campaign>(),
                 Contributions = new List<Contribution>(),
-                City = app.City,
-                State = app.State,
-                PostalCode = app.PostalCode,
                 Links = new List<UserLink>(),
-                BirthDate = DateTime.Parse(app.DateOfBirth),
                 Email = app.Email,
                 UserName = "jwyatt123",
                 AvatarImagePath = "http://www.designmissionseries.com/dmseries/india/wp-content/uploads/2015/09/user.png"

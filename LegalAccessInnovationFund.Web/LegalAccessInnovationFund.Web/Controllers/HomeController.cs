@@ -21,5 +21,17 @@ namespace LegalAccessInnovationFund.Web.Controllers
             
             return View();
         }
+
+        [HttpPost]
+        public JsonResult Test(string data)
+        {
+            return Json(data);
+        }
+
+        [HttpGet]
+        public ActionResult OurVision()
+        {
+            return View();
+        }
     }
 }

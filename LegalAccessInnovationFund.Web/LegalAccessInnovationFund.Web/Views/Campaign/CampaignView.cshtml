@@ -99,22 +99,53 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap.js"></script>
     <script src="~/Scripts/count-to.js"></script>
-    @*<script src="https://js.braintreegateway.com/v2/braintree.js"></script>*@
-
-    @*<script>
-            var clientToken = "";
-
-            braintree.setup(clientToken, "dropin", {
-                container: "payment-form"
-            });
-        </script>*@
+    <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
 
     <script>
-        var app = angular.module("app", ["ui.bootstrap", "countTo"]);
+        var app = angular.module('app', []);
 
-        app.controller("contributionController", function ($http, $scope) {
+        app.controller('myController', function ($http) {
 
+            $scope.noDonationLevel = true;
 
+            $scope.creditCarContribution = function(contribution) {
+
+                $http.get('/campaign/gettoken').then(function (result) {
+
+                    var clientToken = result.data;
+
+                    braintree.setup(clientToken, "custom", { id: "checkout" });
+                });
+            }
+
+            $scope.paypalContribution = function (contribution) {
+
+                $http.get('/campaign/gettoken').then(function (result) {
+
+                    var clientToken = result.data;
+
+                    braintree.setup(clientToken, "custom", {
+
+                        paypal: {
+
+                            container: "paypal-container",
+                            singleUse: true, // Required
+                            amount: 10.00, // Required
+                            currency: 'USD', // Required
+                            locale: 'en_us',
+                        },
+                        onPaymentMethodReceived: function (obj) {
+
+                            $http.post('/campaign/paypalcontribution', {
+
+                                nonce: obj.nonce,
+                                id: id,
+                                contribution: contribution
+                            });
+                        }
+                    });
+                });
+            }
         });
     </script>
 }

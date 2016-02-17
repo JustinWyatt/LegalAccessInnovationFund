@@ -1,153 +1,129 @@
-﻿@model LegalAccessInnovationFund.Web.Models.ViewModels.ProfileViewModel
+﻿m@odel LegalAccessInnovationFund.Web.Models.ViewModels.ProfileViewModel
 
 @{
     ViewBag.Title = "ProfileView";
-    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
-    <div class="span9 contact">
-        @if (!Model.Campaigns.Any())
-        {
-            <div class="span1"></div>
-            <div class="span6">
+<style>
+    /* GENERAL STYLES */
+    body {
+        background-color: #EAEAEA;
+    }
 
-                <h2>You Have No Campaigns</h2>
+    /* USER PROFILE STYLES */
 
-                <h5>Start A Campaign Today</h5>
+    .user-wrapper .btn {
+        border-radius: 0px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        margin: 5px;
+    }
 
-                @Html.ActionLink("Go To Start Campaign", "CampaignBegin", "Campaign", null, htmlAttributes: new { @class= "btn btn-large btn-primary outline" })
-            </div>
-            <div class="span2"></div>
+    .user-wrapper .description {
+        padding: 25px;
+        background-color: #fff;
+    }
+
+    .user-wrapper img {
+        width: 100%;
+    }
+
+
+    /* SOCIAL BUTTONS */
+    .btn-social {
+        color: white;
+        opacity: 0.8;
+    }
+
+        .btn-social:hover {
+            color: white;
+            opacity: 1;
+            text-decoration: none;
         }
-        else
-        {
-            <ul class="gallery-post-grid holder">
-                @foreach (var item in Model.Campaigns)
-                {
-                    <li class="span3 gallery-item" data-id="id-1" data-type="illustration">
 
-                        <a href=""><img src="@item.Picture" alt="Gallery"></a>
-                        <span class="project-details"><a href="gallery-single.htm">@item.Title</a>Date Added: @item.DatePosted</span>
-                    </li>
-                }
-            </ul>
-        }
-    </div>
+    .btn-facebook {
+        background-color: #3b5998;
+    }
 
-    <div class="span3 sidebar page-sidebar">
-        <div ng-app="app" ng-controller="profileController">
+    .btn-twitter {
+        background-color: #00aced;
+    }
 
-            <h5 class="title-bg">Profile</h5>
-            <img src="{{avatar}}" alt="">
+    .btn-linkedin {
+        background-color: #0e76a8;
+    }
+
+    .btn-google {
+        background-color: #c32f10;
+    }
+</style>
 
 
-            <button ng-show="!clicked" ng-click="click()" class="btn btn-primary">Upload A New Avatar Image</button>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <br />
+            <br />
 
-            <form ng-show="clicked">
-                <input type="text" ng-model="avatar" placeholder="{{avatar}}" />
-                <input type="submit" ng-click="newAvatar(avatar)" class="btn btn-primary" value="Submitx" />
-            </form>
+            <br />
         </div>
-        <h5 class="title-bg"></h5>
-        <address>
-            <strong>@Model.Name</strong><br>
-            Contributions: @Model.Contributions.Count()<br>
-            Campaigns: @Model.Campaigns.Count()<br>
-        </address>
-
     </div>
+    <!-- USER PROFILE ROW STARTS-->
+    <div class="row">
+        <div class="col-md-3 col-sm-3">
+            <div class="user-wrapper">
+                <img src="@Model.Avatar" class="img-responsive" />
+                <div class="description">
+                    <h4> @Model.Name</h4>
+                    <h5> Date Joined : <strong> </strong></h5>
+                    <p>
+                        Pellentesque elementum dapibus convallis.
+                    </p>
+                    <hr />
+                    <a href="#" class="btn btn-danger btn-sm"> <i class="fa fa-user-plus"></i> &nbsp;Profile + </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-9  user-wrapper">
+            <div class="description">
+                <hr />
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Aliquam suscipit egestas eros, ut maximus magna blandit ut.
+                    Suspendisse vel molestie sapien.
+                    Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                    Fusce sit amet egestas dui, vitae tincidunt justo.
+                </p>
+                <p>
+                    Etiam eleifend massa congue magna pretium, id blandit dui pulvinar.
+                    Nam et pulvinar risus, vel blandit risus.
+                    Maecenas tristique volutpat ante, aliquet hendrerit felis aliquet nec.
+                    Curabitur rutrum tincidunt erat, ac feugiat libero gravida ac.
+                    Suspendisse ut varius quam, vitae rutrum metus.
+                </p>
+                <hr />
+                <a href="#" class="btn btn-social btn-facebook">
+                    <i class="fa fa-facebook"></i>&nbsp; Facebook
+                </a>
+
+                <a href="#" class="btn btn-social btn-google">
+                    <i class="fa fa-google-plus"></i>&nbsp; Google
+                </a>
+                <a href="#" class="btn btn-social btn-twitter">
+                    <i class="fa fa-twitter"></i>&nbsp; Twitter
+                </a>
+                <a href="#" class="btn btn-social btn-linkedin">
+                    <i class="fa fa-linkedin"></i>&nbsp; Linkedin
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- USER PROFILE ROW END-->
 </div>
-@section scripts{
+<br />
+<br />
+<br />
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-    <script>
-
-        var app = angular.module('app', []);
-
-        app.filter('startFrom', function () {
-            return function (input, start) {
-                if (input === undefined) {
-                    return input;
-                } else {
-                    return input.slice(+start);
-                }
-            };
-        });
-
-        app.filter('range', function () {
-            return function (input, total) {
-                total = parseInt(total);
-                for (var i = 0; i < total; i++) {
-                    input.push(i);
-                }
-                return input;
-            };
-        });
-
-        app.factory('Pagination', function () {
-
-            var pagination = {};
-
-            pagination.getNew = function (perPage) {
-
-                perPage = perPage === undefined ? 5 : perPage;
-
-                var paginator = {
-                    numPages: 1,
-                    perPage: perPage,
-                    page: 0
-                };
-
-                paginator.prevPage = function () {
-                    if (paginator.page > 0) {
-                        paginator.page -= 1;
-                    }
-                };
-
-                paginator.nextPage = function () {
-                    if (paginator.page < paginator.numPages - 1) {
-                        paginator.page += 1;
-                    }
-                };
-
-                paginator.toPageId = function (id) {
-                    if (id >= 0 && id <= paginator.numPages - 1) {
-                        paginator.page = id;
-                    }
-                };
-
-                return paginator;
-            };
-
-            return pagination;
-        });
-
-        app.controller('profileController', function ($http, $scope, Pagination) {
-
-            $http.get('/profile/getavatar').then(function (result) {
-                $scope.avatar = result.data;
-            });
-            
-            $scope.clicked = false;
-
-            $scope.click = function () {
-                $scope.clicked = true;
-            }
-
-            $scope.newAvatar = function (avatar) {
-                $http.post('/profile/newavatar', avatar).then(function (result) {
-                    $scope.clicked = false;
-                    $scope.avatar = result.data;
-                });
-            }
-
-        });
-
-
-
-    </script>
-}
 
 

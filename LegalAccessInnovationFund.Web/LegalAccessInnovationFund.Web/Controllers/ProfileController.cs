@@ -44,13 +44,9 @@ namespace LegalAccessInnovationFund.Web.Controllers
             {
                 FirstName = pendingApplication.FirstName,
                 LastName = pendingApplication.LastName,
-                State = pendingApplication.State,
-                City = pendingApplication.City,
                 Email = pendingApplication.Email,
-                MailingAccount = new MailingAccount(pendingApplication.Email),
                 DateApplied = DateTime.Now,
                 PhoneNumber = pendingApplication.PhoneNumber,
-                DateOfBirth = pendingApplication.DateOfBirth
             };
 
             db.PendingApplications.Add(application);
@@ -67,14 +63,15 @@ namespace LegalAccessInnovationFund.Web.Controllers
             {
                 mail.From = new MailAddress("justinjwyatt@hotmail.com");
                 mail.To.Add(application.Email);
-                mail.Subject = $"Thank You! Your Application Is Pending { application.FirstName }";
+                mail.Subject = $"You Have A New Applicant!";
 
-                mail.Body = emailMessage.MessageToAdministratorOnSubmitApplication.Replace("Enter Name", $"{application.FirstName + "" + application.LastName}")
-                                                                                   .Replace("Enter Location", $"{application.City + ", " + application.State}")
-                                                                                   .Replace("Enter Phonenumber", $"{application.PhoneNumber}")
-                                                                                   .Replace("Enter Date Applied", $"{application.DateApplied.ToShortDateString()}")
-                                                                                   .Replace("Enter Email", $"{application.Email}")
-                                                                                   .Replace("ApplicationId", $"{application.Id}");
+                mail.Body = emailMessage.MessageToAdministratorOnSubmitApplication.Replace("Enter Name", application.FirstName + "" + application.LastName)
+                                                                                  .Replace("Enter Phonenumber", application.PhoneNumber)
+                                                                                  .Replace("Enter Date Applied", application.DateApplied.ToShortDateString())
+                                                                                  .Replace("Enter Email", application.Email)
+                                                                                  .Replace("ApplicationId", application.Id.ToString())
+                                                                                  .Replace("Enter LawSchool", application.LawSchool)
+                                                                                  .Replace("Enter SchoolYear", application.YearInSchool);
 
                 mail.IsBodyHtml = true;
                 // Can set to false, if you are sending pure text.

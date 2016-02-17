@@ -169,13 +169,16 @@
         }
     }
 </style>
-
 <div class="container">
     <br />
     <br />
 
     <div>
         <section>
+            <br />
+            <br />
+            <h3 >Start Your Campaign</h3>
+
             <div class="wizard">
                 <div class="wizard-inner">
                     <div class="connecting-line"></div>
@@ -222,7 +225,7 @@
                                     <br />
 
                                 </div>
-                                <div lcass="col-md-4"></div>
+                                <div class="col-md-4"></div>
                                 <div class="col-md-6">
                                     <fieldset>
                                         <textarea ckeditor="editorOptions" ng-model="campaign.Story"></textarea>
@@ -230,7 +233,7 @@
 
                                 </div>
                                 <div class="col-md-6">
-                                    <input class="form-control input-lg" id="inputlg" type="text" value="{{campaign.Title}}">
+                                    <input class="form-control input-lg" id="inputlg" type="text" placeholder="{{campaign.Title}}">
 
                                     <br />
                                     <div ng-bind-html="campaign.Story"></div>
@@ -245,11 +248,21 @@
                                 </ul>
                             </div>
                             <div class="tab-pane" role="tabpanel" id="step2">
+
+
+                                <div lcass="col-md-4"></div>
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
-                                    <h3>Your Perks</h3>
-                                    <p>Your campaign by default comes with five donation levels. For this demo, you are only allowed five donation levels. On production, you will be able to add up to twenty different perks with your donation levels.</p>
+                                    <h3>How Much Are You Trying To Raise? - <span>${{campaign.Goal}}.00</span> </h3>
+                                    <div class="input-group col-md-4">
+                                        <span class="input-group-addon">$</span>
+                                        <fieldset>
+                                            <input type="number" placeholder="{{campaign.Goal}}" ng-model="campaign.Goal" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                        </fieldset>
+                                        <span class="input-group-addon">.00</span>
+                                    </div>
                                     <br />
+                                    <p>Your campaign by default comes with five donation levels. For this demo, you are only allowed five donation levels. On production, you will be able to add up to twenty different perks with your donation levels.</p>
                                     <br />
 
                                     <div class="spotlight">
@@ -302,9 +315,11 @@
                                     <br />
 
                                     <div class="form-group">
-                                        <input class="form-control input-lg" id="inputlg" type="text" value="{{campaign.Picture}}">
+                                        <fieldset>
+                                            <input class="form-control input-lg" id="inputlg" type="text" value="{{campaign.Picture}}"/>
+                                        </fieldset>
                                         <br />
-                                        <img style="height:300px;" src="{{campaign.Picture}}" />
+                                        <img style="height:300px;" ng-src="{{campaign.Picture}}" />
 
                                     </div>
                                 </div>
@@ -316,8 +331,24 @@
                                 </ul>
                             </div>
                             <div class="tab-pane" role="tabpanel" id="complete">
-                                <h3>Complete</h3>
-                                <p>You have successfully completed all steps.</p>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <h3>Submit Your Campaign </h3>
+                                    <br />
+                                    <fieldset>
+                                        <input  type="submit"class="btn btn-success btn-lg" value="Submit Your Campaign" ng-submit="submit(campaign)" ng-hide="submitted" />
+                                    </fieldset>
+
+                                    <div ng-show="loading"><input src="~/Content/default.gif"/></div>
+                                    <div class="alert alert-success" ng-show="success">
+                                        Your campaign has succcessfully been uploaded. Click To See Your Campaign
+                                        <a href="/campaign/campaignview/{{id}}" class="btn btn-success"> Go To See Your Campaign </a>
+                                    </div>
+                                    <br />
+                                    <br />
+
+                                </div>
+                                <div class="col-md-4"></div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -377,30 +408,37 @@
 
         app.controller("formController", function ($scope, $http) {
 
+            $scope.loading = false;
+            $scope.success = false;
+
             $scope.campaign = {
-                Story : '',
-                Picture: '',
-                Goal: 0,
                 Title: '',
-                DonationLevels: [
-
-                ],
-
+                Story: '',
+                Picture: '',
+                Goal: 3000
             };
 
-            $scope.campaign.Title = "Put Your Title Here"
+            $scope.campaign.Title = "Write The Title Of Your Campaign";
 
-            $scope.campaign.Story = "<h1>" + $scope.campaign.Title + "</h1><p>This is where you will write the description of your campaign. Be detailed but brief.<br/><br/>We want to know what your purpose is for starting this campaign. Our administration will collect the details of your campaign description and tailor your contributions to willing contributors. <br/><br/>We are affiliated with several organizations dedicated to helping young legal students in pursuing their goals.<br/><br/>Have fun and keep it clean!</p>";
+            $scope.campaign.Story = "<h1>Write Your Campaign Description</h1><p>This is where you will write the description of your campaign. Be detailed but brief.<br/><br/>We want to know what your purpose is for starting this campaign. Our administration will collect the details of your campaign description and tailor your contributions to willing contributors. <br/><br/>We are affiliated with several organizations dedicated to helping young legal students in pursuing their goals.<br/><br/>Have fun and keep it clean!</p>";
 
             $scope.campaign.Picture = "http://law.depaul.edu/student-resources/PublishingImages/law3.jpg";
 
-            $scope.submit = function () {
-                $http.post('/campaign/startcampaign')
-            }
+            $scope.submit = function (input) {
+                $scope.loading = true;
+                $scope.submitted = true;
+                $http.post('/campaign/startcampaign', input).success(function (id) {
+                    $scope.loading = false;
+                    $scope.success = true;
+                    $scope.id = id;
+                });
+            };
 
             $scope.editorOptions = {
                 language: 'en',
-                uiColor: '#FFFFFF'
+                uiColor: '#FFFFFF',
+                height: '500px',
+                
             };
         });
     </script>

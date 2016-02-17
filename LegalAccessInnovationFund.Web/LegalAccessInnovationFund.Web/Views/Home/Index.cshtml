@@ -67,10 +67,10 @@
                 <img src="~/images/150403-law-student-stock.jpg" />
             </div>
             <div class="content">
-                <h3>Campaign Example 1 - <small>$50,500</small></h3>
-                <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus malesuada quis orci. Pellentesque eget consequat.</p>
+                <h3>Our Vision <small></small></h3>
+                <p>The Legal Access Innovation Fund fellowships and internships will create a “no boundaries” catalyst environment where developers and legal aid advocates can cost-effectively and pro-actively leverage each other’s expertise and vision through the connection of law students nationwide who are participating in the programs. LAIF will raise awareness of its programs by sponsoring and closely coordinating with real and virtual Hackathon events, and encouraging the acceleration and implementation of cutting edge legal aid technology solutions across multiple jurisdictions throughout the country.</p>
                 <ul class="actions">
-                    <li><a href="/campaign/test" class="button alt">Go To Campaign</a></li>
+                    <li><a href="/home/ourvision" class="button alt">Learn More</a></li>
                 </ul>
             </div>
         </div>
@@ -79,10 +79,10 @@
                 <img src="~/images/pic02.jpg" alt="" />
             </div>
             <div class="content">
-                <h3>Campaign Example 2 - <small>$50,500</small></h3>
-                <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus malesuada quis orci. Pellentesque eget consequat.</p>
+                <h3>Who We Are<small></small></h3>
+                <p>The Legal Access Innovation Fund is a community of innovative law students, legal aid organizations, legal technologists, other allied professionals who believe we will all benefit from a legal system that provides equitable access to all. We are creating the next generation of legal innovators who will expand legal access and improve the delivery of legal services to underserved communities by providing law students with meaningful opportunities to create innovative legal technologies, assist with cutting-edge legal aid projects, and implement technology and innovation within legal aid organizations.</p>
                 <ul class="actions">
-                    <li><a href="/campaign/test" class="button alt">Go To Campaign</a></li>
+                    <li><a href="/home/whoweare" class="button alt">Learn Mor<e/a></li>
                 </ul>
             </div>
         </div>
@@ -91,10 +91,10 @@
                 <img src="~/images/pic03.jpg" alt="" />
             </div>
             <div class="content">
-                <h3>Campaign Example 3 - <small>$50,500</small></h3>
-                <p>Lorem ipsum nisl sed cursus magna et amet veroeros. Sed phasellus malesuada quis orci. Pellentesque eget consequat.</p>
+                <h3>Student Program </h3>
+                <p>At least 80 percent of the legal needs of the poor and two-thirds of the legal needs of middle income Americans are not met. While lawyers are too restricted by the profession to enable change, we believe creating a fertile environment for law students to become legal innovators will eventually disrupt the legal profession and spur innovative solutions that address our most pressing issues that prevent legal access to low-income clients.</p>
                 <ul class="actions">
-                    <li><a href="/campaign/test" class="button alt">Go To Campaign</a></li>
+                    <li><a href="/campaign/studentprogram" class="button alt">Learn More</a></li>
                 </ul>
             </div>
         </div>
@@ -104,34 +104,54 @@
         </ul>
     </div>
 </section>
-<section id="contact" class="wrapper">
+<section id="contact" class="wrapper" ng-app="app" ng-controller="applicationController">
     <div class="inner split">
         <section>
             <h2>Apply Today</h2>
             <p>Morbi pharetra vitae felis placerat pharetra. Nulla risus orci, dapibus id malesuada et nec, malesuada quis pellentesque eget.</p>
-            <form action="#" class="alt" method="POST">
-                <div class="row uniform" ng-app="app" ng-controller="applicationController">
-                    <div class="6u 12u$(xsmall)">
-                        <input name="name" placeholder="First Name" ng-model="application.FirstName" type="text">
-                    </div>
-                    <div class="6u$ 12u$(xsmall)">
-                        <input name="name" placeholder="Last Name" ng-model="application.LastName" type="text">
-                    </div>
-                    <div class="6u 12u$(xsmall)">
-                        <input name="email" placeholder="Email" ng-model="application.Email" type="text">
-                    </div>
-                    <div class="6u$ 12u$(xsmall)">
+            <br />
 
-                        <input type="text" class="input-medium bfh-phone" placeholder="Phone Number" ng-model="application.Phonenumber" data-country="US">
+            <form class="alt">
+                <div class="row uniform" >
+                    <div class="6u 12u$(xsmall)">
+                        <fieldset>
+                            <input name="name" placeholder="First Name" ng-model="application.FirstName" type="text">
+                        </fieldset>
                     </div>
-                    <div class="6u 12u$(xlarge)">
-                        <input name="location" placeholder="City, State" ng-model="application.Location" type="text" />
+                    <div class="6u$ 12u$(xsmall)">
+                        <fieldset>
+                            <input name="name" placeholder="Last Name" ng-model="application.LastName" type="text">
+                        </fieldset>
+                    </div>
+                    <div class="6u 12u$(xsmall)">
+                        <fieldset>
+                            <input name="email" placeholder="Email" ng-model="application.Email" type="text">
+                        </fieldset>
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        <fieldset>
+                            <input type="text"  placeholder="Law School" ng-model="application.LawSchool" data-country="US">
+                        </fieldset>
+                    </div>
+                    <div class="6u 12u$(xsmall)">
+                        <fieldset>
+                            <select name="location" placeholder="Year In School" ng-model="application.YearInSchool" type="text">
+                                <option value="">Your School Year</option>
+                                <option value="JL">JL</option>
+                                <option value="2L">2L</option>
+                                <option value="3L">3L</option>
+                                <option value="JD/MBA">JD/MBA</option>
+                                <option value="LLM">LLM</option>
+                            </select>
+                        </fieldset>
                     </div>
 
                 </div>
-                <ul class="actions">
-                    <li><input ng-hide="submitted" class="alt" value="Apply" type="submit" ng-click="submit(application)"></li>
-                    
+                   
+                <ul class="actions">    
+                    <li><fieldset><input ng-hide="submitted" class="alt" value="Apply" type="submit" ng-disabled="!application" ng-click="submit(application)"/></fieldset></li>
+                    <li><img ng-show="submitted" src="~/Content/default.gif" /></li>
+                    <li><div ng-show="success"class="alert alert-success">Your application is pending.</div></li>
                 </ul>
             </form>
         </section>
@@ -146,58 +166,28 @@
 </section>
 
 @section scripts{
-    <script src="~/Scripts/modernizercustom.js"></script>
-    <script src="~/Scripts/classie.js"></script>
-    <script src="~/Scripts/uiprogressbutton.js"></script>
-    <script>
-        [].slice.call(document.querySelectorAll('.actions')).forEach(function (bttn, pos) {
-            new UIProgressButton(bttn, {
-                callback: function (instance) {
-                    var progress = 0,
-                        interval = setInterval(function () {
-                            progress = Math.min(progress + Math.random() * 0.1, 1);
-                            instance.setProgress(progress);
-
-                            if (progress === 1) {
-                                instance.stop(pos === 1 || pos === 3 ? -1 : 1);
-                                clearInterval(interval);
-                            }
-                        }, 150);
-                }
-            });
-        });
-    </script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
     <script>
 
         var app = angular.module("app", []);
 
-
+        
         app.controller("applicationController", function ($http, $scope) {
 
             $scope.submitted = false;
-            $scope.error = false;
             $scope.loading = false;
+            $scope.success = false;
 
             $scope.submit = function (input) {
 
                 $scope.loading = true;
-                $scope.buttonClicked = true;
+                $scope.submitted = true;
 
-                $http.post("/profile/submitapplication", input).success(function (message) {
-
+                $http.post("/profile/submitapplication", input).success(function () {
+                    $scope.loading = false;
+                    $scope.submitted = false;
                     $scope.application = {};
-                    $scope.loading = false;
-                    $scope.submitted = true;
-                    $scope.message = message;
-                })
-
-                .error(function (error) {
-
-                    $scope.loading = false;
-                    $scope.error = true;
-
+                    $scope.success = true;
                 });
             }
         });
