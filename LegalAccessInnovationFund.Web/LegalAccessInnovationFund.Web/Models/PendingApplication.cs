@@ -16,5 +16,6 @@ namespace LegalAccessInnovationFund.Web.Models
         public string LawSchool { get; set; }
         public string YearInSchool { get; set; }
         public string PhoneNumber { get; set; }
+        public string ResumePath { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
         [HttpGet]
         public ActionResult ApplicationForm()
         {
+           
             return View();
         }
 
@@ -40,6 +41,9 @@ namespace LegalAccessInnovationFund.Web.Controllers
             //    return Json(message, JsonRequestBehavior.AllowGet);
             //}
 
+            var resumePath = Server.MapPath("~/Resumes/" + pendingApplication.ResumeFile.FileName);
+            pendingApplication.ResumeFile.SaveAs(resumePath);
+
             var application = new PendingApplication()
             {
                 FirstName = pendingApplication.FirstName,
@@ -47,6 +51,7 @@ namespace LegalAccessInnovationFund.Web.Controllers
                 Email = pendingApplication.Email,
                 DateApplied = DateTime.Now,
                 PhoneNumber = pendingApplication.PhoneNumber,
+                ResumePath = resumePath
             };
 
             db.PendingApplications.Add(application);

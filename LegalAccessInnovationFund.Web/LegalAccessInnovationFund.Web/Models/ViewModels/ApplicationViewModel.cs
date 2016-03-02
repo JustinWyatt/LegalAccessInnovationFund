@@ -14,5 +14,6 @@ namespace LegalAccessInnovationFund.Web.Models.ViewModels
         public string State { get; set; }
         public string DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
+        public HttpPostedFileBase ResumeFile { get; set; }
     }   
 }
